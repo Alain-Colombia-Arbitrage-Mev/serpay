@@ -1,11 +1,11 @@
 
 /* ===== Remesas: tarifas por destino y calculadora ===== */
 const REMESAS={
-  co:{name:'Colombia',flag:'🇨🇴',fee:.014,min:1.99,eta:'minutos'},
-  us:{name:'EE. UU.',flag:'🇺🇸',fee:.008,min:1.49,eta:'minutos'},
-  br:{name:'Brasil',flag:'🇧🇷',fee:.019,min:1.99,eta:'minutos (PIX)'},
-  as:{name:'Asia',flag:'🌏',fee:.019,min:2.99,eta:'1–24 horas'},
-  rw:{name:'Resto del mundo',flag:'🌎',fee:.03,min:3.99,eta:'1–48 horas'},
+  co:{name:'Colombia',flag:'🇨🇴',fee:.019,min:2.49,eta:'minutos'},
+  us:{name:'EE. UU.',flag:'🇺🇸',fee:.012,min:1.99,eta:'minutos'},
+  br:{name:'Brasil',flag:'🇧🇷',fee:.022,min:2.49,eta:'minutos (PIX)'},
+  as:{name:'Asia',flag:'🌏',fee:.025,min:3.49,eta:'1–24 horas'},
+  rw:{name:'Resto del mundo',flag:'🌎',fee:.035,min:4.99,eta:'1–48 horas'},
 };
 const MARKET_AVG=.062;
 (function(){
