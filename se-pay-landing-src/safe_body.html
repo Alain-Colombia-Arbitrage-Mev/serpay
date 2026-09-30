@@ -1,0 +1,146 @@
+<!-- SAFE HERO -->
+<section class="vox-hero">
+  <div class="wrap" style="text-align:center">
+    <span class="pill"><span class="dot"></span> Multisig Safe · Avalanche</span>
+    <h1 class="page-title">Una caja fuerte con tres llaves.<br><em>Se abre con dos.</em></h1>
+    <p class="lead" style="margin:0 auto">El dinero de SE Quant, de cada proyecto y de SE pay vive en wallets multisig Safe: cuentas que necesitan varias firmas para mover un dólar. Ninguna persona, ni siquiera SE pay, puede hacerlo sola.</p>
+    <div style="display:flex;gap:12px;justify-content:center;margin-top:34px;flex-wrap:wrap">
+      <a href="#como-funciona" class="btn btn-lime">Cómo funciona →</a>
+      <a href="#escenarios" class="btn btn-ghost">¿Y si algo sale mal?</a>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="pillars reveal">
+      <div><b>2 de 3</b><span>firmas para mover el dinero de tu Safe de SE Quant</span></div>
+      <div><b>0</b><span>retiros posibles por parte del bot: solo puede operar</span></div>
+      <div><b>48<i> h</i></b><span>de espera en retiros sin tu firma, que puedes cancelar</span></div>
+      <div><b>100<i>%</i></b><span>de las firmas y movimientos, visibles en la blockchain</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT -->
+<section id="como-funciona" style="padding-top:0">
+  <div class="wrap split" style="align-items:center">
+    <div class="reveal">
+      <span class="eyebrow">Qué es una multisig</span>
+      <h2>Varias llaves.<br>Una sola regla.</h2>
+      <p class="lead">Una wallet normal tiene una llave: quien la tiene, mueve el dinero. Una multisig Safe es un smart contract con varios dueños y un número mínimo de firmas. Para mover fondos, alguien propone la transacción y los demás la firman. Si no se juntan las firmas, no pasa nada.</p>
+      <ul class="checks">
+        <li>Safe es el estándar de multisig más usado en redes compatibles con Ethereum, incluida Avalanche.</li>
+        <li>Cada firma y cada transacción quedan registradas y se pueden revisar en el explorador.</li>
+        <li>Los dueños y el mínimo de firmas solo se cambian con las mismas firmas.</li>
+      </ul>
+    </div>
+    <div class="card safe-dia reveal" aria-label="Diagrama de una Safe 2 de 3">
+      <div class="sd-owners">
+        <div class="sd-o you"><span>🔑</span><b>Tú</b><small>Llave en tu teléfono</small></div>
+        <div class="sd-o sp"><span>🔑</span><b>SE pay</b><small>Llave de operación</small></div>
+        <div class="sd-o cu"><span>🔑</span><b>Custodio</b><small>Independiente y regulado</small></div>
+      </div>
+      <div class="sd-lines"><i></i><i></i><i></i></div>
+      <div class="sd-safe"><small>Tu Safe</small><b>2 de 3 firmas</b><span>USDC y posiciones de SE Quant</span></div>
+      <div class="sd-mods">
+        <div><small>Módulo de roles</small><b>El bot solo opera</b></div>
+        <div><small>Guardia + espera</small><b>Retiros a tu dirección</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FLOW -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Cómo se mueve el dinero</span>
+      <h2>Proponer, firmar, ejecutar.</h2>
+    </div>
+    <div class="steps">
+      <div class="card step reveal"><span class="n">01 · Proponer</span><h3>Alguien propone</h3><p>Uno de los dueños crea la transacción: por ejemplo, retirar US$2.000 a tu cuenta.</p></div>
+      <div class="card step reveal"><span class="n">02 · Firmar</span><h3>Se juntan las firmas</h3><p>Los demás dueños la revisan y firman desde su wallet. Hacen falta 2 de las 3.</p></div>
+      <div class="card step reveal"><span class="n">03 · Ejecutar</span><h3>El contrato la ejecuta</h3><p>Con las firmas completas, la Safe hace la transacción. Sin ellas, es imposible.</p></div>
+      <div class="card step reveal"><span class="n">04 · Registrar</span><h3>Queda a la vista</h3><p>Quién propuso, quién firmó y a dónde fue el dinero: todo público en Avalanche.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ROLES -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">El bot de SE Quant dentro de tu Safe</span>
+      <h2>Permiso para operar.<br>Nunca para retirar.</h2>
+      <p class="lead">El bot no es dueño de tu Safe. Tiene un permiso limitado a través de un módulo de roles, que revisa cada operación antes de dejarla pasar.</p>
+    </div>
+    <div class="split" style="align-items:start">
+      <div class="card reveal" style="overflow:hidden">
+        <table>
+          <thead><tr><th>El bot puede</th><th>El bot no puede</th></tr></thead>
+          <tbody>
+            <tr><td class="up">Comprar y vender en exchanges aprobados</td><td class="down">Enviar dinero a otra dirección</td></tr>
+            <tr><td class="up">Operar solo tokens de la lista aprobada</td><td class="down">Aprobar gastos a contratos desconocidos</td></tr>
+            <tr><td class="up">Devolver cada resultado a tu Safe</td><td class="down">Cambiar los dueños o las firmas</td></tr>
+            <tr><td class="up">Respetar el tamaño máximo por operación</td><td class="down">Operar después del freno de −15 %</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="code card reveal"><div class="code-h"><span class="lights"><i></i><i></i><i></i></span><span class="mono">roles-quant.json · permisos del bot (ejemplo)</span></div><pre class="mono"><code>{
+  <span class="s">"role"</span>: <span class="s">"SE_QUANT_BOT"</span>,
+  <span class="s">"allow"</span>: [
+    {
+      <span class="s">"target"</span>: <span class="s">"DEX_ROUTER_APROBADO"</span>,
+      <span class="s">"function"</span>: <span class="s">"swapExactTokensForTokens"</span>,
+      <span class="s">"conditions"</span>: {
+        <span class="s">"path"</span>: <span class="s">"solo tokens de la lista aprobada"</span>,
+        <span class="s">"to"</span>: <span class="s">"== esta misma Safe"</span>,
+        <span class="s">"amountIn"</span>: <span class="s">"<= límite por operación"</span>
+      }
+    }
+  ],
+  <span class="s">"deny"</span>: [<span class="s">"transfer"</span>, <span class="s">"approve a terceros"</span>, <span class="s">"cambiar dueños"</span>]
+}</code></pre></div>
+    </div>
+  </div>
+</section>
+
+<!-- SCENARIOS -->
+<section id="escenarios" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Qué pasa si algo sale mal</span>
+      <h2>Diseñado para el peor día.</h2>
+    </div>
+    <div class="scen">
+      <div class="card reveal"><small>Escenario</small><b>Pierdes tu teléfono o tu llave</b><p>SE pay y el custodio pueden firmar juntos, pero el dinero solo puede ir a tu dirección de retiro registrada, y con 48 horas de espera. Después agregan tu nueva llave como dueño.</p></div>
+      <div class="card reveal"><small>Escenario</small><b>SE pay deja de operar</b><p>Tú y el custodio suman 2 de 3 firmas: puedes sacar tu dinero sin depender de SE pay.</p></div>
+      <div class="card reveal"><small>Escenario</small><b>Alguien en SE pay intenta retirar sin ti</b><p>Una sola firma no alcanza. Y aunque consiguiera la del custodio, el retiro solo puede ir a tu dirección y tú ves el aviso durante 48 horas para cancelarlo.</p></div>
+      <div class="card reveal"><small>Escenario</small><b>Hackean el bot</b><p>El atacante solo tendría permiso para operar dentro de los límites, con tokens aprobados y devolviendo todo a tu Safe. No puede sacar el dinero.</p></div>
+      <div class="card reveal"><small>Escenario</small><b>El custodio falla</b><p>Tú y SE pay siguen siendo 2 de 3 y pueden reemplazarlo por otro custodio con sus firmas.</p></div>
+      <div class="card reveal"><small>Escenario</small><b>Quieres verificarlo tú mismo</b><p>Abre tu Safe en la app de Safe o en el explorador de Avalanche: verás dueños, firmas mínimas, módulos y cada transacción.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- WALLETS -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="card reveal" style="overflow:hidden">
+      <div style="padding:26px 26px 6px"><span class="eyebrow">Dónde usamos Safe</span><h3 style="font-size:24px;font-weight:600;letter-spacing:-.02em;margin-top:8px">Todas nuestras wallets importantes son multisig.</h3></div>
+      <div class="tscroll">
+        <table class="wallets">
+          <thead><tr><th>Safe</th><th>Dueños</th><th>Firmas mínimas</th><th>Protección extra</th></tr></thead>
+          <tbody>
+            <tr><td><b>Tu Safe de SE Quant</b></td><td>Tú · SE pay · custodio</td><td>2 de 3</td><td>Módulo de roles para el bot · retiros solo a tu dirección con 48 h de espera</td></tr>
+            <tr><td><b>Wallet administrativa de cada proyecto</b></td><td>SE pay · operador del proyecto · auditor</td><td>2 de 3</td><td>Desembolsos solo por hitos verificados</td></tr>
+            <tr><td><b>Tesorería SE pay</b></td><td>5 responsables de SE pay</td><td>3 de 5</td><td>Cambios anunciados con espera pública</td></tr>
+            <tr><td><b>Reserva de riesgo SE Quant</b></td><td>5 responsables de SE pay</td><td>3 de 5</td><td>Solo puede pagar a Safes de participantes</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <p class="note">Las direcciones de cada Safe se publican al desplegarse. La protección con guardia y espera de 48 horas es parte del diseño de SE Quant y se activa junto con cada Safe.</p>
+  </div>
+</section>

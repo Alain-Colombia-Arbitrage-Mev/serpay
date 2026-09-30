@@ -1,0 +1,73 @@
+<!-- CATALOG -->
+<section class="vox-hero">
+  <div class="wrap" style="text-align:center">
+    <span class="pill"><span class="dot"></span> Proyectos tokenizados</span>
+    <h1 class="page-title">Proyectos reales.<br><em>Rondas con reglas claras.</em></h1>
+    <p class="lead" style="margin:0 auto">Cada proyecto tiene su página, su contabilidad on-chain, un mínimo para arrancar (soft cap) y un máximo que no se puede superar (hard cap). Si no llega al mínimo, te devolvemos todo.</p>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="filters reveal" id="filters">
+      <button class="on" data-f="all">Todos</button>
+      <button data-f="Abierto">Abiertos</button>
+      <button data-f="Próximamente">Próximamente</button>
+      <button data-f="Financiado">Financiados</button>
+      <button data-f="app">Apps de bienestar</button>
+    </div>
+    <div class="projects" id="catalog"></div>
+    <p class="note">Proyectos de ejemplo con fines ilustrativos. El retorno estimado es una estimación, no una promesa: puedes recibir menos de lo aportado o perderlo por completo.</p>
+  </div>
+</section>
+
+<!-- CAPS EXPLAINER -->
+<section id="caps" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal" style="text-align:center;margin:0 auto 40px;max-width:760px">
+      <span class="eyebrow">Soft cap y hard cap</span>
+      <h2>Tu dinero solo se usa<br>si el proyecto es viable.</h2>
+      <p class="lead" style="margin:0 auto">Cada ronda tiene dos límites escritos en su contrato desde el primer día. Nadie los cambia a mano.</p>
+    </div>
+
+    <div class="card cx-demo reveal">
+      <div class="cx-demo-h"><div><small>Ejemplo</small><b>Ronda de US$2,4M</b></div><span class="pill">Serie A · 62 días restantes</span></div>
+      <div data-capdemo></div>
+    </div>
+
+    <div class="cx-cards">
+      <div class="card cx reveal">
+        <div class="cx-top"><span class="cx-ic soft">↺</span><span class="cx-tag">Mínimo</span></div>
+        <h3>Soft cap</h3>
+        <p class="cx-lead">Lo mínimo que necesita el proyecto para ejecutarse.</p>
+        <p>Si no se alcanza antes de la fecha límite, el contrato devuelve el 100 % de lo aportado, incluido el fee de depósito.</p>
+        <div class="cx-foot"><span class="cx-dot soft"></span>Protección: reembolso total</div>
+      </div>
+      <div class="card cx reveal">
+        <div class="cx-top"><span class="cx-ic hard">▮</span><span class="cx-tag">Máximo</span></div>
+        <h3>Hard cap</h3>
+        <p class="cx-lead">El tope de la ronda.</p>
+        <p>Al alcanzarlo, el contrato deja de aceptar aportes automáticamente. Nadie puede sobrefinanciar el proyecto.</p>
+        <div class="cx-foot"><span class="cx-dot hard"></span>Protección: sin sobrefinanciar</div>
+      </div>
+      <div class="card cx reveal">
+        <div class="cx-top"><span class="cx-ic out">⇢</span><span class="cx-tag">Desembolso</span></div>
+        <h3>Por tramos</h3>
+        <p class="cx-lead">El dinero sale solo contra hitos cumplidos.</p>
+        <p>Se desembolsa cuando la ronda supera el soft cap y cierra, y cada tramo se libera al verificar un hito del proyecto.</p>
+        <div class="cx-foot"><span class="cx-dot out"></span>Protección: control por hitos</div>
+      </div>
+    </div>
+
+    <div class="card cx-flow reveal">
+      <div class="cx-step"><small>1</small><b>Ronda abierta</b><span>Los aportes quedan en garantía en el contrato.</span></div>
+      <div class="cx-arrow">→</div>
+      <div class="cx-step q"><small>2</small><b>¿Llegó al soft cap antes de la fecha?</b><span>El contrato lo verifica solo.</span></div>
+      <div class="cx-arrow">→</div>
+      <div class="cx-branch">
+        <div class="cx-step no"><small>No</small><b>Reembolso del 100 %</b><span>Incluido el fee de depósito.</span></div>
+        <div class="cx-step yes"><small>Sí</small><b>Cierre y desembolso por hitos</b><span>Por hard cap o por fecha límite.</span></div>
+      </div>
+    </div>
+  </div>
+</section>

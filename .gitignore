@@ -1,0 +1,10 @@
+# macOS
+._*
+.DS_Store
+# Datos exportados del formulario (contienen información personal)
+registros.csv
+*.csv
+# Herramientas
+__pycache__/
+node_modules/
+.wrangler/

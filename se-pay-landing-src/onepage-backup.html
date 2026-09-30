@@ -1,0 +1,954 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SE pay — Banca de proyectos tokenizados</title>
+<meta name="description" content="Participa en proyectos reales tokenizados en blockchain, con contabilidad abierta en tiempo real y comisiones transparentes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0b0c;--panel:#121415;--panel-2:#171a1c;--line:#22262a;--ink:#f2f3ee;--soft:#c3c7c0;--mute:#83898e;
+    --lime:#d4ff1e;--lime-d:#a8cc10;--red:#ff6b5b;--amber:#ffc24b;
+    --r:20px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:Sora,system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+  .mono{font-family:"JetBrains Mono",ui-monospace,monospace}
+  .eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--lime);font-weight:600}
+  h2{font-size:clamp(30px,4.2vw,48px);font-weight:600;letter-spacing:-.03em;line-height:1.08;margin:14px 0 16px}
+  .lead{color:var(--soft);font-size:17px;max-width:640px}
+  section{padding:110px 0}
+  .sec-head{margin-bottom:48px}
+  .btn{display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 24px;border-radius:14px;font-weight:600;font-size:15px;transition:.2s;cursor:pointer;border:0;font-family:inherit}
+  .btn-lime{background:var(--lime);color:#0a0b0c}
+  .btn-lime:hover{background:#e3ff5c;transform:translateY(-1px);box-shadow:0 10px 40px -10px rgba(212,255,30,.6)}
+  .btn-ghost{background:var(--panel-2);color:var(--ink);border:1px solid var(--line)}
+  .btn-ghost:hover{border-color:#3a4046}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r)}
+  .pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;padding:5px 10px;border-radius:99px;background:var(--panel-2);border:1px solid var(--line);color:var(--soft)}
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--lime);box-shadow:0 0 10px var(--lime)}
+
+  /* NAV */
+  nav{position:sticky;top:0;z-index:50;background:rgba(10,11,12,.72);backdrop-filter:blur(14px);border-bottom:1px solid rgba(34,38,42,.6)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .logo{display:flex;align-items:center;gap:10px;font-size:22px;letter-spacing:-.8px}
+  .logo b{font-weight:600}.logo span{font-weight:300}
+  .links{display:flex;gap:4px}
+  .links a{font-size:14px;color:var(--soft);padding:8px 14px;border-radius:10px}
+  .links a:hover{background:var(--panel-2);color:var(--ink)}
+  nav .btn{height:42px;padding:0 18px;font-size:14px}
+  @media (max-width:980px){.links{display:none}}
+
+  /* HERO */
+  .hero{position:relative;padding:90px 0 0;text-align:center;overflow:hidden}
+  .hero h1{font-size:clamp(40px,6.6vw,82px);font-weight:600;letter-spacing:-.045em;line-height:1.02;max-width:980px;margin:22px auto 22px}
+  .hero h1 em{font-style:normal;color:var(--lime)}
+  .hero .lead{margin:0 auto;font-size:18px}
+  .hero .ctas{display:flex;gap:12px;justify-content:center;margin-top:36px;flex-wrap:wrap}
+  .trust{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;margin-top:28px;font-size:13px;color:var(--mute)}
+  .trust span{display:flex;align-items:center;gap:8px}
+  .arc{position:relative;margin:70px auto 0;width:min(1100px,140vw);aspect-ratio:2/1;left:50%;transform:translateX(-50%)}
+  .arc::before{content:"";position:absolute;inset:0;border-radius:1100px 1100px 0 0;border:34px solid var(--lime);border-bottom:0;
+    filter:blur(1px);box-shadow:0 0 90px 10px rgba(212,255,30,.45),inset 0 0 90px 10px rgba(212,255,30,.35);opacity:.95}
+  .arc::after{content:"";position:absolute;inset:-60px -60px 0;background:radial-gradient(50% 60% at 50% 100%,rgba(212,255,30,.22),transparent 70%);z-index:-1}
+  .ledger{position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:min(620px,88vw);text-align:left;
+    background:rgba(18,20,21,.92);border:1px solid var(--line);border-radius:22px 22px 0 0;padding:22px 22px 8px;backdrop-filter:blur(8px)}
+  .ledger-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;font-size:13px;color:var(--mute)}
+  .ledger-h b{color:var(--ink);font-weight:600;font-size:15px}
+  .tx{display:grid;grid-template-columns:30px 1fr auto;gap:12px;align-items:center;padding:11px 0;border-top:1px solid var(--line);font-size:13px;animation:in .5s ease}
+  .tx .ic{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:var(--panel-2);color:var(--lime);font-size:14px}
+  .tx small{display:block;color:var(--mute);font-size:11px}
+  .tx .amt{font-weight:600}
+  @keyframes in{from{opacity:0;transform:translateY(-6px)}to{opacity:1}}
+  @media (max-width:640px){.arc::before{border-width:18px}}
+
+  /* PILLARS */
+  .pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+  .pillars div{background:var(--bg);padding:28px}
+  .pillars b{display:block;font-size:30px;font-weight:600;letter-spacing:-.03em}
+  .pillars b i{font-style:normal;color:var(--lime)}
+  .pillars span{font-size:13px;color:var(--mute)}
+  @media (max-width:820px){.pillars{grid-template-columns:1fr 1fr}}
+  @media (max-width:480px){.pillars div{padding:20px 16px}.pillars b{font-size:26px}}
+
+  /* PROJECTS */
+  .projects{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .proj{padding:0;overflow:hidden;display:flex;flex-direction:column}
+  .proj .top{height:150px;position:relative;padding:18px;display:flex;justify-content:space-between;align-items:flex-start}
+  .proj .body{padding:22px;display:flex;flex-direction:column;gap:16px;flex:1}
+  .proj h3{font-size:20px;font-weight:600;letter-spacing:-.02em}
+  .proj p{font-size:14px;color:var(--mute)}
+  .kv{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+  .kv div{background:var(--panel-2);border-radius:12px;padding:10px 12px}
+  .kv small{display:block;font-size:11px;color:var(--mute)}
+  .kv b{font-size:15px;font-weight:600}
+  .bar{height:6px;border-radius:9px;background:var(--panel-2);overflow:hidden}
+  .bar i{display:block;height:100%;background:var(--lime);border-radius:9px}
+  .risk{font-size:11px;padding:4px 9px;border-radius:99px;font-weight:600}
+  .r-high{background:rgba(255,107,91,.14);color:var(--red)}
+  .r-mid{background:rgba(255,194,75,.14);color:var(--amber)}
+  .note{font-size:12px;color:var(--mute);margin-top:18px}
+  @media (max-width:960px){.projects{grid-template-columns:1fr}}
+
+  /* STEPS */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .step{padding:26px}
+  .step .n{font-size:13px;color:var(--lime);font-weight:600}
+  .step h3{font-size:18px;font-weight:600;margin:40px 0 8px;letter-spacing:-.02em}
+  .step p{font-size:14px;color:var(--mute)}
+  @media (max-width:960px){.steps{grid-template-columns:1fr 1fr}}
+  @media (max-width:560px){.steps{grid-template-columns:1fr}}
+
+  /* TRANSPARENCY */
+  .split{display:grid;grid-template-columns:1fr 1.15fr;gap:48px;align-items:center}
+  @media (max-width:960px){.split{grid-template-columns:1fr}}
+  .checks{list-style:none;display:grid;gap:14px;margin-top:28px}
+  .checks li{display:grid;grid-template-columns:24px 1fr;gap:10px;font-size:15px;color:var(--soft)}
+  .checks li::before{content:"⇄";color:var(--lime);font-weight:700}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th{text-align:left;color:var(--mute);font-weight:500;padding:12px 16px;border-bottom:1px solid var(--line);font-size:12px}
+  td{padding:13px 16px;border-bottom:1px solid var(--line)}
+  tr:last-child td{border-bottom:0}
+  .tscroll{overflow-x:auto}
+  .hash{color:var(--lime);font-size:12px}
+
+  /* WATERFALL */
+  .fall{display:grid;gap:10px;padding:26px}
+  .fall .row{display:grid;grid-template-columns:34px 1fr auto;gap:14px;align-items:center;padding:16px;border-radius:14px;background:var(--panel-2)}
+  .fall .row .k{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--bg);font-weight:600;font-size:13px;color:var(--lime)}
+  .fall .row b{font-size:15px;font-weight:600}
+  .fall .row small{display:block;color:var(--mute);font-size:12px}
+  .fall .row .v{font-weight:600;font-size:14px}
+  .fall .row.hl{background:rgba(212,255,30,.08);border:1px solid rgba(212,255,30,.25)}
+
+  /* FEES */
+  .fees{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .fee{padding:26px}
+  .fee .big{font-size:44px;font-weight:600;letter-spacing:-.04em;margin:18px 0 6px}
+  .fee .big small{font-size:16px;color:var(--mute);font-weight:400;letter-spacing:0}
+  .fee p{font-size:14px;color:var(--mute)}
+  .fee.feat{border-color:rgba(212,255,30,.35);background:linear-gradient(180deg,rgba(212,255,30,.07),var(--panel) 60%)}
+  @media (max-width:960px){.fees{grid-template-columns:1fr}}
+
+  /* PLANS */
+  .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .plan{padding:30px;display:flex;flex-direction:column;gap:18px}
+  .plan h3{font-size:18px;font-weight:600}
+  .plan .price{font-size:40px;font-weight:600;letter-spacing:-.04em}
+  .plan .price small{font-size:14px;color:var(--mute);font-weight:400}
+  .plan ul{list-style:none;display:grid;gap:10px;font-size:14px;color:var(--soft);flex:1}
+  .plan li::before{content:"✓";color:var(--lime);margin-right:10px;font-weight:700}
+  .plan.feat{border-color:var(--lime);position:relative}
+  .plan.feat .tag{position:absolute;top:-12px;left:30px;background:var(--lime);color:#0a0b0c;font-size:11px;font-weight:700;padding:4px 10px;border-radius:99px}
+  @media (max-width:960px){.plans{grid-template-columns:1fr}}
+
+  /* TRADING */
+  .term{overflow:hidden;font-size:13px}
+  .term-bar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:14px 18px;border-bottom:1px solid var(--line);background:var(--panel-2)}
+  .term-bar .l{display:flex;align-items:center;gap:10px;font-weight:600}
+  .lights{display:flex;gap:6px}.lights i{width:10px;height:10px;border-radius:50%;background:#2a2e32}
+  .seg{display:inline-flex;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:3px}
+  .seg button{font-family:inherit;font-size:12px;border:0;background:transparent;color:var(--mute);padding:6px 10px;border-radius:7px;cursor:pointer}
+  .seg button.on{background:var(--panel-2);color:var(--ink)}
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--line)}
+  .kpis div{padding:18px;border-right:1px solid var(--line)}
+  .kpis div:last-child{border-right:0}
+  .kpis small{display:block;color:var(--mute);font-size:11px;margin-bottom:4px}
+  .kpis b{font-size:22px;font-weight:600;letter-spacing:-.02em}
+  .up{color:var(--lime)}.down{color:var(--red)}
+  @media (max-width:760px){.kpis{grid-template-columns:1fr 1fr}.kpis div:nth-child(2){border-right:0}.kpis div:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+  .term-body{display:grid;grid-template-columns:1.4fr 1fr}
+  .term-body > div{padding:18px}
+  .term-body > div:first-child{border-right:1px solid var(--line)}
+  @media (max-width:900px){.term-body{grid-template-columns:1fr}.term-body > div:first-child{border-right:0;border-bottom:1px solid var(--line)}}
+  .t-h{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin-bottom:12px;display:flex;justify-content:space-between}
+  .months{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-top:16px}
+  .months div{border-radius:8px;padding:8px;text-align:center;font-size:12px}
+  .months small{display:block;font-size:10px;color:var(--mute)}
+  .flow .r{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--line)}
+  .flow .r:last-child{border-bottom:0}
+  .flow .r.t{font-weight:600;font-size:14px}
+  .pos{display:grid;grid-template-columns:1fr auto auto;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);align-items:center}
+  .side{font-size:10px;font-weight:700;padding:2px 6px;border-radius:5px}
+  .buy{background:rgba(212,255,30,.14);color:var(--lime)}.sell{background:rgba(255,107,91,.14);color:var(--red)}
+  .guards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:22px}
+  .guards div{padding:20px;font-size:13px;color:var(--mute)}
+  .guards b{display:block;color:var(--ink);font-size:22px;letter-spacing:-.02em;margin-bottom:4px;font-weight:600}
+  @media (max-width:900px){.guards{grid-template-columns:1fr 1fr}}
+  .trader{display:grid;grid-template-columns:auto 1fr auto;gap:22px;align-items:center;padding:24px;margin-top:22px}
+  .trader .ph{width:72px;height:72px;border-radius:18px;background:var(--panel-2);border:1px dashed #3a4046;display:grid;place-items:center;color:var(--mute);font-size:11px;text-align:center}
+  @media (max-width:760px){.trader{grid-template-columns:1fr}}
+
+  /* TOAST */
+  .toast{position:fixed;left:20px;bottom:20px;z-index:60;width:340px;max-width:calc(100vw - 32px);display:grid;grid-template-columns:44px 1fr auto;gap:12px;align-items:center;
+    padding:14px 14px 14px 16px;border-radius:18px;background:rgba(23,26,28,.94);border:1px solid var(--line);backdrop-filter:blur(12px);
+    box-shadow:0 20px 50px -20px rgba(0,0,0,.8),0 0 0 1px rgba(212,255,30,.06);transform:translateY(140%);opacity:0;transition:transform .55s cubic-bezier(.2,.9,.3,1.2),opacity .4s}
+  .toast.show{transform:none;opacity:1}
+  .toast .flag{width:44px;height:44px;border-radius:12px;background:var(--bg);display:grid;place-items:center;font-size:24px;position:relative}
+  .toast .flag::after{content:"";position:absolute;right:-3px;bottom:-3px;width:12px;height:12px;border-radius:50%;background:var(--lime);border:2px solid #171a1c;box-shadow:0 0 10px var(--lime)}
+  .toast b{font-size:14px;font-weight:600;display:block}
+  .toast p{font-size:13px;color:var(--soft);line-height:1.35}
+  .toast small{font-size:11px;color:var(--mute);display:flex;gap:6px;align-items:center;margin-top:3px}
+  .toast .x{align-self:flex-start;background:none;border:0;color:var(--mute);font-size:16px;cursor:pointer;padding:0 2px}
+  .toast .demo{font-size:9px;letter-spacing:.1em;padding:1px 5px;border-radius:4px;background:#2a2e32;color:var(--mute)}
+  @media (max-width:560px){.toast{left:16px;bottom:16px}}
+  /* LEADERBOARD */
+  .lb td{white-space:nowrap}
+  .lb .pos-n{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--panel-2);font-weight:600;font-size:13px}
+  .lb tr:nth-child(1) .pos-n{background:var(--lime);color:#0a0b0c}
+  .lb tr:nth-child(2) .pos-n,.lb tr:nth-child(3) .pos-n{border:1px solid rgba(212,255,30,.4);color:var(--lime)}
+  .lb .who{display:flex;align-items:center;gap:10px}
+  .lb .who span{font-size:20px}
+  .target{display:grid;grid-template-columns:auto 1fr;gap:26px;align-items:center;padding:28px;margin-bottom:22px;border-color:rgba(212,255,30,.35);background:radial-gradient(60% 120% at 0% 50%,rgba(212,255,30,.12),transparent 70%),var(--panel)}
+  .target .big{font-size:clamp(56px,8vw,96px);font-weight:600;letter-spacing:-.05em;line-height:1;color:var(--lime)}
+  @media (max-width:700px){.target{grid-template-columns:1fr;gap:10px}}
+  .trader .ph{overflow:hidden}
+  .trader .ph img{width:100%;height:100%;object-fit:cover}
+  .trader .ph img + span{display:none}
+
+  /* RED */
+  .red-sec{background:radial-gradient(70% 50% at 50% 0%,rgba(212,255,30,.08),transparent 70%)}
+  .levels{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+  .lvl{padding:22px 18px;text-align:left;position:relative;overflow:hidden}
+  .lvl .p{font-size:40px;font-weight:600;letter-spacing:-.04em}
+  .lvl .p small{font-size:18px}
+  .lvl .rank{font-size:14px;font-weight:600;margin-top:4px}
+  .lvl .req{font-size:12px;color:var(--mute);margin-top:12px;min-height:36px}
+  .lvl .tagn{font-size:11px;color:var(--lime);font-weight:600;letter-spacing:.1em}
+  .lvl .fillbar{position:absolute;left:0;bottom:0;height:3px;background:var(--lime)}
+  @media (max-width:960px){.levels{grid-template-columns:1fr 1fr}}
+  .calc{display:grid;grid-template-columns:1.1fr .9fr;gap:0;margin-top:22px;overflow:hidden}
+  .calc .in{padding:30px;border-right:1px solid var(--line);display:grid;gap:18px}
+  .calc .out{padding:30px;display:flex;flex-direction:column;gap:12px}
+  .field label{display:flex;justify-content:space-between;font-size:13px;color:var(--soft);margin-bottom:8px}
+  .field label b{color:var(--ink)}
+  input[type=range]{width:100%;accent-color:var(--lime)}
+  .matrix td.hl{color:var(--lime);font-weight:600}
+  .matrix tr.sum td{background:var(--panel-2)}
+  .matrix td,.matrix th{white-space:nowrap}
+  .res-row{display:flex;justify-content:space-between;font-size:14px;padding:10px 0;border-bottom:1px solid var(--line)}
+  .res-row.lock{color:var(--mute)}
+  .res-row.lock b{font-weight:400;font-size:12px}
+  .total{margin-top:auto;padding-top:16px}
+  .total small{color:var(--mute);font-size:13px}
+  .total b{display:block;font-size:44px;font-weight:600;letter-spacing:-.04em;color:var(--lime)}
+  @media (max-width:860px){.calc{grid-template-columns:1fr}.calc .in{border-right:0;border-bottom:1px solid var(--line)}}
+  .rules{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}
+  .rules div{padding:20px;font-size:13px;color:var(--mute)}
+  .rules b{display:block;color:var(--ink);font-size:14px;margin-bottom:4px;font-weight:600}
+  @media (max-width:860px){.rules{grid-template-columns:1fr}}
+  .source{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
+  .source div{padding:22px}
+  .source h4{font-size:14px;margin-bottom:10px;font-weight:600}
+  .source ul{list-style:none;font-size:14px;color:var(--soft);display:grid;gap:6px}
+  @media (max-width:700px){.source{grid-template-columns:1fr}}
+
+  /* AGENT */
+  .agent{display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:center}
+  @media (max-width:960px){.agent{grid-template-columns:1fr}}
+  .chat{display:flex;flex-direction:column;height:520px;overflow:hidden}
+  .chat-h{display:flex;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid var(--line)}
+  .chat-h .av{width:38px;height:38px;border-radius:12px;background:var(--panel-2);display:grid;place-items:center}
+  .chat-h b{font-size:15px;font-weight:600;display:block}
+  .chat-h small{font-size:12px;color:var(--mute);display:flex;align-items:center;gap:6px}
+  .msgs{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:12px}
+  .m{max-width:85%;padding:12px 15px;border-radius:16px;font-size:14px;line-height:1.5;animation:in .3s ease}
+  .m.a{background:var(--panel-2);border:1px solid var(--line);border-bottom-left-radius:5px;color:var(--soft)}
+  .m.u{background:var(--lime);color:#0a0b0c;margin-left:auto;border-bottom-right-radius:5px;font-weight:500}
+  .sugg{display:flex;gap:8px;flex-wrap:wrap;padding:0 20px 12px}
+  .sugg button{font-family:inherit;font-size:12px;padding:7px 12px;border-radius:99px;background:transparent;border:1px solid var(--line);color:var(--soft);cursor:pointer}
+  .sugg button:hover{border-color:var(--lime);color:var(--ink)}
+  .chat form{display:flex;gap:8px;padding:14px;border-top:1px solid var(--line)}
+  .chat input{flex:1;background:var(--panel-2);border:1px solid var(--line);border-radius:12px;padding:0 14px;height:46px;color:var(--ink);font-family:inherit;font-size:14px;outline:none}
+  .chat input:focus{border-color:#3a4046}
+  .chat form button{height:46px;width:46px;border-radius:12px;border:0;background:var(--lime);font-size:18px;cursor:pointer}
+
+  /* RISK */
+  .riskbox{padding:36px;border-color:rgba(255,194,75,.3);background:linear-gradient(180deg,rgba(255,194,75,.05),var(--panel))}
+  .riskgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:26px}
+  .riskgrid b{display:block;font-size:15px;margin-bottom:6px;font-weight:600}
+  .riskgrid p{font-size:14px;color:var(--mute)}
+  @media (max-width:860px){.riskgrid{grid-template-columns:1fr}}
+
+  /* FAQ */
+  details{border-bottom:1px solid var(--line);padding:22px 0}
+  summary{cursor:pointer;font-size:17px;font-weight:500;list-style:none;display:flex;justify-content:space-between;gap:20px}
+  summary::after{content:"+";color:var(--lime);font-size:22px;line-height:1}
+  details[open] summary::after{content:"–"}
+  details p{color:var(--mute);font-size:15px;margin-top:12px;max-width:820px}
+
+  /* FINAL */
+  .final{text-align:center;padding:90px 24px;position:relative;overflow:hidden}
+  .final::before{content:"";position:absolute;left:50%;bottom:-340px;width:700px;height:700px;transform:translateX(-50%);border-radius:50%;border:26px solid var(--lime);box-shadow:0 0 80px rgba(212,255,30,.45);opacity:.9}
+  .final > *{position:relative}
+  footer{border-top:1px solid var(--line);padding:50px 0 60px;font-size:12px;color:var(--mute)}
+  footer .top{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;margin-bottom:30px}
+  footer .cols{display:flex;gap:60px;flex-wrap:wrap;font-size:14px}
+  footer .cols div{display:grid;gap:8px}
+  footer .cols b{color:var(--ink);font-weight:600;font-size:13px}
+  footer .legal{max-width:960px;line-height:1.7}
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.on{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="s-top" viewBox="0 0 100 100"><path d="M65.6 23 A18 18 0 1 0 42.4 48.3" fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="round"/><path d="M56.9 28 L74.3 18 L71.6 33.4 Z" fill="currentColor" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/></symbol>
+    <symbol id="s-bot" viewBox="0 0 100 100"><path d="M57.6 51.7 A18 18 0 1 1 34.4 77" fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="round"/><path d="M43.1 72 L25.7 82 L28.4 66.6 Z" fill="currentColor" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/></symbol>
+  </defs>
+</svg>
+
+<!-- NAV -->
+<nav>
+  <div class="wrap">
+    <a href="#" class="logo" aria-label="SE pay">
+      <svg width="34" height="34" viewBox="0 0 100 100"><use href="#s-top" color="#f2f3ee"/><use href="#s-bot" color="#d4ff1e"/></svg>
+      <span><b>SE</b> <span>pay</span></span>
+    </a>
+    <div class="links">
+      <a href="#proyectos">Proyectos</a>
+      <a href="#transparencia">Transparencia</a>
+      <a href="#comisiones">Comisiones</a>
+      <a href="#trading">Trading</a>
+      <a href="#red">Red ⇄</a>
+      <a href="#agente">Agente SE</a>
+    </div>
+    <a href="#final" class="btn btn-lime">Abrir cuenta</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <span class="pill"><span class="dot"></span> Banca de proyectos · contabilidad abierta en blockchain</span>
+    <h1>Participa en proyectos reales.<br><em>Mira cada dólar moverse.</em></h1>
+    <p class="lead">SE pay tokeniza proyectos productivos y registra cada entrada, gasto y distribución en blockchain. Sabes dónde está tu capital, qué cobramos y cuándo, en tiempo real.</p>
+    <div class="ctas">
+      <a href="#proyectos" class="btn btn-lime">Explorar proyectos →</a>
+      <a href="#agente" class="btn btn-ghost">Preguntar al Agente SE</a>
+    </div>
+    <div class="trust">
+      <span>⇄ Contabilidad on-chain auditable</span>
+      <span>⇄ Fondos custodiados por smart contracts</span>
+      <span>⇄ Verificación KYC / AML</span>
+    </div>
+  </div>
+  <div class="arc">
+    <div class="ledger">
+      <div class="ledger-h"><b>Libro contable en vivo</b><span class="pill"><span class="dot"></span> Vista de ejemplo</span></div>
+      <div id="txs"></div>
+    </div>
+  </div>
+</header>
+
+<!-- PILLARS -->
+<section style="padding:60px 0 0">
+  <div class="wrap">
+    <div class="pillars reveal">
+      <div><b>100<i>%</i></b><span>de los movimientos de cada proyecto, visibles on-chain</span></div>
+      <div><b>2<i>%</i></b><span>cuota de administración anual, cobrada por contrato</span></div>
+      <div><b>20<i>%</i></b><span>success fee solo sobre ganancias por encima del 8 %</span></div>
+      <div><b>0</b><span>comisiones ocultas. Si no está en la cadena, no existe</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="proyectos">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Proyectos abiertos</span>
+      <h2>Activos reales, divididos en tokens.</h2>
+      <p class="lead">Cada proyecto pasa por un análisis financiero, legal y técnico antes de publicarse. Tú eliges en cuál participar y con cuánto.</p>
+    </div>
+    <div class="projects">
+      <article class="card proj reveal">
+        <div class="top" style="background:radial-gradient(80% 120% at 80% 0%,rgba(212,255,30,.35),transparent 60%),linear-gradient(135deg,#1b2014,#101211)">
+          <span class="pill">Energía · Chile</span><span class="risk r-mid">Riesgo medio-alto</span>
+        </div>
+        <div class="body">
+          <div><h3>Parque Solar Atacama II</h3><p>Planta fotovoltaica de 12 MW con contrato de venta de energía a 10 años.</p></div>
+          <div class="kv"><div><small>Retorno estimado</small><b>11–14 %</b></div><div><small>Plazo</small><b>48 meses</b></div><div><small>Ticket mín.</small><b>US$250</b></div></div>
+          <div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:8px"><span>US$1,62M de US$2,4M</span><span class="mono" style="color:var(--lime)">68 %</span></div><div class="bar"><i style="width:68%"></i></div></div>
+          <a href="#final" class="btn btn-ghost" style="justify-content:center">Ver contabilidad del proyecto</a>
+        </div>
+      </article>
+      <article class="card proj reveal">
+        <div class="top" style="background:radial-gradient(80% 120% at 20% 0%,rgba(120,200,255,.28),transparent 60%),linear-gradient(135deg,#121820,#101112)">
+          <span class="pill">Logística · México</span><span class="risk r-mid">Riesgo medio-alto</span>
+        </div>
+        <div class="body">
+          <div><h3>Hub Logístico Bajío</h3><p>Nave de 18.000 m² con dos inquilinos preacordados y renta dolarizada.</p></div>
+          <div class="kv"><div><small>Retorno estimado</small><b>9–12 %</b></div><div><small>Plazo</small><b>60 meses</b></div><div><small>Ticket mín.</small><b>US$250</b></div></div>
+          <div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:8px"><span>US$3,1M de US$3,5M</span><span class="mono" style="color:var(--lime)">89 %</span></div><div class="bar"><i style="width:89%"></i></div></div>
+          <a href="#final" class="btn btn-ghost" style="justify-content:center">Ver contabilidad del proyecto</a>
+        </div>
+      </article>
+      <article class="card proj reveal">
+        <div class="top" style="background:radial-gradient(80% 120% at 60% 0%,rgba(255,107,91,.28),transparent 60%),linear-gradient(135deg,#201414,#111010)">
+          <span class="pill">Agrotech · Colombia</span><span class="risk r-high">Riesgo alto</span>
+        </div>
+        <div class="body">
+          <div><h3>Café de Especialidad Huila</h3><p>Expansión de 140 ha con exportación directa a tostadores de EE. UU.</p></div>
+          <div class="kv"><div><small>Retorno estimado</small><b>15–22 %</b></div><div><small>Plazo</small><b>36 meses</b></div><div><small>Ticket mín.</small><b>US$100</b></div></div>
+          <div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:8px"><span>US$410k de US$1,2M</span><span class="mono" style="color:var(--lime)">34 %</span></div><div class="bar"><i style="width:34%"></i></div></div>
+          <a href="#final" class="btn btn-ghost" style="justify-content:center">Ver contabilidad del proyecto</a>
+        </div>
+      </article>
+    </div>
+    <p class="note">Proyectos de ejemplo con fines ilustrativos. El retorno estimado es una estimación, no una promesa: puedes recibir menos de lo aportado o perderlo por completo.</p>
+  </div>
+</section>
+
+<!-- STEPS -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Cómo funciona</span>
+      <h2>De tu wallet al proyecto en 4 pasos.</h2>
+    </div>
+    <div class="steps">
+      <div class="card step reveal"><span class="n">01</span><h3>Verifica tu cuenta</h3><p>Registro y KYC en minutos. Protege a todos los participantes de la plataforma.</p></div>
+      <div class="card step reveal"><span class="n">02</span><h3>Elige un proyecto</h3><p>Revisa el análisis, los riesgos y la contabilidad completa antes de decidir.</p></div>
+      <div class="card step reveal"><span class="n">03</span><h3>Recibe tus tokens</h3><p>Cada token representa tu participación. Queda en tu wallet, a tu nombre.</p></div>
+      <div class="card step reveal"><span class="n">04</span><h3>Cobra automáticamente</h3><p>Las distribuciones llegan en USDC a tu wallet, según el reparto del contrato.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRANSPARENCY -->
+<section id="transparencia" style="padding-top:0">
+  <div class="wrap split">
+    <div class="reveal">
+      <span class="eyebrow">Transparencia radical</span>
+      <h2>La confianza no se pide.<br>Se demuestra en la cadena.</h2>
+      <p class="lead">En la banca tradicional tienes que creer en el estado de cuenta. Aquí cada movimiento tiene un hash que puedes verificar tú mismo.</p>
+      <ul class="checks">
+        <li>Ingresos, gastos y distribuciones de cada proyecto registrados on-chain.</li>
+        <li>Nuestras comisiones se cobran por smart contract: no podemos cobrar más de lo pactado.</li>
+        <li>Informes trimestrales de auditores externos, publicados junto al proyecto.</li>
+        <li>Documentos legales y de garantías disponibles antes de aportar.</li>
+      </ul>
+    </div>
+    <div class="card reveal" style="overflow:hidden">
+      <div style="padding:18px 20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center">
+        <b style="font-weight:600">Parque Solar Atacama II</b><span class="pill">Vista de ejemplo</span>
+      </div>
+      <div class="tscroll">
+        <table>
+          <thead><tr><th>Fecha</th><th>Concepto</th><th>Monto</th><th>Tx</th></tr></thead>
+          <tbody>
+            <tr><td>28 sep</td><td>Venta de energía · septiembre</td><td style="color:var(--lime)">+ US$48.210</td><td class="mono hash">0x9f3a…c21e</td></tr>
+            <tr><td>25 sep</td><td>Mantenimiento de paneles</td><td>− US$6.480</td><td class="mono hash">0x71bd…04a9</td></tr>
+            <tr><td>15 sep</td><td>Cuota de administración SE pay (2 %/12)</td><td>− US$2.700</td><td class="mono hash">0x2c88…ff10</td></tr>
+            <tr><td>01 sep</td><td>Distribución a participantes</td><td>− US$31.900</td><td class="mono hash">0xa04e…9b37</td></tr>
+            <tr><td>30 ago</td><td>Venta de energía · agosto</td><td style="color:var(--lime)">+ US$51.064</td><td class="mono hash">0x5e19…73cd</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEES / WATERFALL -->
+<section id="comisiones" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Comisiones</span>
+      <h2>Ganamos cuando tú ganas.<br>Y está escrito en código.</h2>
+      <p class="lead">Tres comisiones, todas públicas y todas ejecutadas por smart contract. El success fee solo existe si el proyecto supera el retorno preferente para el participante.</p>
+    </div>
+    <div class="fees">
+      <div class="card fee reveal"><span class="pill">Por proyecto</span><div class="big">2 %<small> / año</small></div><h3 style="font-size:17px;font-weight:600;margin-bottom:6px">Cuota de administración</h3><p>Sobre el capital aportado. Cubre análisis, gestión, reportes y auditoría. Se cobra mensualmente y se ve en el libro contable.</p></div>
+      <div class="card fee feat reveal"><span class="pill"><span class="dot"></span> Alineado contigo</span><div class="big">20 %<small> del excedente</small></div><h3 style="font-size:17px;font-weight:600;margin-bottom:6px">Success fee</h3><p>Solo sobre la ganancia por encima del 8 % anual para el participante, y solo cuando se realiza. Si el proyecto no llega, no cobramos.</p></div>
+      <div class="card fee reveal"><span class="pill">Mercado secundario</span><div class="big">0,75 %<small> por operación</small></div><h3 style="font-size:17px;font-weight:600;margin-bottom:6px">Compraventa de tokens</h3><p>Si quieres salir antes del plazo, puedes vender tus tokens a otro participante. Sujeto a que haya comprador.</p></div>
+    </div>
+
+    <div class="split" style="margin-top:22px;align-items:stretch">
+      <div class="card reveal" style="padding:30px">
+        <span class="eyebrow">Reparto de ganancias</span>
+        <h3 style="font-size:26px;font-weight:600;letter-spacing:-.02em;margin:12px 0 10px">El orden en que se paga, siempre igual.</h3>
+        <p style="color:var(--mute);font-size:15px">El contrato reparte en cascada: primero recuperas tu capital, luego cobras tu retorno preferente, y solo entonces SE pay participa del excedente.</p>
+        <p style="color:var(--mute);font-size:13px;margin-top:22px">Ejemplo: aportas US$10.000 en un proyecto a 36 meses que devuelve US$14.000 en total, después de gastos y cuota de administración.</p>
+      </div>
+      <div class="card fall reveal">
+        <div class="row"><span class="k">1</span><div><b>Devolución de capital</b><small>100 % para el participante</small></div><span class="v">US$10.000</span></div>
+        <div class="row"><span class="k">2</span><div><b>Retorno mínima 8 % anual</b><small>3 años · 100 % para el participante</small></div><span class="v">US$2.400</span></div>
+        <div class="row"><span class="k">3</span><div><b>Excedente US$1.600</b><small>80 % participante · 20 % SE pay</small></div><span class="v">US$1.280 / US$320</span></div>
+        <div class="row hl"><span class="k">⇄</span><div><b>Tú recibes</b><small>Ganancia neta de 36,8 % en 3 años</small></div><span class="v" style="color:var(--lime);font-size:18px">US$13.680</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRADING -->
+<section id="trading" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Trading algorítmico cripto · SE Quant</span>
+      <h2>Un algoritmo que te muestra<br>también lo que pierde.</h2>
+      <p class="lead">Una forma opcional de poner a trabajar tu saldo disponible. Tú decides si lo activas y con cuánto. El EA opera criptoactivos 24/7 desde tu propia wallet multisig, y el terminal te muestra cada dólar ganado y cada dólar perdido.</p>
+    </div>
+
+    <div class="card target reveal">
+      <div class="big">30 %</div>
+      <div>
+        <span class="eyebrow">Objetivo de retorno anual</span>
+        <h3 style="font-size:22px;font-weight:600;letter-spacing:-.02em;margin:8px 0 6px">Neto para el participante, después de pérdidas, comisiones y reserva de riesgo.</h3>
+        <p style="font-size:14px;color:var(--mute)"><b style="color:var(--amber);font-weight:600">Operación cripto de alto riesgo.</b> Es un objetivo, no un retorno garantizado: puedes perder parte o todo tu capital.</p>
+      </div>
+    </div>
+
+    <div class="pillars reveal" style="margin-bottom:22px">
+      <div><b id="aum">US$1.000.000</b><span>en operación, verificable en las Safes de los participantes</span></div>
+      <div><b>20<i>%</i></b><span>umbral anual: por debajo, SE pay no cobra success fee</span></div>
+      <div><b>2 de 3</b><span>firmas para retirar: tú, SE pay y un custodio independiente</span></div>
+      <div><b>0</b><span>retiros posibles por parte del EA: solo puede operar</span></div>
+    </div>
+
+    <div class="card term reveal">
+      <div class="term-bar">
+        <div class="l"><span class="lights"><i></i><i></i><i></i></span> SE Quant · Terminal <span class="pill" style="font-weight:400"><span class="dot"></span> Datos de demostración</span></div>
+        <div class="seg" id="tview"><button data-v="net" class="on">Neto para el participante</button><button data-v="gross">Bruto del EA</button></div>
+      </div>
+      <div class="kpis">
+        <div><small id="k1l">Resultado neto 12 meses</small><b id="k1" class="up"></b></div>
+        <div><small>Ganancias brutas</small><b id="k2" class="up"></b></div>
+        <div><small>Pérdidas brutas</small><b id="k3" class="down"></b></div>
+        <div><small>Máxima caída (drawdown)</small><b id="k4" class="down"></b></div>
+      </div>
+      <div class="term-body">
+        <div>
+          <div class="t-h"><span>Curva de capital</span><span id="eqv" class="mono"></span></div>
+          <svg id="eq" viewBox="0 0 600 200" preserveAspectRatio="none" style="width:100%;height:200px"></svg>
+          <div class="months" id="months"></div>
+        </div>
+        <div>
+          <div class="t-h"><span>Del resultado bruto a tu bolsillo</span></div>
+          <div class="flow" id="flow"></div>
+          <div class="t-h" style="margin-top:22px"><span>Posiciones abiertas</span><span class="mono" id="clock"></span></div>
+          <div id="positions"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="steps" style="margin-top:22px">
+      <div class="card step reveal"><span class="n">01</span><h3>Activas SE Quant</h3><p>Es opcional. Eliges cuánto de tu saldo disponible quieres operar y puedes desactivarlo cuando quieras.</p></div>
+      <div class="card step reveal"><span class="n">02</span><h3>Se crea tu Safe</h3><p>Una wallet multisig a tu nombre. Para mover el dinero hacen falta 2 de 3 firmas: tú, SE pay y un custodio independiente.</p></div>
+      <div class="card step reveal"><span class="n">03</span><h3>El EA opera, no retira</h3><p>Solo puede operar en exchanges y tokens aprobados. Todo resultado vuelve a tu Safe. No puede enviar dinero a otra dirección.</p></div>
+      <div class="card step reveal"><span class="n">04</span><h3>Lo ves todo</h3><p>El terminal lee tu Safe directo de la blockchain. Cada ganancia y cada pérdida, con su transacción.</p></div>
+    </div>
+
+    <div class="guards">
+      <div class="card reveal"><b>1 %</b>riesgo máximo por operación sobre el capital.</div>
+      <div class="card reveal"><b>10 %</b>de las ganancias va a una reserva que cubre meses negativos.</div>
+      <div class="card reveal"><b>−15 %</b>de caída: el EA se detiene solo y se revisa la estrategia.</div>
+      <div class="card reveal"><b>Tu Safe</b>tu dinero nunca sale de tu wallet. El EA tiene permiso para operar, no para retirar.</div>
+    </div>
+
+    <div class="card trader reveal">
+      <div class="ph"><img src="julian-velasquez.jpg" alt="Julián Velásquez" onerror="this.remove()"><span>Foto del trader</span></div>
+      <div>
+        <span class="eyebrow">Estrategia diseñada por</span>
+        <h3 style="font-size:22px;font-weight:600;letter-spacing:-.02em;margin:6px 0 4px">Julián Velásquez</h3>
+        <p style="font-size:14px;color:var(--mute);max-width:620px">Trader de criptoactivos y creador de la estrategia de SE Quant. Su historial real está auditado por un tercero y publicado para que lo revises antes de decidir.</p>
+      </div>
+      <div style="display:grid;gap:8px">
+        <a href="#" class="btn btn-ghost" style="height:42px;font-size:13px">Ver historial verificado ↗</a>
+        <a href="#" class="btn btn-ghost" style="height:42px;font-size:13px">Perfil público del trader ↗</a>
+      </div>
+    </div>
+
+    <div class="fees" style="margin-top:22px">
+      <div class="card fee reveal"><span class="pill">Comisiones del EA</span><div class="big">2 %<small> / año</small></div><p>Cuota de administración sobre el capital en la cuenta.</p></div>
+      <div class="card fee feat reveal"><span class="pill"><span class="dot"></span> Umbral 20 %</span><div class="big">0 %<small> hasta ganar 20 %</small></div><p>Si tu cuenta no supera 20 % neto en el año, no cobramos success fee. Sobre lo que exceda, cobramos 20 %. Si hubo pérdidas, primero se recuperan.</p></div>
+      <div class="card fee reveal"><span class="pill">Desde</span><div class="big">US$1.000</div><p>Capital mínimo. Puedes pausar el EA o retirar tu dinero de tu Safe cuando quieras.</p></div>
+    </div>
+    <p class="note">El trading de criptoactivos es de alto riesgo y puedes perder todo tu capital. Las cifras del terminal son de demostración hasta conectar el historial auditado. Los resultados pasados no garantizan resultados futuros.</p>
+  </div>
+</section>
+
+<!-- PLANS -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Planes</span>
+      <h2>Empieza gratis. Crece con herramientas pro.</h2>
+    </div>
+    <div class="plans">
+      <div class="card plan reveal"><h3>Explorador</h3><div class="price">US$0</div><ul><li>Acceso a todos los proyectos abiertos</li><li>Libro contable on-chain</li><li>Agente SE básico</li><li>Wallet y distribuciones en USDC</li></ul><a href="#final" class="btn btn-ghost" style="justify-content:center">Crear cuenta</a></div>
+      <div class="card plan feat reveal"><span class="tag">MÁS ELEGIDO</span><h3>Pro</h3><div class="price">US$20<small> / mes</small></div><ul><li>Acceso anticipado 72 h a nuevos proyectos</li><li>Analítica de portafolio y escenarios</li><li>Agente SE avanzado con informes</li><li>Alertas de contabilidad por proyecto</li><li>Reportes fiscales exportables</li></ul><a href="#final" class="btn btn-lime" style="justify-content:center">Probar Pro 14 días</a></div>
+      <div class="card plan reveal"><h3>Institucional</h3><div class="price">A medida</div><ul><li>Tickets desde US$100.000</li><li>Due diligence y data room completos</li><li>Gestor de cuenta dedicado</li><li>Integración vía API</li></ul><a href="#final" class="btn btn-ghost" style="justify-content:center">Hablar con ventas</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- RED -->
+<section id="red" class="red-sec">
+  <div class="wrap">
+    <div class="sec-head reveal" style="text-align:center;margin-left:auto;margin-right:auto;max-width:860px">
+      <span class="pill" style="margin:0 auto"><span class="dot"></span> Programa de referidos · Red ⇄</span>
+      <h2 style="margin-top:20px">Otros bancos pagan a Google por clientes.<br><span style="color:var(--lime)">Nosotros te pagamos a ti.</span></h2>
+      <p class="lead" style="margin:0 auto">Comparte SE pay y cobra cada mes, en USDC, por los clientes que llegan por ti y por los que ellos traen, hasta 5 niveles. No necesitas aportar un dólar para participar.</p>
+      <div style="display:flex;gap:12px;justify-content:center;margin-top:30px;flex-wrap:wrap">
+        <a href="#final" class="btn btn-lime">Obtener mi enlace ⇄</a>
+        <a href="#simulador" class="btn btn-ghost">Calcular mis ingresos</a>
+      </div>
+    </div>
+
+    <div class="pillars reveal" style="margin-bottom:22px">
+      <div><b>50<i>%</i></b><span>de cada suscripción de tu red vuelve a la red</span></div>
+      <div><b>5</b><span>niveles de profundidad: cobras por los clientes de tus clientes</span></div>
+      <div><b>US$<i>0</i></b><span>para participar. Solo verificas tu identidad</span></div>
+      <div><b>24<i> m</i></b><span>cobrando por cada cliente, cada mes, en USDC y verificable on-chain</span></div>
+    </div>
+
+    <div class="steps" style="margin-bottom:22px">
+      <div class="card step reveal"><span class="n">01</span><h3>Comparte tu enlace</h3><p>Recibes un enlace único al verificar tu cuenta. Cada registro queda ligado a ti en blockchain.</p></div>
+      <div class="card step reveal"><span class="n">02</span><h3>Tu red se activa</h3><p>Tus referidos se suscriben o aportan. Cuando ellos comparten, tu red crece por debajo.</p></div>
+      <div class="card step reveal"><span class="n">03</span><h3>Subes de rango</h3><p>Con más clientes directos activos desbloqueas niveles más profundos, hasta Embajador.</p></div>
+      <div class="card step reveal"><span class="n">04</span><h3>Cobras cada mes</h3><p>El contrato reparte en USDC a tu wallet. Ves qué cliente y qué producto generó cada pago.</p></div>
+    </div>
+
+    <div class="card reveal" style="overflow:hidden">
+      <div style="padding:26px 26px 6px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:flex-end">
+        <div><span class="eyebrow">Tabla de comisiones</span><h3 style="font-size:24px;font-weight:600;letter-spacing:-.02em;margin-top:8px">Cuanto más directo, más ganas.</h3></div>
+        <p style="font-size:13px;color:var(--mute);max-width:420px">% de lo que SE pay cobra a cada cliente de tu red, según el producto que usa.</p>
+      </div>
+      <div class="tscroll">
+        <table class="matrix">
+          <thead><tr><th>Nivel</th><th>Rango necesario</th><th>Suscripciones</th><th>Cuota de administración</th><th>Mercado secundario</th></tr></thead>
+          <tbody>
+            <tr><td><b>N1</b> · tus directos</td><td>Enlace · verificar cuenta</td><td class="hl">25 %</td><td>15 %</td><td>10 %</td></tr>
+            <tr><td><b>N2</b></td><td>Conector · 3 directos activos</td><td class="hl">10 %</td><td>6 %</td><td>4 %</td></tr>
+            <tr><td><b>N3</b></td><td>Red · 5 directos activos</td><td class="hl">7 %</td><td>4 %</td><td>3 %</td></tr>
+            <tr><td><b>N4</b></td><td>Red Pro · 8 directos y 25 en tu red</td><td class="hl">5 %</td><td>3 %</td><td>2 %</td></tr>
+            <tr><td><b>N5</b></td><td>Embajador · 10 directos y 60 en tu red</td><td class="hl">3 %</td><td>2 %</td><td>1 %</td></tr>
+            <tr class="sum"><td><b>Total</b></td><td></td><td class="hl"><b>50 %</b></td><td><b>30 %</b></td><td><b>20 %</b></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="source">
+      <div class="card reveal"><h4 style="color:var(--lime)">⇄ Genera comisión</h4><ul><li>Suscripciones Pro e Institucional</li><li>Cuota de administración anual</li><li>Comisiones del mercado secundario</li></ul></div>
+      <div class="card reveal"><h4 style="color:var(--mute)">✕ Nunca genera comisión</h4><ul><li>Depósitos o capital aportado</li><li>Ganancias de los participantes</li><li>Success fee</li></ul></div>
+    </div>
+
+    <!-- LEADERBOARD -->
+    <div class="card reveal" style="overflow:hidden;margin-top:22px">
+      <div style="padding:24px 24px 8px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:flex-end">
+        <div><span class="eyebrow">Leaderboard · este mes</span><h3 style="font-size:24px;font-weight:600;letter-spacing:-.02em;margin-top:8px">Los que más están construyendo.</h3></div>
+        <span class="pill" id="lbsrc"><span class="dot"></span> Pagos verificables on-chain</span>
+      </div>
+      <div class="tscroll">
+        <table class="lb"><thead><tr><th>#</th><th>Miembro</th><th>Rango</th><th>Clientes activos</th><th>Comisiones del mes</th></tr></thead><tbody id="lbody"></tbody></table>
+      </div>
+    </div>
+
+    <!-- CALCULATOR -->
+    <div class="card calc reveal" id="simulador">
+      <div class="in">
+        <div><span class="eyebrow">Simulador</span><h3 style="font-size:22px;font-weight:600;margin-top:8px;letter-spacing:-.02em">¿Cuánto puede generar tu red?</h3></div>
+        <div class="field"><label>Referidos directos activos (N1) <b id="v1">6</b></label><input type="range" id="n1" min="0" max="40" value="6"></div>
+        <div class="field"><label>Clientes en N2 <b id="v2">12</b></label><input type="range" id="n2" min="0" max="150" value="12"></div>
+        <div class="field"><label>Clientes en N3 <b id="v3">20</b></label><input type="range" id="n3" min="0" max="300" value="20"></div>
+        <div class="field"><label>Clientes en N4 <b id="v4">30</b></label><input type="range" id="n4" min="0" max="500" value="30"></div>
+        <div class="field"><label>Clientes en N5 <b id="v5">40</b></label><input type="range" id="n5" min="0" max="800" value="40"></div>
+        <div class="field"><label>Capital promedio aportado por cliente <b id="vc">US$10.000</b></label><input type="range" id="cap" min="0" max="50000" step="500" value="10000"></div>
+        <div class="field"><label>Clientes con plan Pro <b id="vp">60 %</b></label><input type="range" id="pro" min="0" max="100" step="5" value="60"></div>
+      </div>
+      <div class="out">
+        <div class="pill" id="rank" style="align-self:flex-start"></div>
+        <div id="rows"></div>
+        <div class="total"><small>Comisión estimada al año</small><b id="tot">US$0</b><small id="totm"></small></div>
+        <div id="next" style="font-size:13px;color:var(--soft);background:var(--panel-2);border-radius:12px;padding:12px 14px"></div>
+      </div>
+    </div>
+
+    <div class="rules">
+      <div class="card reveal"><b>24 meses por cliente</b>Cobras mientras tu referido siga activo, hasta 24 meses desde su alta.</div>
+      <div class="card reveal"><b>Pago mensual on-chain</b>El contrato reparte en USDC a tu wallet. Cada pago tiene su hash.</div>
+      <div class="card reveal"><b>Sin arrastre</b>Si un nivel no está desbloqueado, esa comisión no se paga a nadie más.</div>
+      <div class="card reveal"><b>Reembolsos y fraude</b>Si hay reembolso en 30 días o fraude, la comisión se descuenta.</div>
+      <div class="card reveal"><b>Una persona, una posición</b>Validación por KYC y análisis de wallets. Sin auto-referidos.</div>
+      <div class="card reveal"><b>Sin promesas</b>Prohibido prometer ingresos o retornos. Solo materiales aprobados por SE pay.</div>
+    </div>
+    <p class="note">Los resultados del simulador son ilustrativos y dependen de la actividad real de tu red. La disponibilidad de niveles para productos de participación puede variar según la regulación de tu país.</p>
+  </div>
+</section>
+
+<!-- AGENT -->
+<section id="agente" style="padding-top:40px">
+  <div class="wrap agent">
+    <div class="reveal">
+      <span class="eyebrow">Agente SE · IA financiera</span>
+      <h2>Pregunta lo que quieras antes de aportar un dólar.</h2>
+      <p class="lead">El Agente SE lee la contabilidad, los documentos y los riesgos de cada proyecto, y te los explica en lenguaje simple, a cualquier hora.</p>
+      <ul class="checks">
+        <li>Explica cada proyecto, sus números y sus riesgos.</li>
+        <li>Calcula escenarios con tu monto y el reparto de ganancias.</li>
+        <li>Te avisa si algo cambia en la contabilidad de tus proyectos.</li>
+      </ul>
+      <p class="note">El Agente SE ofrece información general, no asesoramiento financiero personalizado.</p>
+    </div>
+    <div class="card chat reveal">
+      <div class="chat-h">
+        <div class="av"><svg width="24" height="24" viewBox="0 0 100 100"><use href="#s-top" color="#f2f3ee"/><use href="#s-bot" color="#d4ff1e"/></svg></div>
+        <div><b>Agente SE</b><small><span class="dot"></span> En línea</small></div>
+      </div>
+      <div class="msgs" id="msgs"></div>
+      <div class="sugg" id="sugg">
+        <button>¿Cuánto cobra SE pay?</button>
+        <button>¿Qué riesgos tiene?</button>
+        <button>¿Puedo retirar antes?</button>
+        <button>¿Cómo funciona Red ⇄?</button>
+      </div>
+      <form id="chatf"><input id="chati" placeholder="Escribe tu pregunta…" autocomplete="off"><button aria-label="Enviar">→</button></form>
+    </div>
+  </div>
+</section>
+
+<!-- RISK -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="card riskbox reveal">
+      <span class="eyebrow" style="color:var(--amber)">Lo que debes saber</span>
+      <h2 style="font-size:clamp(26px,3.4vw,36px)">Participar en proyectos es de alto riesgo. Te lo decimos claro.</h2>
+      <div class="riskgrid">
+        <div><b>Puedes perder capital</b><p>Los proyectos pueden rendir menos de lo esperado o fracasar. Aporta solo lo que puedas permitirte perder.</p></div>
+        <div><b>Liquidez limitada</b><p>Tu capital queda comprometido durante el plazo. Vender antes depende de que exista un comprador.</p></div>
+        <div><b>Diversifica</b><p>Reparte entre varios proyectos y no concentres una parte relevante de tu patrimonio en esta clase de activos.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="padding-top:0">
+  <div class="wrap" style="max-width:920px">
+    <div class="sec-head reveal" style="text-align:center"><span class="eyebrow">Preguntas frecuentes</span><h2>Todo lo que preguntarías tú.</h2></div>
+    <details><summary>¿Qué es un proyecto tokenizado?</summary><p>Es un activo real, como una planta solar o una nave logística, cuya participación se divide en tokens digitales. Cada token representa una fracción de los derechos económicos del proyecto y queda registrado en blockchain a tu nombre.</p></details>
+    <details><summary>¿Cómo sé que la contabilidad es real?</summary><p>Cada ingreso, gasto y distribución se registra como transacción en blockchain con su hash verificable. Además, auditores externos revisan cada proyecto de forma trimestral y los informes se publican en la ficha del proyecto.</p></details>
+    <details><summary>¿Cuánto cobra SE pay exactamente?</summary><p>2 % anual de cuota de administración sobre el capital, 20 % de success fee solo sobre la ganancia que supere el 8 % anual para el participante, y 0,75 % por operación en el mercado secundario. El plan Pro cuesta US$20 al mes y es opcional.</p></details>
+    <details><summary>¿Cómo recibo mis ganancias?</summary><p>El smart contract del proyecto distribuye automáticamente en USDC a tu wallet, siguiendo el orden de reparto: capital, retorno preferente y excedente.</p></details>
+    <details><summary>¿Necesito aportar para ganar con Red ⇄?</summary><p>No. Solo necesitas verificar tu identidad. Las comisiones salen de lo que SE pay cobra a los clientes que llegan por ti, no de sus depósitos.</p></details>
+    <details><summary>¿Qué pasa si SE pay deja de operar?</summary><p>Tus tokens están en tu wallet y los derechos sobre cada proyecto se instrumentan en una sociedad vehículo independiente, con un administrador de respaldo designado en los documentos legales.</p></details>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section id="final" style="padding:0 0 40px">
+  <div class="wrap">
+    <div class="card final">
+      <svg width="64" height="64" viewBox="0 0 100 100" style="margin:0 auto 18px"><use href="#s-top" color="#f2f3ee"/><use href="#s-bot" color="#d4ff1e"/></svg>
+      <h2>Tu capital, en proyectos reales.<br>Tus ojos, en cada movimiento.</h2>
+      <p class="lead" style="margin:0 auto 30px">Crea tu cuenta gratis, revisa la contabilidad de cada proyecto y decide con toda la información.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <a href="#" class="btn btn-lime">Abrir cuenta gratis →</a>
+        <a href="#agente" class="btn btn-ghost">Hablar con el Agente SE</a>
+      </div>
+      <div style="height:240px"></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="top">
+      <a href="#" class="logo"><svg width="30" height="30" viewBox="0 0 100 100"><use href="#s-top" color="#f2f3ee"/><use href="#s-bot" color="#d4ff1e"/></svg><span><b>SE</b> <span>pay</span></span></a>
+      <div class="cols">
+        <div><b>Plataforma</b><a href="#proyectos">Proyectos</a><a href="#transparencia">Transparencia</a><a href="#comisiones">Comisiones</a></div>
+        <div><b>Programa</b><a href="#red">Red ⇄</a><a href="#agente">Agente SE</a></div>
+        <div><b>Legal</b><a href="#">Términos</a><a href="#">Privacidad</a><a href="#">Aviso de riesgos</a></div>
+      </div>
+    </div>
+    <p class="legal">SE pay es una plataforma tecnológica de financiamiento de proyectos. Participar en proyectos tokenizados implica riesgo elevado, incluida la pérdida total del capital, y baja liquidez. Los retornos estimados son estimaciones y no están garantizadas; los resultados pasados no garantizan resultados futuros. La información de esta página y del Agente SE es general y no constituye asesoramiento financiero, legal ni fiscal. Los proyectos mostrados son ejemplos ilustrativos. La oferta de tokens y el programa Red ⇄ están sujetos a la regulación aplicable en cada país. © 2026 SE pay.</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite">
+  <div class="flag" id="tflag"></div>
+  <div><b id="tname"></b><p id="ttext"></p><small><span id="ttime"></span> · <span class="mono" id="thash"></span><span class="demo" id="tdemo" hidden>DEMO</span></small></div>
+  <button class="x" id="tclose" aria-label="Cerrar">×</button>
+</div>
+<script>
+/* Live ledger (demo) */
+(function(){
+  const items=[
+    ['⇄','Distribución a participantes','Atacama II','− US$31.900'],
+    ['↓','Venta de energía','Atacama II','+ US$48.210'],
+    ['↓','Renta mensual inquilino A','Hub Bajío','+ US$62.400'],
+    ['↓','Exportación lote #14','Café Huila','+ US$27.850'],
+    ['◎','Cuota de administración','Hub Bajío','− US$5.170'],
+    ['⇄','Distribución a participantes','Hub Bajío','− US$44.300'],
+    ['↑','Compra de fertilizante','Café Huila','− US$8.120'],
+    ['↓','Nueva participación','Atacama II','+ US$1.500'],
+  ];
+  const box=document.getElementById('txs');let i=0;
+  const hx=()=>'0x'+Math.random().toString(16).slice(2,6)+'…'+Math.random().toString(16).slice(2,6);
+  function add(){
+    const [ic,t,p,a]=items[i++%items.length];
+    const el=document.createElement('div');el.className='tx';
+    el.innerHTML=`<span class="ic">${ic}</span><div>${t}<small>${p} · <span class="mono">${hx()}</span></small></div><span class="amt" style="color:${a.startsWith('+')?'var(--lime)':'var(--ink)'}">${a}</span>`;
+    box.prepend(el);while(box.children.length>4)box.lastChild.remove();
+  }
+  for(let k=0;k<4;k++)add();setInterval(add,2600);
+})();
+
+/* Reveal on scroll */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* SE Quant terminal (demo). Reemplazar EA_DATA con el historial real auditado. */
+const EA_DATA={
+  capital:1000000,
+  grossProfit:402300, grossLoss:214900,
+  mgmtFee:.02, successFee:.20, reserve:.10, hurdle:.20,
+  months:[['Oct',1.8],['Nov',3.0],['Dic',-1.9],['Ene',2.4],['Feb',1.2],['Mar',-2.8],['Abr',3.6],['May',1.7],['Jun',1.3],['Jul',2.4],['Ago',-1.0],['Sep',2.7]],
+};
+(function(){
+  const D=EA_DATA, $=id=>document.getElementById(id);
+  const usd=n=>(n<0?'− ':'')+'US$'+Math.abs(Math.round(n)).toLocaleString('de-DE');
+  const pct=n=>(n>0?'+':'')+n.toFixed(1).replace('.',',')+' %';
+  const trading=D.grossProfit-D.grossLoss, fee=D.capital*D.mgmtFee, res=Math.max(0,(trading-fee)*D.reserve), pre=trading-fee-res, sf=Math.max(0,(pre-D.capital*D.hurdle)*D.successFee), net=pre-sf;
+  document.getElementById('aum').textContent=usd(D.capital);
+  // equity + drawdown from monthly returns
+  let e=1,peak=1,dd=0; const pts=[1];
+  D.months.forEach(([,r])=>{e*=1+r/100;pts.push(e);peak=Math.max(peak,e);dd=Math.min(dd,e/peak-1)});
+  function render(v){
+    const isNet=v==='net';
+    $('k1l').textContent=isNet?'Resultado neto 12 meses':'Resultado bruto del EA';
+    $('k1').textContent=isNet?pct(net/D.capital*100):pct(trading/D.capital*100);
+    $('k2').textContent=usd(D.grossProfit); $('k3').textContent=usd(-D.grossLoss); $('k4').textContent=pct(dd*100);
+    $('flow').innerHTML=[
+      ['Ganancias de operaciones',D.grossProfit,'up'],['Pérdidas de operaciones',-D.grossLoss,'down'],['Resultado bruto',trading,'',1],
+      ['Cuota de administración 2 %',-fee,''],['Reserva de riesgo 10 %',-res,''],[sf>0?'Success fee 20 % sobre el exceso de 20 %':'Success fee: 0 (no superó el umbral de 20 %)',-sf,''],['Neto para participantes',net,'up',1]
+    ].map(([k,v,c,t])=>`<div class="r${t?' t':''}"><span>${k}</span><span class="${c}">${usd(v)}</span></div>`).join('');
+  }
+  document.getElementById('tview').addEventListener('click',ev=>{const b=ev.target.closest('button');if(!b)return;document.querySelectorAll('#tview button').forEach(x=>x.classList.toggle('on',x===b));render(b.dataset.v)});
+  render('net');
+  // chart
+  const W=600,H=200,min=Math.min(...pts)*.99,max=Math.max(...pts)*1.01;
+  const xy=pts.map((p,i)=>[i/(pts.length-1)*W,H-(p-min)/(max-min)*H]);
+  const line=xy.map((q,i)=>(i?'L':'M')+q[0].toFixed(1)+' '+q[1].toFixed(1)).join(' ');
+  $('eq').innerHTML=`<defs><linearGradient id="eg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d4ff1e" stop-opacity=".25"/><stop offset="1" stop-color="#d4ff1e" stop-opacity="0"/></linearGradient></defs>
+    ${[.25,.5,.75].map(f=>`<line x1="0" x2="${W}" y1="${H*f}" y2="${H*f}" stroke="#22262a"/>`).join('')}
+    <path d="${line} L${W} ${H} L0 ${H} Z" fill="url(#eg)"/><path d="${line}" fill="none" stroke="#d4ff1e" stroke-width="2.5" vector-effect="non-scaling-stroke"/>`;
+  $('eqv').textContent='Base 100 → '+(pts[pts.length-1]*100).toFixed(1).replace('.',',');
+  $('months').innerHTML=D.months.map(([m,r])=>{const a=Math.min(1,Math.abs(r)/3.5);return `<div style="background:${r>=0?`rgba(212,255,30,${.08+a*.22})`:`rgba(255,107,91,${.08+a*.25})`}"><small>${m}</small><span class="${r>=0?'up':'down'}">${pct(r)}</span></div>`}).join('');
+  // positions (demo tick)
+  const P=[['BTCUSDT','buy',1840],['ETHUSDT','sell',-420],['SOLUSDT','buy',960],['XRPUSDT','sell',-180]];
+  function tick(){
+    P.forEach(p=>p[2]+=Math.round((Math.random()-.5)*120));
+    $('positions').innerHTML=P.map(([s,sd,v])=>`<div class="pos"><span class="mono">${s}</span><span class="side ${sd}">${sd==='buy'?'COMPRA':'VENTA'}</span><span class="mono ${v>=0?'up':'down'}">${v>=0?'+':'−'}US$${Math.abs(v).toLocaleString('de-DE')}</span></div>`).join('');
+    $('clock').textContent=new Date().toLocaleTimeString('es-ES');
+  }
+  tick();setInterval(tick,2000);
+})();
+
+/* Prueba social: SOLO con datos reales.
+   Conectar FEED.endpoint a los eventos on-chain de depósitos (nombre abreviado + país del KYC)
+   y LEADERBOARD.endpoint a los pagos reales de Red ⇄. En modo demo se marca "DEMO". */
+const FEED={endpoint:null, interval:9000};
+const LEADERBOARD={endpoint:null};
+const DEMO_FEED=[
+  ['🇨🇴','Andrés M.','Colombia',2500,'Parque Solar Atacama II'],['🇲🇽','Valeria R.','México',1200,'SE Quant'],
+  ['🇪🇸','Javier L.','España',5000,'Hub Logístico Bajío'],['🇨🇱','Camila S.','Chile',800,'Café de Especialidad Huila'],
+  ['🇦🇷','Martín G.','Argentina',3000,'SE Quant'],['🇵🇪','Lucía F.','Perú',1500,'Parque Solar Atacama II'],
+  ['🇺🇸','Daniel P.','Estados Unidos',10000,'Hub Logístico Bajío'],['🇪🇨','Sofía C.','Ecuador',600,'Café de Especialidad Huila'],
+  ['🇩🇴','Carlos T.','Rep. Dominicana',2000,'SE Quant'],['🇻🇪','Gabriela N.','Venezuela',900,'Parque Solar Atacama II'],
+];
+const DEMO_LB=[
+  ['🇲🇽','Rodrigo A.','Embajador',184,4210],['🇨🇴','Natalia V.','Embajador',152,3680],['🇪🇸','Pablo M.','Red Pro',97,2140],
+  ['🇦🇷','Florencia D.','Red Pro',81,1795],['🇨🇱','Tomás R.','Red',46,960],['🇵🇪','Mariana Q.','Red',39,815],['🇺🇸','Kevin O.','Conector',21,430],
+];
+(async function(){
+  const usd=n=>'US$'+Math.round(n).toLocaleString('de-DE');
+  const hx=()=>'0x'+Math.random().toString(16).slice(2,6)+'…'+Math.random().toString(16).slice(2,6);
+  const get=async ep=>{try{const r=await fetch(ep);return await r.json()}catch(e){return null}};
+  // leaderboard
+  let lb=LEADERBOARD.endpoint?await get(LEADERBOARD.endpoint):null, lbDemo=!lb;
+  lb=lb||DEMO_LB;
+  document.getElementById('lbody').innerHTML=lb.map(([f,n,r,c,m],i)=>`<tr><td><span class="pos-n">${i+1}</span></td><td><div class="who"><span>${f}</span>${n}</div></td><td>${r}</td><td>${c}</td><td class="up" style="font-weight:600">${usd(m)}</td></tr>`).join('');
+  if(lbDemo)document.getElementById('lbsrc').innerHTML='<span class="dot" style="background:var(--mute);box-shadow:none"></span> Datos de demostración';
+  // toast
+  let feed=FEED.endpoint?await get(FEED.endpoint):null, feedDemo=!feed;
+  feed=feed||DEMO_FEED;
+  const t=document.getElementById('toast'); let i=0, closed=false;
+  document.getElementById('tdemo').hidden=!feedDemo;
+  document.getElementById('tclose').onclick=()=>{closed=true;t.classList.remove('show')};
+  function show(){
+    if(closed)return;
+    const [f,n,c,a,p]=feed[i++%feed.length];
+    document.getElementById('tflag').textContent=f;
+    document.getElementById('tname').textContent=n+' · '+c;
+    document.getElementById('ttext').innerHTML=`aportó <b style="display:inline;color:var(--lime)">${usd(a)}</b> en ${p}`;
+    document.getElementById('ttime').textContent='hace '+(1+Math.floor(Math.random()*9))+' min';
+    document.getElementById('thash').textContent=hx();
+    t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),5200);
+  }
+  setTimeout(()=>{show();setInterval(show,FEED.interval)},4000);
+})();
+
+/* Red ⇄ calculator */
+(function(){
+  const SUB=[.25,.10,.07,.05,.03], MGMT=[.15,.06,.04,.03,.02];
+  const names=['Enlace','Conector','Red','Red Pro','Embajador'];
+  const PRO_YEAR=240, FEE=.02;
+  const $=id=>document.getElementById(id);
+  const fmt=n=>'US$'+Math.round(n).toLocaleString('de-DE');
+  function calc(){
+    const n=[1,2,3,4,5].map(k=>+$('n'+k).value), cap=+$('cap').value, pro=+$('pro').value/100;
+    n.forEach((v,k)=>$('v'+(k+1)).textContent=v); $('vc').textContent=fmt(cap); $('vp').textContent=Math.round(pro*100)+' %';
+    const net=n.reduce((a,b)=>a+b,0), mg=cap*FEE, sb=pro*PRO_YEAR;
+    const unlocked=[true,n[0]>=3,n[0]>=5,n[0]>=8&&net>=25,n[0]>=10&&net>=60];
+    let tot=0,html='',rank=0;
+    n.forEach((v,k)=>{
+      if(unlocked[k]){rank=k;const c=v*(mg*MGMT[k]+sb*SUB[k]);tot+=c;html+=`<div class="res-row"><span>N${k+1} · ${v} clientes</span><b>${fmt(c)}</b></div>`}
+      else html+=`<div class="res-row lock"><span>N${k+1} · bloqueado</span><b>requiere ${names[k]}</b></div>`;
+    });
+    $('rows').innerHTML=html;$('tot').textContent=fmt(tot);$('totm').textContent='≈ '+fmt(tot/12)+' al mes · '+net+' clientes en tu red';
+    $('rank').innerHTML='<span class="dot"></span> Rango: '+names[rank];
+    const nxt=unlocked.indexOf(false);
+    if(nxt<0){$('next').innerHTML='⇄ Tienes los <b>5 niveles</b> desbloqueados.';return}
+    const need=[0,3,5,8,10][nxt], needNet=[0,0,0,25,60][nxt];
+    const extra=n[nxt]*(mg*MGMT[nxt]+sb*SUB[nxt]);
+    const parts=[]; if(n[0]<need)parts.push(`${need-n[0]} directos más`); if(net<needNet)parts.push(`${needNet-net} clientes más en tu red`);
+    $('next').innerHTML=`⇄ Con ${parts.join(' y ')} llegas a <b>${names[nxt]}</b> y desbloqueas N${nxt+1}: <b style="color:var(--lime)">+${fmt(extra)}</b> al año con tu red actual.`;
+  }
+  document.querySelectorAll('.calc input').forEach(el=>el.addEventListener('input',calc));calc();
+})();
+
+/* Agente SE (demo con respuestas predefinidas) */
+(function(){
+  const msgs=document.getElementById('msgs');
+  const say=(t,who)=>{const d=document.createElement('div');d.className='m '+who;d.innerHTML=t;msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight};
+  const kb=[
+    [/cobra|comisi|fee|cuota|costo|precio/i,'SE pay cobra tres cosas, todas por smart contract: <b>2 % anual</b> de administración sobre tu capital, <b>20 % del excedente</b> solo si el proyecto supera el 8 % anual para ti, y <b>0,75 %</b> si vendes tokens en el mercado secundario. El plan Pro (US$20/mes) es opcional.'],
+    [/riesgo|perder|seguro|garant/i,'Son participaciones de <b>alto riesgo</b>: un proyecto puede rendir menos de lo esperado o fracasar, y podrías perder parte o todo tu capital. Por eso cada ficha muestra el nivel de riesgo, los supuestos y la contabilidad completa. La regla de oro: diversifica y aporta solo lo que puedas permitirte perder.'],
+    [/retir|salir|liquidez|vender|antes/i,'Tu capital queda comprometido durante el plazo del proyecto. Si necesitas salir antes, puedes vender tus tokens en el <b>mercado secundario</b> (0,75 % por operación), siempre que haya un comprador interesado.'],
+    [/red|refer|nivel|ganar|invit/i,'Red ⇄ te paga hasta <b>5 niveles</b> sobre lo que SE pay cobra a los clientes que llegan por ti. En suscripciones la red recibe hasta el <b>50 %</b> (25 %, 10 %, 7 %, 5 % y 3 %), en cuota de administración hasta el 30 % y en mercado secundario hasta el 20 %. <b>Nunca</b> se paga sobre depósitos. No necesitas aportar; los niveles se desbloquean con clientes activos.'],
+    [/token/i,'Un token representa una fracción de los derechos económicos del proyecto. Queda en tu wallet y el contrato te envía automáticamente tu parte de cada distribución en USDC.'],
+    [/m[ií]nimo|cu[aá]nto necesito|empezar/i,'Puedes empezar desde <b>US$100</b> según el proyecto. La cuenta Explorador es gratis.'],
+    [/contab|transparen|audit|hash/i,'Cada ingreso, gasto y distribución se registra en blockchain con un hash verificable, y auditores externos revisan cada proyecto cada trimestre. Puedes verlo en la sección Transparencia de cada ficha.'],
+    [/trading|\bea\b|bot|algoritm|forex|quant|multisig|safe/i,'SE Quant es opcional: tú decides si activas el trading y con cuánto. Opera desde tu propia <b>Safe multisig</b> (2 de 3 firmas para retirar: tú, SE pay y un custodio). El EA solo puede operar, nunca retirar. El objetivo es 30 % anual y <b>no cobramos success fee si no superas 20 %</b>. Es operación cripto de alto riesgo: puedes perder parte o todo tu capital.'],
+  ];
+  function answer(q){
+    const hit=kb.find(([r])=>r.test(q));
+    setTimeout(()=>say(hit?hit[1]:'Buena pregunta. Puedo explicarte comisiones, riesgos, liquidez, tokens, contabilidad o el programa Red ⇄. ¿Sobre cuál quieres saber más?','a'),500);
+  }
+  say('Hola, soy el <b>Agente SE</b>. Te explico cualquier proyecto, sus números y sus riesgos antes de que decidas. ¿Qué quieres saber?','a');
+  document.getElementById('sugg').addEventListener('click',e=>{if(e.target.tagName==='BUTTON'){say(e.target.textContent,'u');answer(e.target.textContent)}});
+  document.getElementById('chatf').addEventListener('submit',e=>{e.preventDefault();const i=document.getElementById('chati');const q=i.value.trim();if(!q)return;say(q.replace(/</g,'&lt;'),'u');i.value='';answer(q)});
+})();
+</script>
+</body>
+</html>

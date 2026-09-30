@@ -1,0 +1,50 @@
+<!-- FINAL -->
+<section id="final" style="padding:0 0 40px">
+  <div class="wrap">
+    <div class="card signup">
+      <div class="signup-copy">
+        <svg width="56" height="56" viewBox="0 0 100 100"><use href="#s-top" color="#f2f3ee"/><use href="#s-bot" color="#d4ff1e"/></svg>
+        <h2>Empieza en 30 segundos.</h2>
+        <p class="lead">Déjanos tu email y tu WhatsApp. Te enviamos tu acceso y, cuando quieras aportar, verificas tu identidad en unos minutos.</p>
+        <ul class="checks">
+          <li>Cuenta gratis, sin tarjeta.</li>
+          <li>Acceso a todos los proyectos y a su contabilidad.</li>
+          <li>Tu enlace de Red ⇄ y Vox Populi desde el primer día.</li>
+        </ul>
+      </div>
+      <form class="lead-form" novalidate>
+        <div class="ok-state" hidden>
+          <div class="ok-ic">⇄</div>
+          <h3>¡Listo, <span class="ok-name"></span>!</h3>
+          <p>Te escribimos a tu WhatsApp y a tu email con tu acceso. Revisa también la carpeta de spam.</p>
+          <small class="ok-demo" hidden>Modo demostración: el formulario aún no está conectado a un servidor.</small>
+        </div>
+        <div class="fields">
+          <div class="field"><label for="f-name">Nombre</label><input id="f-name" name="name" autocomplete="given-name" placeholder="Tu nombre" required></div>
+          <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" placeholder="tu@email.com" required></div>
+          <div class="field"><label for="f-wa">WhatsApp</label>
+            <div class="wa">
+              <select name="cc" aria-label="Código de país">
+                <option value="+57">🇨🇴 +57</option><option value="+52">🇲🇽 +52</option><option value="+54">🇦🇷 +54</option><option value="+56">🇨🇱 +56</option><option value="+51">🇵🇪 +51</option><option value="+593">🇪🇨 +593</option><option value="+502">🇬🇹 +502</option><option value="+1">🇺🇸 +1</option><option value="+34">🇪🇸 +34</option><option value="+58">🇻🇪 +58</option><option value="+1809">🇩🇴 +1 809</option>
+              </select>
+              <input id="f-wa" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="300 123 4567" required>
+            </div>
+          </div>
+          <div class="field"><label for="f-int">Me interesa</label>
+            <select id="f-int" name="interest">
+              <option>Participar en proyectos</option><option>SE Quant (trading)</option><option>Red ⇄ (referidos)</option><option>Vox Populi (promover proyectos)</option><option>Remesas y tarjeta</option><option>Prestar o pedir crédito</option><option>Tengo un proyecto para financiar</option>
+            </select>
+          </div>
+          <label class="chk"><input type="checkbox" name="consent_contact" required><span>Acepto la <a href="#">política de privacidad</a> y que SE pay me contacte por email y WhatsApp sobre mi registro.</span></label>
+          <label class="chk"><input type="checkbox" name="consent_marketing"><span>Quiero recibir novedades de nuevos proyectos (opcional). Puedo darme de baja cuando quiera.</span></label>
+          <input type="hidden" name="ref">
+          <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <p class="err" hidden></p>
+          <button class="btn btn-lime" type="submit" style="justify-content:center;width:100%">Crear mi cuenta gratis →</button>
+          <small class="fine">Participar implica riesgo. Crear una cuenta no te obliga a aportar.</small>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+

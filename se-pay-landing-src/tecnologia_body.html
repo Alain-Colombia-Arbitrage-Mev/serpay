@@ -1,0 +1,338 @@
+<!-- TECH HERO -->
+<section class="vox-hero">
+  <div class="wrap" style="text-align:center">
+    <span class="pill"><span class="dot"></span> Tecnología · smart contracts · código abierto</span>
+    <h1 class="page-title">Reglas escritas en código.<br><em>Que nadie puede cambiar a escondidas.</em></h1>
+    <p class="lead" style="margin:0 auto">En un banco tradicional, las reglas viven en un contrato de papel y en sistemas que no ves. En SE pay viven en smart contracts públicos: cualquiera puede leerlos, auditarlos y comprobar que se cumplen.</p>
+    <div style="display:flex;gap:12px;justify-content:center;margin-top:34px;flex-wrap:wrap">
+      <a href="#avalanche" class="btn btn-lime">Ver en Avalanche →</a>
+      <a href="https://github.com/Alain-Colombia-Arbitrage-Mev/serpay" target="_blank" rel="noopener" class="btn btn-ghost">Repositorio en GitHub ↗</a>
+      <a href="#erc6960" class="btn btn-ghost">Estándar ERC-6960</a>
+    </div>
+  </div>
+</section>
+
+<!-- BASICS -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Blockchain, sin tecnicismos</span>
+      <h2>Cuatro piezas. Eso es todo.</h2>
+    </div>
+    <div class="steps">
+      <div class="card step reveal"><span class="n">01 · Wallet</span><h3>Tu cuenta, tu llave</h3><p>Tus tokens y tu saldo en USDC viven en una wallet a tu nombre. SE pay no puede moverlos sin las reglas del contrato.</p></div>
+      <div class="card step reveal"><span class="n">02 · Smart contract</span><h3>Un programa que cumple</h3><p>Código publicado en la blockchain que ejecuta las reglas: cobra comisiones pactadas, bloquea fondos, reparte ganancias.</p></div>
+      <div class="card step reveal"><span class="n">03 · Token</span><h3>Tu participación</h3><p>Cada token representa una fracción de los derechos económicos de un proyecto. Se registra a tu nombre y se puede transferir.</p></div>
+      <div class="card step reveal"><span class="n">04 · Libro público</span><h3>Todo queda registrado</h3><p>Cada movimiento tiene un hash. Cualquiera puede verificarlo en un explorador de bloques, sin pedir permiso.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- AVALANCHE -->
+<section id="avalanche" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Nuestra red · Avalanche</span>
+      <h2>Todo corre en Avalanche.<br>Nada que esconder.</h2>
+      <p class="lead">Usamos la red C-Chain de Avalanche (AVAX) para registrar eventos, pagar comisiones, distribuir saldos y operar nuestras wallets administrativas. Cualquier persona puede verlo en el explorador de bloques.</p>
+    </div>
+    <div class="pillars reveal" style="margin-bottom:22px">
+      <div><b>~1<i> s</i></b><span>para que una transacción quede confirmada y sea definitiva</span></div>
+      <div><b>¢</b><span>centavos de comisión de red por transacción</span></div>
+      <div><b>USDC</b><span>nativo en Avalanche: pagos y distribuciones en dólares digitales</span></div>
+      <div><b>EVM</b><span>compatible con Ethereum: estándares y herramientas auditadas</span></div>
+    </div>
+    <div class="split" style="align-items:start">
+      <div class="reveal">
+        <h3 style="font-size:24px;font-weight:600;letter-spacing:-.02em;margin-bottom:10px">Eventos públicos: suscríbete tú mismo.</h3>
+        <p style="color:var(--soft);font-size:15px">Cada acción importante emite un evento en la blockchain. Tú, un auditor o un periodista pueden escucharlos en tiempo real, sin pedirnos permiso.</p>
+        <div class="card" style="margin-top:20px;overflow:hidden">
+          <table>
+            <thead><tr><th>Evento</th><th>Cuándo se emite</th></tr></thead>
+            <tbody>
+              <tr><td class="mono up">Invested</td><td>Alguien aporta a una ronda</td></tr>
+              <tr><td class="mono up">Refunded</td><td>Una ronda no alcanza su soft cap</td></tr>
+              <tr><td class="mono up">Disbursed</td><td>Se libera un tramo al proyecto</td></tr>
+              <tr><td class="mono up">WentLive</td><td>El proyecto sale al aire, con su fecha comprometida</td></tr>
+              <tr><td class="mono up">Distribution</td><td>Se reparten ganancias a los tenedores</td></tr>
+              <tr><td class="mono up">Commission</td><td>Se paga una comisión de Red ⇄ o Vox Populi</td></tr>
+              <tr><td class="mono up">FeeCollected</td><td>SE pay cobra una comisión</td></tr>
+              <tr><td class="mono up">AdminTransfer</td><td>Sale dinero de una wallet administrativa</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="code card reveal"><div class="code-h"><span class="lights"><i></i><i></i><i></i></span><span class="mono">escuchar-comisiones.js</span></div><pre class="mono"><code><span class="c">// Escucha en vivo las comisiones pagadas en Avalanche C-Chain</span>
+<span class="k">import</span> { ethers } <span class="k">from</span> <span class="s">"ethers"</span>;
+
+<span class="k">const</span> provider = <span class="k">new</span> ethers.JsonRpcProvider(
+  <span class="s">"https://api.avax.network/ext/bc/C/rpc"</span>
+);
+<span class="k">const</span> splitter = <span class="k">new</span> ethers.Contract(
+  COMMISSION_SPLITTER, <span class="c">// dirección publicada al desplegar</span>
+  [<span class="s">"event Commission(address indexed to, address indexed subscriber, uint8 level, uint256 amount)"</span>],
+  provider
+);
+
+splitter.on(<span class="s">"Commission"</span>, (to, subscriber, level, amount) =&gt; {
+  console.log(<span class="s">`N${level} → ${to}: ${ethers.formatUnits(amount, 6)} USDC`</span>);
+});</code></pre></div>
+    </div>
+
+    <div class="card reveal" style="overflow:hidden;margin-top:22px">
+      <div style="padding:26px 26px 6px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:flex-end">
+        <div><span class="eyebrow">Wallets administrativas</span><h3 style="font-size:24px;font-weight:600;letter-spacing:-.02em;margin-top:8px">Una wallet separada por proyecto.</h3></div>
+        <p style="font-size:13px;color:var(--mute);max-width:460px">El dinero de un proyecto nunca se mezcla con el de otro ni con el de SE pay. Cada wallet es multisig y su saldo e historial son públicos.</p>
+      </div>
+      <div class="tscroll">
+        <table class="wallets">
+          <thead><tr><th>Wallet</th><th>Para qué sirve</th><th>Firmas</th><th>Dirección</th></tr></thead>
+          <tbody id="wallet-rows">
+            <tr><td><b>Tesorería SE pay</b></td><td>Comisiones cobradas por SE pay</td><td>3 de 5</td><td class="mono mute">Se publica al desplegar</td></tr>
+            <tr><td><b>Reserva de comisiones</b></td><td>Pago inmediato de Red ⇄ y Vox Populi</td><td>Contrato</td><td class="mono mute">Se publica al desplegar</td></tr>
+            <tr><td><b>Reserva de riesgo SE Quant</b></td><td>Amortigua meses negativos de los participantes</td><td>3 de 5</td><td class="mono mute">Se publica al desplegar</td></tr>
+            <tr><td><b>Saldo operativo de remesas</b></td><td>Pagos instantáneos en cada país</td><td>2 de 3</td><td class="mono mute">Se publica al desplegar</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARCHITECTURE -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Arquitectura</span>
+      <h2>Cómo se mueve un dólar dentro de SE pay.</h2>
+      <p class="lead">Cada contrato hace una sola cosa. Así es más fácil de auditar y más difícil de romper.</p>
+    </div>
+    <div class="card arch reveal">
+      <div class="arch-row">
+        <div class="node"><small>Entrada</small><b>On-ramp</b><span>Pesos, dólares o USDC</span></div>
+        <div class="arrow">→</div>
+        <div class="node"><small>FeeRouter</small><b>Fee de depósito</b><span>1,5 % a tesorería</span></div>
+        <div class="arrow">→</div>
+        <div class="node hl"><small>RaiseVault</small><b>Garantía de la ronda</b><span>Soft cap · hard cap · reembolso</span></div>
+        <div class="arrow">→</div>
+        <div class="node"><small>SEProjectToken</small><b>ERC-6960</b><span>Tokens a tu wallet</span></div>
+      </div>
+      <div class="arch-down">↓ al cerrar la ronda</div>
+      <div class="arch-row">
+        <div class="node"><small>Disbursement</small><b>Desembolso por hitos</b><span>Comisión de desembolso</span></div>
+        <div class="arrow">→</div>
+        <div class="node"><small>Proyecto</small><b>Operación real</b><span>Ingresos y gastos on-chain</span></div>
+        <div class="arrow">→</div>
+        <div class="node hl"><small>Waterfall</small><b>Reparto de ganancias</b><span>Capital · 8 % · excedente</span></div>
+        <div class="arrow">→</div>
+        <div class="node"><small>Off-ramp</small><b>Tu retiro</b><span>Fee de retiro 1,5 %</span></div>
+      </div>
+    </div>
+    <div class="rules" style="margin-top:16px">
+      <div class="card reveal"><b class="mono" style="font-size:13px">RaiseVault.sol</b>Custodia los aportes de cada ronda. Aplica soft cap, hard cap, fecha límite y reembolsos automáticos.</div>
+      <div class="card reveal"><b class="mono" style="font-size:13px">SEProjectToken.sol</b>Token ERC-6960. Un solo contrato para todos los proyectos: mainId = proyecto, subId = serie.</div>
+      <div class="card reveal"><b class="mono" style="font-size:13px">FeeRouter.sol</b>Calcula y cobra cada comisión pactada. Los porcentajes tienen un máximo fijado en el código.</div>
+      <div class="card reveal"><b class="mono" style="font-size:13px">Waterfall.sol</b>Reparte las ganancias en orden: capital, retorno preferente, excedente.</div>
+      <div class="card reveal"><b class="mono" style="font-size:13px">CommissionSplitter.sol · VoxEscrow.sol</b>Pagan al instante las comisiones de Red ⇄ y Vox Populi, hasta 5 niveles, en la misma transacción.</div>
+      <div class="card reveal"><b class="mono" style="font-size:13px">QuantRoles</b>Módulo de permisos de las Safes de SE Quant: el EA puede operar, nunca retirar. <a href="safe.html" class="go" style="font-size:13px">Cómo funciona la multisig →</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ERC-6960 -->
+<section id="erc6960" style="padding-top:0">
+  <div class="wrap split" style="align-items:start">
+    <div class="reveal">
+      <span class="eyebrow">Formato de contrato · ERC-6960</span>
+      <h2>Un estándar pensado para activos reales.</h2>
+      <p class="lead">ERC-6960, o Dual Layer Token, organiza los tokens en dos capas: una principal y una secundaria. Es ideal para tokenizar activos reales que se dividen en series, tramos o lotes.</p>
+      <div class="card" style="margin-top:26px;overflow:hidden">
+        <table>
+          <thead><tr><th>Capa</th><th>En SE pay</th><th>Ejemplo</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">mainId</td><td>El proyecto</td><td>1 = Atacama II</td></tr>
+            <tr><td class="mono">subId</td><td>La serie de la ronda</td><td>1 = Serie A</td></tr>
+            <tr><td class="mono">amount</td><td>Tu participación</td><td>9.850 tokens = US$9.850</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul class="checks">
+        <li>Un solo contrato para todo el catálogo: más simple de auditar.</li>
+        <li>Cada serie puede tener sus propias condiciones sin crear un token nuevo.</li>
+        <li>Transferencias y permisos por proyecto y por serie.</li>
+      </ul>
+    </div>
+    <div class="reveal">
+      <div class="code card"><div class="code-h"><span class="lights"><i></i><i></i><i></i></span><span class="mono">IDLT.sol · extracto de la interfaz ERC-6960</span></div><pre class="mono"><code><span class="c">// Dual Layer Token: dos capas de identificadores</span>
+<span class="k">interface</span> IDLT {
+  <span class="k">event</span> Transfer(<span class="t">address</span> <span class="k">indexed</span> sender, <span class="t">address</span> <span class="k">indexed</span> recipient,
+    <span class="t">uint256</span> <span class="k">indexed</span> mainId, <span class="t">uint256</span> subId, <span class="t">uint256</span> amount);
+
+  <span class="k">function</span> safeTransferFrom(<span class="t">address</span> sender, <span class="t">address</span> recipient,
+    <span class="t">uint256</span> mainId, <span class="t">uint256</span> subId, <span class="t">uint256</span> amount,
+    <span class="t">bytes</span> <span class="k">calldata</span> data) <span class="k">external returns</span> (<span class="t">bool</span>);
+
+  <span class="k">function</span> approve(<span class="t">address</span> spender, <span class="t">uint256</span> mainId,
+    <span class="t">uint256</span> subId, <span class="t">uint256</span> amount) <span class="k">external returns</span> (<span class="t">bool</span>);
+
+  <span class="k">function</span> subBalanceOf(<span class="t">address</span> account, <span class="t">uint256</span> mainId,
+    <span class="t">uint256</span> subId) <span class="k">external view returns</span> (<span class="t">uint256</span>);
+}</code></pre></div>
+      <div class="code card" style="margin-top:14px"><div class="code-h"><span class="lights"><i></i><i></i><i></i></span><span class="mono">RaiseVault.sol · ejemplo simplificado</span></div><pre class="mono"><code><span class="k">function</span> invest(<span class="t">uint256</span> mainId, <span class="t">uint256</span> subId, <span class="t">uint256</span> amount) <span class="k">external</span> {
+  Raise <span class="k">storage</span> r = raises[mainId][subId];
+  <span class="k">require</span>(block.timestamp &lt; r.deadline, <span class="s">"Ronda cerrada"</span>);
+  <span class="t">uint256</span> fee = amount * DEPOSIT_FEE_BPS / <span class="n">10_000</span>; <span class="c">// 1,5 %</span>
+  <span class="t">uint256</span> net = amount - fee;
+  <span class="k">require</span>(r.raised + net &lt;= r.hardCap, <span class="s">"Hard cap alcanzado"</span>);
+
+  usdc.transferFrom(msg.sender, <span class="k">address</span>(<span class="k">this</span>), amount);
+  paid[mainId][subId][msg.sender] += amount; <span class="c">// incluye el fee</span>
+  r.raised += net;
+  token.mint(msg.sender, mainId, subId, net);
+}
+
+<span class="k">function</span> markLive(<span class="t">uint256</span> mainId, <span class="t">uint256</span> subId) <span class="k">external</span> onlyOperatorAndOracle {
+  Raise <span class="k">storage</span> r = raises[mainId][subId];
+  <span class="k">require</span>(r.closed, <span class="s">"Ronda abierta"</span>);
+  r.liveAt = block.timestamp;           <span class="c">// desde aquí puede haber distribuciones</span>
+  <span class="k">emit</span> WentLive(mainId, subId, block.timestamp, r.goLiveBy);
+}
+
+<span class="k">function</span> isDelayed(<span class="t">uint256</span> mainId, <span class="t">uint256</span> subId) <span class="k">public view returns</span> (<span class="t">bool</span>) {
+  Raise <span class="k">storage</span> r = raises[mainId][subId];
+  <span class="k">return</span> r.liveAt == <span class="n">0</span> &amp;&amp; block.timestamp &gt; r.goLiveBy + <span class="n">90 days</span>;
+}
+
+<span class="k">function</span> refund(<span class="t">uint256</span> mainId, <span class="t">uint256</span> subId) <span class="k">external</span> {
+  Raise <span class="k">storage</span> r = raises[mainId][subId];
+  <span class="k">require</span>(block.timestamp &gt;= r.deadline &amp;&amp; r.raised &lt; r.softCap, <span class="s">"Sin reembolso"</span>);
+  <span class="t">uint256</span> back = paid[mainId][subId][msg.sender];
+  paid[mainId][subId][msg.sender] = <span class="n">0</span>;
+  token.burn(msg.sender, mainId, subId, token.subBalanceOf(msg.sender, mainId, subId));
+  usdc.transfer(msg.sender, back); <span class="c">// 100 %, fee incluido</span>
+}</code></pre></div>
+      <p class="note">Código ilustrativo y simplificado. La versión en producción incluye controles de acceso, pausas de emergencia y protección contra reentrada.</p>
+    </div>
+  </div>
+</section>
+
+<!-- INSTANT COMMISSIONS -->
+<section id="comisiones-instantaneas" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Comisiones al instante</span>
+      <h2>Se confirma un pago.<br>Cinco wallets cobran en el mismo segundo.</h2>
+      <p class="lead">Las comisiones de Red ⇄ y Vox Populi no esperan a fin de mes. Un contrato las reparte en la misma transacción en que se confirma cada suscripción o acción verificada, y SE pay cobra su parte primero.</p>
+    </div>
+    <div class="card arch reveal">
+      <div class="arch-row">
+        <div class="node"><small>Evento</small><b>Pago confirmado</b><span>Suscripción, renovación o acción Vox</span></div>
+        <div class="arrow">→</div>
+        <div class="node"><small>Origen del dinero</small><b>USDC directo o reserva</b><span>Pago en la app o CommissionReserve</span></div>
+        <div class="arrow">→</div>
+        <div class="node hl"><small>CommissionSplitter</small><b>65 % SE pay primero</b><span>35 % máximo para la red</span></div>
+        <div class="arrow">→</div>
+        <div class="node"><small>Destino</small><b>Wallet o banco</b><span>Wallet al instante · banco en &lt; 5 min</span></div>
+      </div>
+    </div>
+    <div class="split" style="margin-top:16px;align-items:start">
+      <div class="reveal">
+        <div class="rules" style="grid-template-columns:1fr;margin-top:0">
+          <div class="card"><b>Pagos dentro de la app</b>Si la suscripción se paga en USDC o con tarjeta en SE pay, el dinero entra al contrato y se reparte en el mismo bloque: 65 % a SE pay y el resto a los niveles desbloqueados.</div>
+          <div class="card"><b>Pagos por el App Store</b>Apple avisa cada compra o renovación al servidor de SE pay al momento (App Store Server Notifications). Un oráculo firma el evento y el contrato paga desde CommissionReserve, una reserva que solo se llena con ingresos ya cobrados.</div>
+          <div class="card"><b>Cómo se llena la reserva</b>Sale de la parte de SE pay, nunca de la red ni de los participantes: el 15 % del 65 % de SE pay (≈9,75 % del ingreso neto) va a CommissionReserve hasta que cubre 1,5 veces lo que la red cobra antes de que pague la tienda. Al llegar a esa meta, el aporte se detiene solo, y se reactiva si la reserva baja.</div>
+          <div class="card"><b>Si la reserva no alcanza</b>El pago queda en cola y se ejecuta en cuanto entra el siguiente ingreso. El contrato nunca paga más de lo que hay: SE pay no se endeuda con la red.</div>
+          <div class="card"><b>A tu wallet o a tu banco</b>Por defecto la comisión llega en USDC a tu wallet en segundos. Si eliges cobro bancario, se convierte y se envía automáticamente a tu cuenta local en menos de 5 minutos por transferencia instantánea, con el fee de retiro de 1,5 %.</div>
+          <div class="card"><b>Reembolsos</b>Si una suscripción se reembolsa, el contrato descuenta esa comisión de los siguientes pagos de cada nivel.</div>
+        </div>
+      </div>
+      <div class="code card reveal"><div class="code-h"><span class="lights"><i></i><i></i><i></i></span><span class="mono">CommissionSplitter.sol · ejemplo simplificado</span></div><pre class="mono"><code><span class="t">uint16</span>[<span class="n">5</span>] LEVEL_BPS = [<span class="n">1800</span>, <span class="n">700</span>, <span class="n">500</span>, <span class="n">300</span>, <span class="n">200</span>]; <span class="c">// 35 %</span>
+
+<span class="k">function</span> payout(<span class="t">address</span> subscriber, <span class="t">uint256</span> netAmount) <span class="k">external</span> onlyTrusted {
+  <span class="c">// 1. SE pay primero: 65 %. Si la reserva está bajo su meta,</span>
+  <span class="c">//    el 15 % de esa parte la recarga automáticamente</span>
+  <span class="t">uint256</span> sePay = netAmount * <span class="n">6500</span> / <span class="n">10_000</span>;
+  <span class="t">uint256</span> topUp = reserve.belowTarget() ? sePay * <span class="n">1500</span> / <span class="n">10_000</span> : <span class="n">0</span>;
+  usdc.transfer(<span class="k">address</span>(reserve), topUp);
+  usdc.transfer(treasury, sePay - topUp);
+
+  <span class="c">// 2. Sube por el árbol de referidos, hasta 5 niveles</span>
+  <span class="t">address</span> up = referrerOf[subscriber];
+  <span class="k">for</span> (<span class="t">uint256</span> i; i &lt; <span class="n">5</span> &amp;&amp; up != <span class="k">address</span>(<span class="n">0</span>); i++) {
+    <span class="t">uint256</span> fee = netAmount * LEVEL_BPS[i] / <span class="n">10_000</span>;
+    <span class="k">if</span> (rankOf(up) &gt; i) {            <span class="c">// nivel desbloqueado</span>
+      fee = _settleDebt(up, fee);        <span class="c">// descuenta reembolsos</span>
+      usdc.transfer(up, fee);            <span class="c">// pago inmediato</span>
+      <span class="k">emit</span> Commission(up, subscriber, i + <span class="n">1</span>, fee);
+    } <span class="k">else</span> {
+      usdc.transfer(treasury, fee);      <span class="c">// sin arrastre</span>
+    }
+    up = referrerOf[up];
+  }
+}</code></pre></div>
+    </div>
+  </div>
+</section>
+
+<!-- LIFECYCLE -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Ciclo de vida de una ronda</span>
+      <h2>Del primer aporte a la última distribución.</h2>
+    </div>
+    <div class="timeline reveal">
+      <div><span>1</span><b>Publicación</b><p>Se despliega la serie con soft cap, hard cap, fecha límite y fecha comprometida para estar al aire.</p></div>
+      <div><span>2</span><b>Ronda abierta</b><p>Los aportes quedan en garantía en RaiseVault.</p></div>
+      <div><span>3</span><b>Soft cap</b><p>Si no se alcanza: reembolso del 100 %. Si se alcanza: sigue.</p></div>
+      <div><span>4</span><b>Cierre</b><p>Por hard cap o por fecha. No se aceptan más aportes.</p></div>
+      <div><span>5</span><b>Desembolso</b><p>Por tramos ligados a hitos verificados, con comisión de desembolso.</p></div>
+      <div><span>6</span><b>Al aire</b><p>Tras el tiempo de espera fijado en el contrato. Si se retrasa más de 90 días, queda marcado en público.</p></div>
+      <div><span>7</span><b>Operación</b><p>Ingresos y gastos registrados on-chain, auditados cada trimestre.</p></div>
+      <div><span>8</span><b>Distribuciones</b><p>Waterfall reparte en USDC a las wallets de los tenedores.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- REPO -->
+<section id="repositorio" style="padding-top:0">
+  <div class="wrap split" style="align-items:start">
+    <div class="reveal">
+      <span class="eyebrow">Repositorio</span>
+      <h2>Código abierto. Revísalo tú mismo.</h2>
+      <p class="lead">El código de SE pay es público en GitHub. Los contratos se despliegan en Avalanche C-Chain y se publican con su código fuente verificado, sus pruebas y los informes de auditoría; se suman al repositorio a medida que terminan su auditoría.</p>
+      <div style="display:flex;gap:12px;margin-top:28px;flex-wrap:wrap">
+        <a href="https://github.com/Alain-Colombia-Arbitrage-Mev/serpay" target="_blank" rel="noopener" class="btn btn-lime">Ver en GitHub ↗</a>
+        <a href="#" class="btn btn-ghost">Contratos verificados en Snowtrace ↗</a>
+      </div>
+      <div class="rules" style="grid-template-columns:1fr 1fr;margin-top:26px">
+        <div class="card"><b>Auditoría externa</b>Informe publicado antes de cada despliegue a producción.</div>
+        <div class="card"><b>Bug bounty</b>Recompensas para quien reporte vulnerabilidades de forma responsable.</div>
+        <div class="card"><b>Límites en el código</b>Ninguna comisión puede superar su máximo, ni siquiera por decisión de SE pay.</div>
+        <div class="card"><b>Pausa de emergencia</b>Multisig con retraso público: cualquier cambio se anuncia antes de aplicarse.</div>
+      </div>
+    </div>
+    <div class="code card reveal"><div class="code-h"><span class="lights"><i></i><i></i><i></i></span><span class="mono">Estructura prevista de los contratos</span></div><pre class="mono"><code><span class="c">sepay-contracts/</span>
+├── contracts/
+│   ├── token/
+│   │   ├── <span class="t">SEProjectToken.sol</span>   <span class="c">// ERC-6960</span>
+│   │   └── IDLT.sol
+│   ├── raise/
+│   │   ├── <span class="t">RaiseVault.sol</span>       <span class="c">// soft cap · hard cap</span>
+│   │   └── Disbursement.sol
+│   ├── fees/
+│   │   └── <span class="t">FeeRouter.sol</span>
+│   ├── distribution/
+│   │   └── <span class="t">Waterfall.sol</span>
+│   ├── programs/
+│   │   ├── <span class="t">CommissionSplitter.sol</span> <span class="c">// pago inmediato</span>
+│   │   ├── CommissionReserve.sol
+│   │   └── VoxEscrow.sol
+│   └── quant/
+│       └── QuantRoles.sol
+├── test/                    <span class="c">// pruebas unitarias y de invariantes</span>
+├── audits/                  <span class="c">// informes publicados</span>
+├── deployments/avalanche/   <span class="c">// direcciones en C-Chain</span>
+└── README.md</code></pre></div>
+  </div>
+</section>

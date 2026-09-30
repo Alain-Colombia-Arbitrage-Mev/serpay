@@ -1,0 +1,94 @@
+<!-- APPS HERO -->
+<section class="vox-hero">
+  <div class="wrap" style="text-align:center">
+    <span class="pill"><span class="dot"></span> Economía de las apps de bienestar</span>
+    <h1 class="page-title">Cada suscripción, contada<br><em>de principio a fin.</em></h1>
+    <p class="lead" style="margin:0 auto">Pausa, Nutre y Fuerza Libre cobran US$29,99 al mes. Aquí ves a dónde va cada dólar: la tienda de apps, la Red ⇄, la operación y la utilidad que se reparte en el proyecto. Y cuánta reserva hace falta para pagar comisiones al instante.</p>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="pillars reveal">
+      <div><b>200k</b><span>suscriptores de pago por app en el escenario meta</span></div>
+      <div><b>US$29<i>,99</i></b><span>precio mensual de cada plan</span></div>
+      <div><b>US$6<i>M</i></b><span>de ingreso bruto al mes por app en la meta</span></div>
+      <div><b>3</b><span>apps: meditación, nutrición y calistenia</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PER SUB FLOW -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Una suscripción de US$29,99</span>
+      <h2>A dónde va cada dólar.</h2>
+      <p class="lead">Escenario base: 22 % de comisión promedio de la tienda, 60 % de suscriptores llegados por la red y 20 % de costos de operación.</p>
+    </div>
+    <div class="card reveal" style="padding:28px">
+      <div class="dollar" id="dollar"></div>
+      <div class="dollar-leg" id="dollar-leg"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CALCULATOR -->
+<section id="modelo" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Flujo económico mensual</span>
+      <h2>Mueve los supuestos.<br>Mira el resultado.</h2>
+    </div>
+    <div class="card calc reveal" id="app-sim">
+      <div class="in">
+        <div class="field"><label>Suscriptores de pago <b id="ap-subs-v"></b></label><input type="range" id="ap-subs" min="10000" max="400000" step="5000" value="200000"></div>
+        <div class="field"><label>Precio mensual <b id="ap-price-v"></b></label><input type="range" id="ap-price" min="4.99" max="39.99" step="1" value="29.99"></div>
+        <div class="field"><label>Comisión promedio de la tienda <b id="ap-store-v"></b></label><input type="range" id="ap-store" min="0" max="30" step="1" value="22"></div>
+        <div class="field"><label>Suscriptores que llegan por la Red ⇄ <b id="ap-ref-v"></b></label><input type="range" id="ap-ref" min="0" max="100" step="5" value="60"></div>
+        <div class="field"><label>Niveles desbloqueados en promedio <b id="ap-eff-v"></b></label><input type="range" id="ap-eff" min="20" max="100" step="5" value="75"></div>
+        <div class="field"><label>Costos de operación (% del bruto) <b id="ap-opex-v"></b></label><input type="range" id="ap-opex" min="5" max="50" step="1" value="20"></div>
+        <div class="field"><label>Cancelación mensual <b id="ap-churn-v"></b></label><input type="range" id="ap-churn" min="1" max="15" step="0.5" value="6"></div>
+        <div class="field"><label>Costo por suscriptor fuera de la red <b id="ap-cac-v"></b></label><input type="range" id="ap-cac" min="0" max="150" step="5" value="40"></div>
+      </div>
+      <div class="out">
+        <div id="ap-rows"></div>
+        <div class="total"><small>Utilidad operativa al mes</small><b id="ap-profit">US$0</b><small id="ap-profit-sub"></small></div>
+      </div>
+    </div>
+    <p class="note">Escenario ilustrativo por app. Las apps tienen hoy entre 9.400 y 46.200 suscriptores: 200.000 es una meta, no un resultado.</p>
+  </div>
+</section>
+
+<!-- RUNWAY -->
+<section id="runway" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Runway de la red</span>
+      <h2>¿Cuánto aguanta el pago inmediato de comisiones?</h2>
+      <p class="lead">La red cobra al instante, pero las tiendas de apps pagan con retraso. La diferencia la cubre la reserva de comisiones. Estos números dicen cuánta reserva hace falta y cuántos meses cubre.</p>
+    </div>
+    <div class="card calc reveal" id="runway-sim">
+      <div class="in">
+        <div class="field"><label>Días que tarda la tienda en pagar <b id="rw-lag-v"></b></label><input type="range" id="rw-lag" min="15" max="90" step="5" value="60"></div>
+        <div class="field"><label>Reserva de comisiones disponible <b id="rw-res-v"></b></label><input type="range" id="rw-res" min="0" max="5000000" step="50000" value="2200000"></div>
+        <div class="field"><label>Crecimiento mensual de suscriptores <b id="rw-g-v"></b></label><input type="range" id="rw-g" min="0" max="20" step="1" value="5"></div>
+        <div class="field"><label>Parte del 65 % de SE pay que va a la reserva <b id="rw-top-v"></b></label><input type="range" id="rw-top" min="0" max="40" step="1" value="15"></div>
+        <p style="font-size:12px;color:var(--mute)">Usa los supuestos del flujo económico de arriba.</p>
+      </div>
+      <div class="out">
+        <div id="rw-rows"></div>
+        <div class="total"><small>Runway de la reserva</small><b id="rw-months">0</b><small id="rw-sub"></small></div>
+      </div>
+    </div>
+
+    <div class="rules" style="margin-top:22px">
+      <div class="card reveal"><b>La red no puede quebrar a la empresa</b>Las comisiones salen del ingreso neto real y tienen tope (35 %). Si la reserva se agota, los pagos esperan en cola: se retrasan, nunca se pagan con deuda.</div>
+      <div class="card reveal"><b>El tope de 24 meses casi no se usa</b>Con 6 % de cancelación mensual, un suscriptor dura unos 17 meses en promedio. Solo el 23 % sigue activo al mes 24: desde ahí, todo su ingreso neto queda en el proyecto.</div>
+      <div class="card reveal"><b>La reserva se recarga sola</b>El 12 % de cada ronda arranca la reserva y después SE pay aporta el 15 % de su 65 % hasta cubrir 1,5 veces lo que la red cobra por adelantado. Al llegar a la meta el aporte se detiene; si la reserva baja, vuelve a activarse.</div>
+      <div class="card reveal"><b>Sin pago por reclutar</b>La red gana solo cuando alguien paga una suscripción real. No hay cuota de entrada ni pago por sumar personas: si la app no retiene suscriptores, la red no cobra.</div>
+      <div class="card reveal"><b>Lo que gana un miembro</b>Por cada suscriptor directo a US$29,99, un Conector recibe unos US$4,21 al mes. Con 50 suscriptores directos activos son ≈US$210 al mes.</div>
+      <div class="card reveal"><b>Riesgo de precio</b>US$29,99 al mes es un precio premium: entre 2 y 5 veces lo que cobran las apps globales más conocidas. Si la cancelación sube a 10 %, la reserva y la utilidad cambian: pruébalo en el simulador.</div>
+    </div>
+  </div>
+</section>

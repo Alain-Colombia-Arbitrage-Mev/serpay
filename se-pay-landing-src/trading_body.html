@@ -1,0 +1,182 @@
+<!-- TRADING -->
+<section id="trading" class="vox-hero">
+  <div class="wrap" style="text-align:center">
+    <span class="pill"><span class="dot"></span> SE Quant · fondo de trading algorítmico cripto</span>
+    <h1 class="page-title">Primero tu 30 %.<br><em>Después cobramos nosotros.</em></h1>
+    <p class="lead" style="margin:0 auto">SE Quant opera criptoactivos 24/7 con reglas de riesgo que nadie puede saltarse. El objetivo es pagarte 30 % anual, y el orden del reparto está escrito en el contrato: tú cobras primero, SE pay solo gana si tú llegas a tu 30 %.</p>
+    <div style="display:flex;gap:12px;justify-content:center;margin-top:34px;flex-wrap:wrap">
+      <a href="#final" class="btn btn-lime">Activar SE Quant →</a>
+      <a href="#reparto" class="btn btn-ghost">Ver cómo se reparte</a>
+    </div>
+    <p class="fine" style="margin-top:22px;color:var(--amber)">Operación cripto de alto riesgo. El 30 % es un objetivo, no un retorno garantizado: puedes perder parte o todo tu capital.</p>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="pillars reveal">
+      <div><b>30<i>%</i></b><span>objetivo anual para ti, antes de que SE pay cobre un dólar</span></div>
+      <div><b id="aum">US$1.000.000</b><span>en operación, verificable en las Safes de los participantes</span></div>
+      <div><b>0<i>%</i></b><span>cuota de administración. Solo ganamos si tú ganas</span></div>
+      <div><b>−15<i>%</i></b><span>caída máxima: el EA se detiene solo</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- REPARTO -->
+<section id="reparto" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Cómo se reparte la ganancia</span>
+      <h2>Tres escalones.<br>Tú siempre en el primero.</h2>
+      <p class="lead">El contrato reparte el resultado anual del EA en este orden. Si el año termina por debajo de 30 %, todo es para ti y SE pay no cobra nada.</p>
+    </div>
+    <div class="tiers">
+      <div class="card tier t1 reveal"><span class="tn">1</span><small>Del 0 % al 30 %</small><b>100 % para ti</b><p>Todo el rendimiento hasta tu objetivo anual de 30 % va a tu Safe.</p></div>
+      <div class="card tier t2 reveal"><span class="tn">2</span><small>Del 30 % al 39 %</small><b>Fee del fondo: 30 % sobre tu 30 %</b><p>Solo cuando ya recibiste tu 30 %, SE pay cobra 9 puntos: el 30 % de tu 30 %.</p></div>
+      <div class="card tier t3 reveal"><span class="tn">3</span><small>Más de 39 % · el excedente</small><b>50 % SE pay · 50 % bonus red</b><p>Lo que el EA gane por encima de 39 % se divide en dos: la mitad para SE pay (de ella sale la reserva de riesgo) y la otra mitad como bonus para la Red ⇄ de quien aportó.</p></div>
+    </div>
+
+    <!-- EXCEDENTE DIAGRAM -->
+    <div class="card xs-card reveal" style="margin-top:22px">
+      <div class="xs-copy">
+        <span class="eyebrow">El excedente, explicado</span>
+        <h3>¿Qué pasa con lo que el bot gana por encima de 39 %?</h3>
+        <p>Cuando el año supera el 39 %, ya se pagó <b>tu 30 %</b> y el <b>fee del fondo</b>. Todo lo que quede por encima es el <b>excedente</b>, y se divide en dos partes iguales:</p>
+        <div class="xs-halves">
+          <div><span class="xs-sw co"></span><b>50 % para SE pay</b><small>Por la ejecución. De aquí sale la reserva de riesgo (10 % del excedente).</small></div>
+          <div><span class="xs-sw rd"></span><b>50 % bonus para la Red ⇄</b><small>Para quienes te recomendaron, hasta 5 niveles: 20, 12, 8, 6 y 4 %.</small></div>
+        </div>
+        <div class="xs-cases">
+          <small>Con US$10.000 aportados:</small>
+          <div class="xs-case"><span>Rinde 25 %</span><b>Excedente US$0</b><em>Todo para ti: US$2.500</em></div>
+          <div class="xs-case"><span>Rinde 45 %</span><b>Excedente US$600</b><em>US$300 SE pay · US$300 red</em></div>
+          <div class="xs-case"><span>Rinde 60 %</span><b>Excedente US$2.100</b><em>US$1.050 SE pay · US$1.050 red</em></div>
+        </div>
+      </div>
+      <div class="xs" aria-label="Diagrama del reparto de un año con 45 % de rendimiento">
+        <div class="xs-axis">
+          <span style="flex:5" class="top">50 %</span>
+          <span style="flex:6">45 %</span>
+          <span style="flex:9">39 %</span>
+          <span style="flex:30">30 %</span>
+          <span class="zero">0 %</span>
+        </div>
+        <div class="xs-bar">
+          <div class="xs-seg xs-empty" style="flex:5"></div>
+          <div class="xs-seg xs-split" style="flex:6"><i class="co"></i><i class="rd"></i></div>
+          <div class="xs-seg xs-fee" style="flex:9"></div>
+          <div class="xs-seg xs-inv" style="flex:30"></div>
+        </div>
+        <div class="xs-lab">
+          <div style="flex:5" class="xs-note"><small>Ejemplo: el bot rinde 45 % en el año</small></div>
+          <div style="flex:6"><b>3 · Excedente <span class="mono">US$600</span></b><small><span class="xs-sw co"></span>US$300 SE pay · <span class="xs-sw rd"></span>US$300 Red ⇄</small></div>
+          <div style="flex:9"><b>2 · Fee del fondo <span class="mono">US$900</span></b><small>30 % sobre tu 30 % = 9 puntos</small></div>
+          <div style="flex:30"><b>1 · Tu 30 % <span class="mono up">US$3.000</span></b><small>Se paga primero. Si el año queda por debajo de 30 %, todo lo que se gane es tuyo y nadie más cobra.</small></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card calc reveal" id="quant-sim" style="margin-top:22px">
+      <div class="in">
+        <div><span class="eyebrow">Simulador de reparto</span><h3 style="font-size:22px;font-weight:600;margin-top:8px;letter-spacing:-.02em">¿Qué pasa según cómo le vaya al EA?</h3></div>
+        <div class="field"><label>Capital que activas <b id="qs-cap-v">US$10.000</b></label><input type="range" id="qs-cap" min="1000" max="100000" step="1000" value="10000"></div>
+        <div class="field"><label>Rendimiento bruto del EA en el año <b id="qs-ret-v">45 %</b></label><input type="range" id="qs-ret" min="-15" max="70" step="1" value="45"></div>
+        <div class="split-bar" id="qs-bar"></div>
+        <div class="xs-legend"><span><i class="xs-sw inv"></i>Tu parte</span><span><i class="xs-sw fee"></i>Fee del fondo</span><span><i class="xs-sw co"></i>SE pay</span><span><i class="xs-sw rd"></i>Bonus Red ⇄</span></div>
+        <p style="font-size:12px;color:var(--mute)">Mueve el rendimiento por debajo de 30 % o a negativo: SE pay no cobra y la caída máxima está limitada por el freno automático de −15 %.</p>
+      </div>
+      <div class="out">
+        <div id="qs-rows"></div>
+        <div class="total"><small id="qs-tl">Recibes al final del año</small><b id="qs-tot">US$0</b><small id="qs-sub"></small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TERMINAL -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Terminal transparente</span>
+      <h2>Lo que gana. Lo que pierde.<br>Todo, en tiempo real.</h2>
+    </div>
+    <div class="card term reveal">
+      <div class="term-bar">
+        <div class="l"><span class="lights"><i></i><i></i><i></i></span> SE Quant · Terminal <span class="pill" style="font-weight:400"><span class="dot"></span> Datos de demostración</span></div>
+        <div class="seg" id="tview"><button data-v="net" class="on">Neto para el participante</button><button data-v="gross">Bruto del EA</button></div>
+      </div>
+      <div class="kpis">
+        <div><small id="k1l">Resultado neto 12 meses</small><b id="k1" class="up"></b></div>
+        <div><small>Ganancias brutas</small><b id="k2" class="up"></b></div>
+        <div><small>Pérdidas brutas</small><b id="k3" class="down"></b></div>
+        <div><small>Máxima caída (drawdown)</small><b id="k4" class="down"></b></div>
+      </div>
+      <div class="term-body">
+        <div>
+          <div class="t-h"><span>Curva de capital</span><span id="eqv" class="mono"></span></div>
+          <svg id="eq" viewBox="0 0 600 200" preserveAspectRatio="none" style="width:100%;height:200px"></svg>
+          <div class="months" id="months"></div>
+        </div>
+        <div>
+          <div class="t-h"><span>Del resultado bruto a tu bolsillo</span></div>
+          <div class="flow" id="flow"></div>
+          <div class="t-h" style="margin-top:22px"><span>Posiciones abiertas</span><span class="mono" id="clock"></span></div>
+          <div id="positions"></div>
+        </div>
+      </div>
+      <div class="riskpanel">
+        <div class="t-h" style="padding:0 18px"><span>Control de riesgo en vivo</span><span class="mono up">● Todos los límites OK</span></div>
+        <div class="gauges" id="gauges"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RISK CONTROL -->
+<section id="riesgo" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Control del riesgo</span>
+      <h2>Reglas que el algoritmo<br>no puede romper.</h2>
+      <p class="lead">Un buen trader no es el que más gana, es el que sobrevive a los malos meses. Estos límites están en el código del EA y en los permisos de tu Safe: no dependen de la voluntad de nadie.</p>
+    </div>
+    <div class="riskgrid2">
+      <div class="card reveal"><span class="rn">1 %</span><b>Riesgo por operación</b><p>Ninguna operación puede arriesgar más del 1 % del capital. Cada orden sale con stop-loss obligatorio.</p></div>
+      <div class="card reveal"><span class="rn">3 %</span><b>Pérdida máxima diaria</b><p>Si el día acumula −3 %, el EA deja de abrir operaciones hasta el día siguiente.</p></div>
+      <div class="card reveal"><span class="rn">−15 %</span><b>Freno de emergencia</b><p>Si la caída desde el máximo llega a −15 %, el EA cierra posiciones, se detiene y se revisa la estrategia.</p></div>
+      <div class="card reveal"><span class="rn">3x</span><b>Apalancamiento máximo</b><p>Nunca más de 3 veces el capital en exposición total, sin excepciones.</p></div>
+      <div class="card reveal"><span class="rn">25 %</span><b>Exposición por activo</b><p>Ningún activo puede concentrar más del 25 % del riesgo. Solo cripto de alta liquidez: BTC, ETH, SOL y similares.</p></div>
+      <div class="card reveal"><span class="rn">10 %</span><b>Reserva de riesgo</b><p>El 10 % del excedente, tomado de la mitad de SE pay, va a una reserva que amortigua meses negativos de los participantes.</p></div>
+      <div class="card reveal"><span class="rn">2 de 3</span><b>Tu dinero en tu Safe</b><p>Multisig a tu nombre: el EA solo puede operar en exchanges y tokens aprobados. Nunca retirar.</p></div>
+      <div class="card reveal"><span class="rn">24/7</span><b>Monitoreo y pruebas</b><p>Alertas en tiempo real, pruebas de estrés con escenarios históricos (2018, 2020, 2022) y auditoría del historial.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRADER -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="card trader reveal" style="margin-top:0">
+      <div class="ph"><img src="julian-velasquez.jpg" alt="Julián Velásquez" onerror="this.remove()"><span>Foto del trader</span></div>
+      <div>
+        <span class="eyebrow">Estrategia diseñada por</span>
+        <h3 style="font-size:22px;font-weight:600;letter-spacing:-.02em;margin:6px 0 4px">Julián Velásquez</h3>
+        <p style="font-size:14px;color:var(--mute);max-width:620px">Trader de criptoactivos y creador de la estrategia de SE Quant. Su historial real está auditado por un tercero y publicado para que lo revises antes de decidir.</p>
+      </div>
+      <div style="display:grid;gap:8px">
+        <a href="#" class="btn btn-ghost" style="height:42px;font-size:13px">Ver historial verificado ↗</a>
+        <a href="#" class="btn btn-ghost" style="height:42px;font-size:13px">Perfil público del trader ↗</a>
+      </div>
+    </div>
+
+    <div class="steps" style="margin-top:22px">
+      <div class="card step reveal"><span class="n">01</span><h3>Activas SE Quant</h3><p>Es opcional. Eliges cuánto de tu saldo disponible quieres operar, desde US$1.000.</p></div>
+      <div class="card step reveal"><span class="n">02</span><h3>Se crea tu Safe</h3><p>Wallet multisig a tu nombre. Para mover el dinero hacen falta 2 de 3 firmas: tú, SE pay y un custodio. <a href="safe.html" class="go" style="font-size:13px">Cómo funciona →</a></p></div>
+      <div class="card step reveal"><span class="n">03</span><h3>El EA opera, no retira</h3><p>Todo resultado vuelve a tu Safe. No puede enviar dinero a otra dirección.</p></div>
+      <div class="card step reveal"><span class="n">04</span><h3>Reparto anual</h3><p>Al cierre de cada año el contrato reparte: tu 30 % primero, luego el fee del fondo.</p></div>
+    </div>
+    <p class="note">El trading de criptoactivos es de alto riesgo y puedes perder todo tu capital. El 30 % anual es un objetivo, no un retorno garantizado. Las cifras del terminal son de demostración hasta conectar el historial auditado. Los resultados pasados no garantizan resultados futuros.</p>
+  </div>
+</section>
+

@@ -1,0 +1,9 @@
+# Configuración de Cloudflare Pages para SE pay.
+# Publicar: copiar el sitio a ./public y correr `npx wrangler pages deploy --branch=main` desde esta carpeta.
+name = "se-pay"
+pages_build_output_dir = "./public"
+compatibility_date = "2026-09-01"
+
+[[kv_namespaces]]
+binding = "LEADS"
+id = "f4475e4e52e24cbba500b1e69c3d24e9"
