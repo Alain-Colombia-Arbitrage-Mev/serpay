@@ -204,6 +204,9 @@ const DEMO_LB=[
     [/contab|transparen|audit|hash/i,'Cada ingreso, gasto y distribución se registra en blockchain con un hash verificable, y auditores externos revisan cada proyecto cada trimestre. Puedes verlo en la sección Transparencia de cada ficha.'],
     [/trading|ea|bot|algoritm|forex|quant|multisig|safe/i,'SE Quant es opcional y opera desde tu propia <b>Safe multisig</b> en Avalanche. El reparto anual va en este orden: <b>tú cobras primero</b> hasta 30 % anual; después SE pay cobra 30 % sobre ese 30 % (9 puntos); lo que supere 39 % se divide 50 % para SE pay y 50 % como bonus para la red Vox Populi. Sin cuota de administración. Límites: 1 % de riesgo por operación, −3 % diario, freno a −15 %. El 30 % es un objetivo, no una garantía: es operación cripto de alto riesgo.'],
     [/cr[eé]dito|prest|lending|borrow|pr[eé]stamo|tarjeta|remesa/i,'Puedes prestar en dos pools. <b>Tarjeta SE pay:</b> recibes 15 % anual; los titulares pagan 1,8 % mensual y están evaluados en buró y con garantía. <b>Empresas de remesas:</b> recibes 1,3 % mensual (≈15,6 % anual); las empresas pagan 2,7 % mensual por liquidez de corto plazo y SE pay toma el resto. Ambos pools tienen fondo de protección y el respaldo del capital de SE pay. No es un depósito bancario: si las pérdidas superan esas protecciones, podrías recibir menos.'],
+    [/remesa|enviar dinero|env[ií]o|transfer/i,'Las remesas de SE pay cuestan desde <b>0,8 %</b> y ves el costo total antes de enviar: comisión, margen cambiario y lo que recibe tu familia. Colombia 1,2 % + 0,5 % de cambio, EE. UU. 0,8 %, Brasil 1,5 % + 0,4 %, Asia 1,5 % + 0,5 %, resto del mundo 2,5 % + 0,7 %, con un mínimo por envío. Prueba la calculadora en la página de Remesas.'],
+    [/tesorer|okx|nuestro dinero/i,'La tesorería de SE pay es dinero propio (las comisiones que cobramos) y se opera en OKX solo en BTC/USD y AVAX/USD. En la página de Tesorería ves cada posición y cada resultado, leídos del exchange con una clave de solo lectura. Nunca operamos con dinero de clientes.'],
+    [/lanzar|aplicar|mi proyecto|fundador|revisi[oó]n/i,'Para lanzar tu proyecto en SE pay, nuestro agente experto revisa negocio, runway y finanzas por <b>US$15.000</b>, con informe completo aunque no se apruebe. Si se aprueba, mejoramos el proyecto, la landing, los anuncios y las redes, activamos un bot de atención 24/7 y hacemos 4 campañas por email y WhatsApp a un mínimo de 100.000 personas con permiso.'],
   ];
   function answer(q){
     const hit=kb.find(([r])=>r.test(q));
@@ -659,6 +662,72 @@ const FORM = { endpoint: /^(localhost|127\.0\.0\.1)$/.test(location.hostname) ? 
     $('ob-demo').hidden=!demo;
     show(4);
   });
+})();
+
+/* ===== Remesas: tarifas por destino y calculadora ===== */
+const REMESAS={
+  co:{name:'Colombia',flag:'🇨🇴',fee:.012,fx:.005,min:1.99,eta:'minutos'},
+  us:{name:'EE. UU.',flag:'🇺🇸',fee:.008,fx:0,min:1.49,eta:'minutos'},
+  br:{name:'Brasil',flag:'🇧🇷',fee:.015,fx:.004,min:1.99,eta:'minutos (PIX)'},
+  as:{name:'Asia',flag:'🌏',fee:.015,fx:.005,min:2.99,eta:'1–24 horas'},
+  rw:{name:'Resto del mundo',flag:'🌎',fee:.025,fx:.007,min:3.99,eta:'1–48 horas'},
+};
+const MARKET_AVG=.062;
+(function(){
+  if(!document.getElementById('rm-sim'))return;
+  const $=id=>document.getElementById(id);
+  const usd=n=>'US$'+n.toLocaleString('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2});
+  const pc=n=>(Math.round(n*1000)/10).toString().replace('.',',')+' %';
+  const quote=(c,a)=>{const r=REMESAS[c],fee=Math.max(a*r.fee,r.min),fx=a*r.fx;return {fee,fx,total:fee+fx,gets:a-fee-fx}};
+  $('rm-table').innerHTML=Object.entries(REMESAS).map(([k,r])=>{const q=quote(k,300);return `<tr><td>${r.flag} ${r.name}</td><td class="hl">${pc(r.fee)}</td><td>${r.fx?pc(r.fx):'—'}</td><td>${usd(r.min)}</td><td><b>${usd(q.total)}</b> <small class="mute">(${pc(q.total/300)})</small></td><td>${r.eta}</td></tr>`}).join('');
+  let c='co';
+  $('rm-dest').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;$('rm-dest').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));c=b.dataset.c;calc()});
+  function calc(){
+    const a=+$('rm-amt').value, r=REMESAS[c], q=quote(c,a), mkt=a*MARKET_AVG;
+    $('rm-amt-v').textContent=usd(a).replace(',00','');
+    $('rm-rows').innerHTML=[
+      ['Envías',usd(a)],
+      ['Comisión '+(a*r.fee<r.min?'(mínimo por envío)':pc(r.fee)),'− '+usd(q.fee)],
+      ['Margen cambiario '+(r.fx?pc(r.fx):''),r.fx?'− '+usd(q.fx):'sin cambio de moneda'],
+      ['Tu familia recibe (en dólares)',usd(q.gets)],
+      ['Llega en',r.eta]
+    ].map(([k,v],i)=>`<div class="res-row"${i===3?' style="font-weight:600"':''}><span>${k}</span><b${i===3?' class="up"':''}>${v}</b></div>`).join('');
+    $('rm-tot').textContent=usd(q.total);
+    $('rm-sub').textContent=pc(q.total/a)+' del envío, todo incluido';
+    $('rm-compare').innerHTML=`Con el promedio mundial (≈6 %) pagarías cerca de <b>${usd(mkt)}</b>. Con SE pay ahorras <b class="up">${usd(Math.max(0,mkt-q.total))}</b>.`;
+  }
+  $('rm-amt').addEventListener('input',calc); calc();
+})();
+
+/* ===== Tesorería en vivo (OKX, solo lectura) ===== */
+(function(){
+  if(!document.getElementById('ts-pos'))return;
+  const $=id=>document.getElementById(id);
+  const usd=n=>n==null?'—':(n<0?'− ':'')+'US$'+Math.abs(Math.round(n)).toLocaleString('de-DE');
+  const px=n=>n==null?'—':n.toLocaleString('de-DE',{maximumFractionDigits:n<100?3:1});
+  const cls=n=>n==null?'':n>=0?'up':'down';
+  const DEMO={demo:true,totalEquityUsd:1250000,positions:[
+      {instId:'BTC-USD-SWAP',side:'long',size:4.2,avgPx:61850,markPx:62410,lever:2,upl:2352,notionalUsd:262122},
+      {instId:'AVAX-USD-SWAP',side:'short',size:9000,avgPx:27.4,markPx:27.9,lever:2,upl:-4500,notionalUsd:251100}],
+    fills:[['BTC-USD-SWAP','sell',62120,1.1,1840],['AVAX-USD-SWAP','buy',27.1,4000,-620],['BTC-USD-SWAP','buy',61500,1.5,0],['AVAX-USD-SWAP','sell',28.3,3500,910],['BTC-USD-SWAP','sell',60980,0.8,-410]]
+      .map(([instId,side,px,size,pnl],i)=>({instId,side,px,size,pnl,ts:Date.now()-(i+1)*5.4e6}))};
+  function render(d){
+    const pos=d.positions||[], fills=d.fills||[];
+    const open=pos.reduce((a,p)=>a+Math.abs(p.notionalUsd||0),0), upl=pos.reduce((a,p)=>a+(p.upl||0),0), pnl=fills.reduce((a,f)=>a+(f.pnl||0),0);
+    $('ts-total').textContent=usd(d.totalEquityUsd); $('ts-open').textContent=usd(open);
+    $('ts-upl').textContent=usd(upl); $('ts-upl').className=cls(upl);
+    $('ts-pnl').textContent=usd(pnl); $('ts-pnl').className=cls(pnl);
+    $('ts-pos').innerHTML=pos.length?pos.map(p=>`<tr><td class="mono">${p.instId.split('-').slice(0,2).join('/')}</td><td><span class="side ${p.side==='short'?'sell':'buy'}">${p.side==='short'?'CORTO':'LARGO'}</span></td><td class="mono">${px(Math.abs(p.size))}</td><td class="mono">${px(p.avgPx)}</td><td class="mono">${px(p.markPx)}</td><td class="mono ${cls(p.upl)}">${usd(p.upl)}</td></tr>`).join('')
+      :'<tr><td colspan="6" style="color:var(--mute)">Sin posiciones abiertas en este momento.</td></tr>';
+    $('ts-fills').innerHTML=fills.slice(0,8).map(f=>`<div class="pos"><span class="mono">${f.instId.split('-').slice(0,2).join('/')} <small style="color:var(--mute)">${new Date(f.ts).toLocaleString('es-ES',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'})}</small></span><span class="side ${f.side==='sell'?'sell':'buy'}">${f.side==='sell'?'VENTA':'COMPRA'}</span><span class="mono ${cls(f.pnl)}">${f.pnl?usd(f.pnl):'abre'}</span></div>`).join('')||'<p style="color:var(--mute);font-size:13px">Sin operaciones recientes.</p>';
+    $('ts-src').innerHTML=d.demo?'<span class="dot" style="background:var(--mute)"></span> Datos de demostración':'<span class="dot"></span> En vivo desde OKX';
+    $('ts-upd').textContent=d.demo?'':'Actualizado '+new Date(d.updatedAt).toLocaleTimeString('es-ES');
+  }
+  async function load(){
+    try{const r=await fetch('/api/tesoreria',{cache:'no-store'});const d=await r.json();if(d.configured&&!d.error){render(d);return}}catch(e){}
+    render(DEMO);
+  }
+  load(); setInterval(load,30000);
 })();
 
 /* Botón de comunidad. Reemplaza los enlaces por los de tus grupos. */

@@ -947,3 +947,13 @@
 
   .pools.two{grid-template-columns:1fr 1fr}
   @media (max-width:960px){.pools.two{grid-template-columns:1fr}}
+
+  /* ===== REMESAS / TESORERÍA ===== */
+  .rm-dest{display:flex;flex-wrap:wrap;gap:8px}
+  .rm-dest button{font-family:inherit;font-size:13px;padding:9px 13px;border-radius:99px;border:1px solid var(--line);background:none;color:var(--soft);cursor:pointer}
+  .rm-dest button.on{border-color:var(--lime);color:var(--ink);background:rgba(212,255,30,.06)}
+  .rm-compare{font-size:13px;color:var(--soft);background:var(--panel-2);border-radius:12px;padding:12px 14px}
+  .ts-note{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;padding:22px;border-color:rgba(212,255,30,.3)}
+  .ts-note b{font-size:16px;font-weight:600}
+  .ts-note p{font-size:14px;color:var(--soft);margin-top:4px}
+  .ts-table td,.ts-table th{white-space:nowrap}

@@ -107,7 +107,10 @@ def nav(active):
                    ('credito.html#prestar','%','Lending','Tarjeta 15 % anual · remesas 1,3 % mensual')]),
       ('Ganar',[('red.html','⇄','Vox Populi · Red','Comisiones por recomendar, hasta 5 niveles'),
                 ('vox-populi.html','◉','Vox Populi · Campañas','Cobra por promover proyectos')]),
-      ('SE pay',[('negocio.html#tarjeta','▭','Cuenta y tarjeta','Remesas, on/off ramp y tarjeta de débito'),
+      ('SE pay',[('negocio.html#tarjeta','▭','Cuenta y tarjeta','Cuenta en dólares digitales y tarjeta de débito'),
+                 ('remesas.html','✈','Remesas','Desde 0,8 %, con el costo total a la vista'),
+                 ('lanza-tu-proyecto.html','◆','Lanza tu proyecto','Revisión experta y campañas a 100.000 personas'),
+                 ('tesoreria.html','◎','Tesorería','Nuestro dinero en OKX, en vivo'),
                  ('credito.html#pedir','◆','Crédito','Línea de crédito de la tarjeta SE pay'),
                  ('economia-apps.html','◔','Economía de las apps','Flujo por suscripción y runway de la red'),
                  ('tecnologia.html','⛓','Tecnología','Avalanche, contratos ERC-6960 y repositorio'),
@@ -165,6 +168,9 @@ CTAS={
   'red.html':('vox', 'Gente que recomienda lo que usa', 'Si ya lo recomiendas,<br><em>que tu red también te pague.</em>', 'Vox Populi es para quienes comparten lo que les funciona. Tu código llega con tu acceso, sin aportar un dólar.', 'Obtener mi código Vox Populi', ('red.html#simulador','Calcular mis ingresos')),
   'vox-populi.html':('vox', 'La voz de la gente', 'Cuenta proyectos en los que crees.<br><em>Cobra por cada acción real.</em>', 'Para quienes ya hablan de lo que les gusta. Te enviamos las campañas que encajan contigo, cuando las haya.', 'Unirme a Vox Populi', ('vox-populi.html#para-proyectos','Tengo un proyecto')),
   'credito.html':('credito', 'Tu dinero, trabajando', 'Presta a quien mueve dinero real,<br><em>con dos capas antes que tú.</em>', 'Para quienes quieren un retorno claro y saber exactamente a quién le prestan: titulares de la tarjeta o empresas de remesas. Te avisamos cuando haya cupo.', 'Quiero prestar y ganar intereses', ('credito.html#pedir','Quiero mi línea de crédito')),
+  'remesas.html':('tarjeta', 'Para quienes cuidan cada dólar', 'Tu familia recibe más.<br><em>Tú ves cada centavo.</em>', 'Déjanos tu contacto y te avisamos cuando las remesas estén disponibles en tu país, por el canal que elijas.', 'Quiero enviar con SE pay', ('#calculadora','Calcular otro envío')),
+  'lanza-tu-proyecto.html':('financiar', 'Para fundadores que quieren hacerlo bien', 'Primero la verdad sobre tus números.<br><em>Después, 100.000 personas.</em>', 'Cuéntanos tu proyecto y te escribimos para coordinar la revisión.', 'Aplicar con mi proyecto', ('proyectos.html','Ver proyectos aprobados')),
+  'tesoreria.html':('explorar', 'Nada que esconder', 'Si mostramos nuestro dinero,<br><em>imagina cómo cuidamos el tuyo.</em>', 'Cuéntanos qué te interesa y te escribimos solo para eso, por el canal y con la frecuencia que elijas.', 'Empezar en 2 minutos', ('safe.html','Cómo protegemos el dinero de clientes')),
   'tecnologia.html':('explorar', 'Ya viste cómo funciona', 'Ahora decide con calma.<br><em>Nosotros te acompañamos.</em>', 'Cuéntanos qué te interesa y te escribimos solo para eso, por el canal y con la frecuencia que elijas.', 'Empezar en 2 minutos', ('safe.html','Cómo funciona la multisig')),
   'safe.html':('explorar', 'Ya viste cómo se protege', 'Tu dinero, en tu Safe.<br><em>Tus reglas, en el contrato.</em>', 'Cuéntanos qué te interesa y te escribimos solo para eso, por el canal y con la frecuencia que elijas.', 'Empezar en 2 minutos', ('trading.html','Ver SE Quant')),
   'negocio.html':('explorar', 'Sin letra pequeña', 'Ya sabes cómo ganamos.<br><em>Ahora decide tú.</em>', 'Cuéntanos qué te interesa y te escribimos solo para eso, por el canal y con la frecuencia que elijas.', 'Empezar en 2 minutos', ('negocio.html#comisiones','Ver todas las comisiones')),
@@ -272,10 +278,13 @@ js=re.sub(r"\[/red\|refer\|nivel\|ganar\|invit/i,'.*?'\],","[/red|refer|nivel|ga
 js=re.sub(r"/\* SE Quant terminal.*?(?=/\* Prueba social)",lambda m:open(SP+'quant_js.js').read(),js,count=1,flags=re.S)
 js=re.sub(r"\[/trading\|\\bea\\b.*?'\],","[/trading|\\bea\\b|bot|algoritm|forex|quant|multisig|safe/i,'SE Quant es opcional y opera desde tu propia <b>Safe multisig</b> en Avalanche. El reparto anual va en este orden: <b>tú cobras primero</b> hasta 30 % anual; después SE pay cobra 30 % sobre ese 30 % (9 puntos); lo que supere 39 % se divide 50 % para SE pay y 50 % como bonus para la red Vox Populi. Sin cuota de administración. Límites: 1 % de riesgo por operación, −3 % diario, freno a −15 %. El 30 % es un objetivo, no una garantía: es operación cripto de alto riesgo.'],",js,count=1,flags=re.S)
 js=js.replace("  ];\n  function answer(q){","    [/cr[eé]dito|prest|lending|borrow|pr[eé]stamo|tarjeta|remesa/i,'Puedes prestar en dos pools. <b>Tarjeta SE pay:</b> recibes 15 % anual; los titulares pagan 1,8 % mensual y están evaluados en buró y con garantía. <b>Empresas de remesas:</b> recibes 1,3 % mensual (≈15,6 % anual); las empresas pagan 2,7 % mensual por liquidez de corto plazo y SE pay toma el resto. Ambos pools tienen fondo de protección y el respaldo del capital de SE pay. No es un depósito bancario: si las pérdidas superan esas protecciones, podrías recibir menos.'],\n  ];\n  function answer(q){",1)
+js=js.replace("  ];\n  function answer(q){","    [/remesa|enviar dinero|env[ií]o|transfer/i,'Las remesas de SE pay cuestan desde <b>0,8 %</b> y ves el costo total antes de enviar: comisión, margen cambiario y lo que recibe tu familia. Colombia 1,2 % + 0,5 % de cambio, EE. UU. 0,8 %, Brasil 1,5 % + 0,4 %, Asia 1,5 % + 0,5 %, resto del mundo 2,5 % + 0,7 %, con un mínimo por envío. Prueba la calculadora en la página de Remesas.'],\n    [/tesorer|okx|nuestro dinero/i,'La tesorería de SE pay es dinero propio (las comisiones que cobramos) y se opera en OKX solo en BTC/USD y AVAX/USD. En la página de Tesorería ves cada posición y cada resultado, leídos del exchange con una clave de solo lectura. Nunca operamos con dinero de clientes.'],\n    [/lanzar|aplicar|mi proyecto|fundador|revisi[oó]n/i,'Para lanzar tu proyecto en SE pay, nuestro agente experto revisa negocio, runway y finanzas por <b>US$15.000</b>, con informe completo aunque no se apruebe. Si se aprueba, mejoramos el proyecto, la landing, los anuncios y las redes, activamos un bot de atención 24/7 y hacemos 4 campañas por email y WhatsApp a un mínimo de 100.000 personas con permiso.'],\n  ];\n  function answer(q){",1)
 js+=open(SP+'pages.js').read()
 js+=open(SP+'apps_js.js').read()
 js+=open(SP+'credit_js.js').read()
 js+=open(SP+'onboarding_js.js').read()
+js+=open(SP+'remesas_js.js').read()
+js+=open(SP+'tesoreria_js.js').read()
 js+='''
 /* Botón de comunidad. Reemplaza los enlaces por los de tus grupos. */
 const COMMUNITY={whatsapp:'https://wa.me/', discord:'https://discord.gg/', telegram:'https://t.me/'};
@@ -367,6 +376,12 @@ page('credito.html','Crédito y lending — SE pay','Presta en dos pools: tarjet
      rd('credito_body.html'))
 page('safe.html','Multisig Safe — SE pay','Cómo funcionan las wallets multisig Safe de SE pay en Avalanche: 2 de 3 firmas, permisos limitados para el bot y qué pasa si algo sale mal.',
      rd('safe_body.html'))
+page('remesas.html','Remesas — SE pay','Envía dinero desde 0,8 % con el costo total a la vista: comisión, margen cambiario y lo que recibe tu familia.',
+     rd('remesas_body.html'))
+page('lanza-tu-proyecto.html','Lanza tu proyecto — SE pay','Revisión experta de negocio, runway y finanzas por US$15.000 y, si se aprueba, 4 campañas a un mínimo de 100.000 personas.',
+     rd('lanza_body.html'))
+page('tesoreria.html','Tesorería — SE pay','La tesorería de SE pay en OKX, en vivo: solo BTC/USD y AVAX/USD, con cada posición y resultado a la vista.',
+     rd('tesoreria_body.html'))
 page('registro.html','Empieza en 2 minutos — SE pay','Cuéntanos qué te interesa y cómo quieres que te contactemos. Sin compromiso.',
      rd('onboarding_body.html'))
 print('ok')
