@@ -125,14 +125,14 @@ window.PROJECTS = [
     risk: 'high', status: 'Abierto', color: '140,200,255',
     app: { price: 29.99, subsNow: 46200, subsTarget: 200000, churn: .06 },
     summary: 'App de meditación, respiración y sueño en español, con meta de 200.000 suscriptores a US$29,99 al mes.',
-    about: 'Pausa ofrece meditaciones guiadas, programas de sueño y ejercicios de respiración creados por psicólogos latinoamericanos. Hoy tiene 46.200 suscriptores de pago. La ronda financia contenido nuevo, crecimiento y la reserva que permite pagar al instante las comisiones de Red ⇄.',
+    about: 'Pausa ofrece meditaciones guiadas, programas de sueño y ejercicios de respiración creados por psicólogos latinoamericanos. Hoy tiene 46.200 suscriptores de pago. La ronda financia contenido nuevo, crecimiento y la reserva que permite pagar al instante las comisiones de Vox Populi.',
     target: '18–26 %', term: 36, ticket: 100, softcap: 1500000, hardcap: 4000000, raised: 2100000, investors: 1960, deadline: '2026-12-10',
     disbursementFee: .03, mainId: 11, subId: 1,
-    use: [['Contenido y producción', 30], ['Adquisición de usuarios', 28], ['Desarrollo de producto', 18], ['Reserva de comisiones Red ⇄', 12], ['Salud y cumplimiento', 6], ['Reserva operativa', 6]],
+    use: [['Contenido y producción', 30], ['Adquisición de usuarios', 28], ['Desarrollo de producto', 18], ['Reserva de comisiones Vox Populi', 12], ['Salud y cumplimiento', 6], ['Reserva operativa', 6]],
     milestones: [['Mar 2026', '25.000 suscriptores de pago', true], ['Sep 2026', '46.200 suscriptores y soft cap', true], ['Jun 2027', '120.000 suscriptores', false], ['Dic 2027', 'Meta: 200.000 suscriptores', false]],
     risks: ['El precio de US$29,99 al mes es alto frente al mercado: puede aumentar la cancelación.', 'Dependencia de las reglas y comisiones del App Store.', 'Competencia de apps globales de bienestar.'],
     docs: ['Memorando de participación', 'Métricas de suscripción y cancelación', 'Plan de contenido', 'Política de datos de salud'],
-    ledger: [['30 sep', 'Ingresos netos App Store (agosto)', 812400], ['30 sep', 'Comisiones Red ⇄ pagadas', -129600], ['22 sep', 'Producción de contenido', -64200], ['15 sep', 'Aporte de participantes (lote 212)', 48900]]
+    ledger: [['30 sep', 'Ingresos netos App Store (agosto)', 812400], ['30 sep', 'Comisiones Vox Populi pagadas', -129600], ['22 sep', 'Producción de contenido', -64200], ['15 sep', 'Aporte de participantes (lote 212)', 48900]]
   },
   {
     slug: 'nutre', golive: 0, name: 'Nutre · nutrición con IA', sector: 'Bienestar', country: 'Colombia', flag: '🇨🇴',
@@ -142,11 +142,11 @@ window.PROJECTS = [
     about: 'Nutre arma planes de alimentación y listas de compras con inteligencia artificial, revisados por nutricionistas certificados, y los ajusta cada semana según tu progreso. Tiene 21.800 suscriptores de pago y alianzas con gimnasios.',
     target: '18–26 %', term: 36, ticket: 100, softcap: 1200000, hardcap: 3500000, raised: 980000, investors: 1104, deadline: '2027-01-20',
     disbursementFee: .03, mainId: 12, subId: 1,
-    use: [['Adquisición de usuarios', 32], ['Desarrollo de producto e IA', 26], ['Red de nutricionistas', 16], ['Reserva de comisiones Red ⇄', 12], ['Salud y cumplimiento', 7], ['Reserva operativa', 7]],
+    use: [['Adquisición de usuarios', 32], ['Desarrollo de producto e IA', 26], ['Red de nutricionistas', 16], ['Reserva de comisiones Vox Populi', 12], ['Salud y cumplimiento', 7], ['Reserva operativa', 7]],
     milestones: [['Abr 2026', 'Lanzamiento de planes con IA', true], ['Sep 2026', '21.800 suscriptores', true], ['Ene 2027', 'Soft cap y desembolso', false], ['Dic 2027', 'Meta: 200.000 suscriptores', false]],
     risks: ['Precio premium con riesgo de cancelación alta.', 'Recomendaciones de salud: exige supervisión profesional y cumplimiento.', 'Costos de IA más altos de lo previsto.'],
     docs: ['Memorando de participación', 'Métricas de suscripción', 'Protocolo clínico de nutricionistas'],
-    ledger: [['30 sep', 'Ingresos netos App Store (agosto)', 371500], ['30 sep', 'Comisiones Red ⇄ pagadas', -58300], ['18 sep', 'Aporte de participantes (lote 88)', 21400]]
+    ledger: [['30 sep', 'Ingresos netos App Store (agosto)', 371500], ['30 sep', 'Comisiones Vox Populi pagadas', -58300], ['18 sep', 'Aporte de participantes (lote 88)', 21400]]
   },
   {
     slug: 'fuerza-libre', golive: 3, name: 'Fuerza Libre · calistenia', sector: 'Bienestar', country: 'Argentina', flag: '🇦🇷',
@@ -156,7 +156,7 @@ window.PROJECTS = [
     about: 'Fuerza Libre enseña calistenia desde cero hasta nivel avanzado con progresiones en video, seguimiento de técnica con la cámara y retos en comunidad. Está en beta con 9.400 suscriptores de pago.',
     target: '18–26 %', term: 36, ticket: 100, softcap: 1000000, hardcap: 3000000, raised: 0, investors: 0, deadline: '2027-03-15',
     disbursementFee: .03, mainId: 13, subId: 1,
-    use: [['Producción de programas en video', 30], ['Adquisición de usuarios', 30], ['Tecnología de análisis de técnica', 18], ['Reserva de comisiones Red ⇄', 12], ['Reserva operativa', 10]],
+    use: [['Producción de programas en video', 30], ['Adquisición de usuarios', 30], ['Tecnología de análisis de técnica', 18], ['Reserva de comisiones Vox Populi', 12], ['Reserva operativa', 10]],
     milestones: [['Jul 2026', 'Beta con 9.400 suscriptores', true], ['Dic 2026', 'Apertura de la ronda', false], ['Mar 2027', 'Lanzamiento global', false], ['Mar 2028', 'Meta: 200.000 suscriptores', false]],
     risks: ['Etapa temprana: la meta de suscriptores puede no alcanzarse.', 'Riesgo de lesiones: requiere contenido revisado por profesionales.', 'Alta competencia en apps de fitness.'],
     docs: ['Memorando de participación (borrador)', 'Métricas de la beta', 'Plan de contenido'],

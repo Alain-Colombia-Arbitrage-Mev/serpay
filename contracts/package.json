@@ -1,0 +1,18 @@
+{
+  "name": "serpay-contracts",
+  "private": true,
+  "description": "Contratos de SE pay: protecciones de las Safes (firma del usuario y espera de 48 horas).",
+  "scripts": {
+    "build": "hardhat compile",
+    "test": "hardhat test"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-chai-matchers": "^2.1.2",
+    "@nomicfoundation/hardhat-ethers": "^3.0.8",
+    "@nomicfoundation/hardhat-network-helpers": "^1.0.12",
+    "@safe-global/safe-contracts": "1.4.1-2",
+    "chai": "^4.5.0",
+    "ethers": "^6.13.0",
+    "hardhat": "~2.22.19"
+  }
+}

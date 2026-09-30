@@ -71,7 +71,7 @@ function quantSplit(r,D){
       ['2 · Fee del fondo ('+pc(s.fee)+')',-s.fee*cap,''],
       ['3 · Excedente ('+pc(s.exec)+')',-s.exec*cap,''],
       ['   ↳ 50 % para SE pay',s.co*cap,'mute'],
-      ['   ↳ 50 % bonus para la Red ⇄',s.net*cap,'mute'],
+      ['   ↳ 50 % bonus para la red Vox Populi',s.net*cap,'mute'],
     ];
     if(s.res>0)rows.push(['   ↳ de la parte de SE pay, a la reserva',s.res*cap,'mute']);
     $('qs-rows').innerHTML=rows.map(([k,v,c])=>`<div class="res-row"><span>${k}</span><b class="${c}">${usd(v)}</b></div>`).join('');

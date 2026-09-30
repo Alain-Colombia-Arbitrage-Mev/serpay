@@ -67,8 +67,8 @@ def links(h):
                 ('href="#red"','href="red.html"'),('href="#agente"','href="index.html#agente"')]:
         h=h.replace(a,b)
     return h
-footer=links(footer).replace('<div><b>Legal</b>','<div><b>Código</b><a href="https://github.com/Alain-Colombia-Arbitrage-Mev/serpay" target="_blank" rel="noopener">GitHub ↗</a><a href="safe.html">Multisig Safe</a><a href="tecnologia.html#avalanche">Avalanche</a></div><div><b>Legal</b>').replace('<div><b>Plataforma</b><a href="proyectos.html">Proyectos</a><a href="tecnologia.html">Transparencia</a><a href="negocio.html#comisiones">Comisiones</a></div>','<div><b>Plataforma</b><a href="proyectos.html">Proyectos</a><a href="tecnologia.html">Tecnología</a><a href="negocio.html">Cómo ganamos</a><a href="registro.html">Abrir cuenta</a></div>').replace('<div><b>Programa</b><a href="red.html">Red ⇄</a>','<div><b>Programas</b><a href="red.html">Red ⇄</a><a href="vox-populi.html">Vox Populi</a><a href="trading.html">SE Quant</a>').replace('<a href="#" class="logo">','<a href="index.html" class="logo">')
-footer=footer.replace('y el programa Red ⇄ están sujetos','y los programas Red ⇄ y Vox Populi están sujetos')
+footer=links(footer).replace('<div><b>Legal</b>','<div><b>Código</b><a href="https://github.com/Alain-Colombia-Arbitrage-Mev/serpay" target="_blank" rel="noopener">GitHub ↗</a><a href="safe.html">Multisig Safe</a><a href="tecnologia.html#avalanche">Avalanche</a></div><div><b>Legal</b>').replace('<div><b>Plataforma</b><a href="proyectos.html">Proyectos</a><a href="tecnologia.html">Transparencia</a><a href="negocio.html#comisiones">Comisiones</a></div>','<div><b>Plataforma</b><a href="proyectos.html">Proyectos</a><a href="tecnologia.html">Tecnología</a><a href="negocio.html">Cómo ganamos</a><a href="registro.html">Abrir cuenta</a></div>').replace('<div><b>Programa</b><a href="red.html">Vox Populi</a>','<div><b>Programas</b><a href="red.html">Vox Populi</a><a href="vox-populi.html">Vox Populi</a><a href="trading.html">SE Quant</a>').replace('<a href="#" class="logo">','<a href="index.html" class="logo">')
+footer=footer.replace('y el programa Vox Populi están sujetos','y el programa Vox Populi están sujetos')
 footer=footer.replace('© 2026 SE pay.','SE pay tiene en trámite su registro como Money Services Business (MSB); hasta su aprobación, los servicios de remesas y conversión de dinero se prestan a través de socios regulados. © 2026 SE pay.')
 final=open(SP+'form_final.html').read()
 # hero copy polish
@@ -88,8 +88,8 @@ paths='''<!-- PATHS -->
     <div class="paths">
       <a href="proyectos.html" class="card path reveal"><span class="ic">▦</span><h3>Proyectos tokenizados</h3><p>Energía, logística, agro. Participa desde US$100 en activos reales con contabilidad abierta.</p><span class="go">Explorar proyectos →</span></a>
       <a href="trading.html" class="card path reveal"><span class="ic">⌁</span><h3>SE Quant</h3><p>Trading algorítmico cripto opcional desde tu propia wallet multisig. Objetivo 30 % anual, alto riesgo.</p><span class="go">Ver el terminal →</span></a>
-      <a href="red.html" class="card path reveal"><span class="ic">⇄</span><h3>Red ⇄</h3><p>Cobra por las suscripciones a nuestras apps y por el éxito de los aportes de tu red, hasta 5 niveles. Sin aportar.</p><span class="go">Calcular ingresos →</span></a>
-      <a href="vox-populi.html" class="card path reveal"><span class="ic">◉</span><h3>Vox Populi</h3><p>Gana promoviendo proyectos que necesitan darse a conocer. Pago por acción verificada.</p><span class="go">Ver campañas →</span></a>
+      <a href="red.html" class="card path reveal"><span class="ic">⇄</span><h3>Vox Populi · Red</h3><p>Cobra por las suscripciones a nuestras apps y por el éxito de los aportes de tu red, hasta 5 niveles. Sin aportar.</p><span class="go">Calcular ingresos →</span></a>
+      <a href="vox-populi.html" class="card path reveal"><span class="ic">◉</span><h3>Vox Populi · Campañas</h3><p>Gana promoviendo proyectos que necesitan darse a conocer. Pago por acción verificada.</p><span class="go">Ver campañas →</span></a>
     </div>
   </div>
 </section>
@@ -101,11 +101,11 @@ def nav(active):
     groups=[
       ('Participar',[('proyectos.html','▦','Proyectos','Rondas tokenizadas con soft cap y hard cap'),
                    ('trading.html','⌁','SE Quant','Trading algorítmico cripto, objetivo 30 % anual'),
-                   ('credito.html#prestar','%','Lending','Presta a pools de crédito y gana intereses')]),
-      ('Ganar',[('red.html','⇄','Red ⇄','Comisiones por recomendar, hasta 5 niveles'),
-                ('vox-populi.html','◉','Vox Populi','Cobra por promover proyectos')]),
+                   ('credito.html#prestar','%','Lending','Presta a la tarjeta SE pay: 15 % anual')]),
+      ('Ganar',[('red.html','⇄','Vox Populi · Red','Comisiones por recomendar, hasta 5 niveles'),
+                ('vox-populi.html','◉','Vox Populi · Campañas','Cobra por promover proyectos')]),
       ('SE pay',[('negocio.html#tarjeta','▭','Cuenta y tarjeta','Remesas, on/off ramp y tarjeta de débito'),
-                 ('credito.html#pedir','◆','Crédito','Préstamos con garantía y crédito en la tarjeta'),
+                 ('credito.html#pedir','◆','Crédito','Línea de crédito de la tarjeta SE pay'),
                  ('economia-apps.html','◔','Economía de las apps','Flujo por suscripción y runway de la red'),
                  ('tecnologia.html','⛓','Tecnología','Avalanche, contratos ERC-6960 y repositorio'),
                  ('safe.html','⛨','Multisig Safe','Cómo protegemos el dinero con 2 de 3 firmas'),
@@ -233,10 +233,10 @@ js=js.replace("const names=['Enlace','Conector','Red','Red Pro','Embajador'], na
 js=js.replace("const OV=[.10,.06,.04,.03,.02], names=['Enlace','Conector','Red','Red Pro','Embajador'];","const OV=[.10,.06,.04,.03,.02], names=['Conector','Red','Esmeralda','Rubí','Diamante'];")
 for a,b2 in [("'Embajador',184","'Embajador Corona',184"),("'Embajador',152","'Diamante',152"),("'Red Pro',97","'Rubí',97"),("'Red Pro',81","'Rubí',81"),("'Red',46","'Esmeralda',46"),("'Red',39","'Esmeralda',39"),("'Conector',21","'Red',21")]:
     js=js.replace(a,b2)
-js=re.sub(r"\[/red\|refer\|nivel\|ganar\|invit/i,'.*?'\],","[/red|refer|nivel|ganar|invit|rango/i,'Red ⇄ te paga por tres caminos y <b>no necesitas aportar</b>: 1) hasta el 18 % del ingreso neto de cada suscripción a nuestras apps (5 niveles: 18, 7, 5, 3 y 2 %), y 2) hasta el 15 % del success fee que SE pay cobra cuando los aportes de tu red generan ganancias (15, 6, 4, 3 y 2 %), y 3) un bonus del 50 % del excedente de SE Quant sobre 39 % (20, 12, 8, 6 y 4 %). Todo se paga al instante en USDC, y SE pay se reserva su parte antes de repartir. Nunca pagamos sobre el dinero depositado. Rangos: Conector, Red, Esmeralda, Rubí, Diamante y Embajador Corona.'],",js,count=1,flags=re.S)
+js=re.sub(r"\[/red\|refer\|nivel\|ganar\|invit/i,'.*?'\],","[/red|refer|nivel|ganar|invit|rango/i,'Vox Populi te paga por tres caminos y <b>no necesitas aportar</b>: 1) hasta el 18 % del ingreso neto de cada suscripción a nuestras apps (5 niveles: 18, 7, 5, 3 y 2 %), y 2) hasta el 15 % del success fee que SE pay cobra cuando los aportes de tu red generan ganancias (15, 6, 4, 3 y 2 %), y 3) un bonus del 50 % del excedente de SE Quant sobre 39 % (20, 12, 8, 6 y 4 %). Todo se paga al instante en USDC, y SE pay se reserva su parte antes de repartir. Nunca pagamos sobre el dinero depositado. Rangos: Conector, Red, Esmeralda, Rubí, Diamante y Embajador Corona.'],",js,count=1,flags=re.S)
 js=re.sub(r"/\* SE Quant terminal.*?(?=/\* Prueba social)",lambda m:open(SP+'quant_js.js').read(),js,count=1,flags=re.S)
-js=re.sub(r"\[/trading\|\\bea\\b.*?'\],","[/trading|\\bea\\b|bot|algoritm|forex|quant|multisig|safe/i,'SE Quant es opcional y opera desde tu propia <b>Safe multisig</b> en Avalanche. El reparto anual va en este orden: <b>tú cobras primero</b> hasta 30 % anual; después SE pay cobra 30 % sobre ese 30 % (9 puntos); lo que supere 39 % se divide 50 % para SE pay y 50 % como bonus para la Red ⇄. Sin cuota de administración. Límites: 1 % de riesgo por operación, −3 % diario, freno a −15 %. El 30 % es un objetivo, no una garantía: es operación cripto de alto riesgo.'],",js,count=1,flags=re.S)
-js=js.replace("  ];\n  function answer(q){","    [/cr[eé]dito|prest|lending|borrow|pr[eé]stamo/i,'En SE pay puedes <b>prestar</b> depositando USDC en 3 pools (con garantía 6–9 %, pymes 11–15 %, tarjeta y app 9–13 % objetivo anual) y cobrar intereses cada día, o <b>pedir prestado</b> con garantía en BTC, ETH o AVAX (hasta 50 % de su valor), con crédito en la tarjeta o con un adelanto de comisiones de Red ⇄. Prestar tiene riesgo de impago y de liquidez; los rendimientos no están garantizados.'],\n  ];\n  function answer(q){",1)
+js=re.sub(r"\[/trading\|\\bea\\b.*?'\],","[/trading|\\bea\\b|bot|algoritm|forex|quant|multisig|safe/i,'SE Quant es opcional y opera desde tu propia <b>Safe multisig</b> en Avalanche. El reparto anual va en este orden: <b>tú cobras primero</b> hasta 30 % anual; después SE pay cobra 30 % sobre ese 30 % (9 puntos); lo que supere 39 % se divide 50 % para SE pay y 50 % como bonus para la red Vox Populi. Sin cuota de administración. Límites: 1 % de riesgo por operación, −3 % diario, freno a −15 %. El 30 % es un objetivo, no una garantía: es operación cripto de alto riesgo.'],",js,count=1,flags=re.S)
+js=js.replace("  ];\n  function answer(q){","    [/cr[eé]dito|prest|lending|borrow|pr[eé]stamo|tarjeta/i,'En SE pay solo prestamos a través de la <b>tarjeta SE pay</b>. Si prestas, tu dinero va al pool de la tarjeta y recibes <b>15 % anual</b>, pagado cada día y respaldado primero por un fondo de protección y por el capital de SE pay. Si eres titular, usas tu línea de crédito con <b>1,8 % mensual</b> sobre lo usado, con evaluación en buró de crédito y garantía. No es un depósito bancario: si las pérdidas superan esas protecciones, podrías recibir menos.'],\n  ];\n  function answer(q){",1)
 js+=open(SP+'pages.js').read()
 js+=open(SP+'apps_js.js').read()
 js+=open(SP+'credit_js.js').read()
@@ -317,9 +317,9 @@ page('proyecto.html','Proyecto — SE pay','Ficha del proyecto: ronda, soft cap,
      '<section class="pd"><div class="wrap" id="pd"></div></section>\n'+final)
 page('trading.html','SE Quant — SE pay','Trading algorítmico cripto opcional desde tu propia wallet multisig, con terminal transparente de ganancias y pérdidas.',
      trading+final)
-page('red.html','Red ⇄ — SE pay','Programa de referidos de SE pay: cobra cada mes por los clientes de tu red, hasta 5 niveles, pagado en USDC on-chain.',
+page('red.html','Vox Populi · Red — SE pay','Programa de referidos de SE pay: cobra cada mes por los clientes de tu red, hasta 5 niveles, pagado en USDC on-chain.',
      links(red)+final)
-page('vox-populi.html','Vox Populi — SE pay','Marketing de comunidad en blockchain: los proyectos pagan por darse a conocer y la red cobra por cada acción verificada.',
+page('vox-populi.html','Vox Populi · Campañas — SE pay','Marketing de comunidad en blockchain: los proyectos pagan por darse a conocer y la red cobra por cada acción verificada.',
      vox+final)
 page('tecnologia.html','Tecnología — SE pay','Cómo funcionan la blockchain y los smart contracts de SE pay: arquitectura, ERC-6960, ciclo de una ronda y repositorio.',
      rd('tecnologia_body.html')+final)
@@ -327,7 +327,7 @@ page('negocio.html','Cómo ganamos dinero — SE pay','Todas las comisiones de S
      rd('negocio_body.html')+final)
 page('economia-apps.html','Economía de las apps — SE pay','Flujo económico de las apps de bienestar a US$29,99 al mes y runway de la reserva de comisiones de la red.',
      rd('apps_body.html')+final)
-page('credito.html','Crédito y lending — SE pay','Presta en pools de crédito y gana intereses, o pide prestado con garantía cripto y crédito en la tarjeta SE pay, sobre Avalanche.',
+page('credito.html','Crédito y lending — SE pay','Presta al pool de la tarjeta SE pay y recibe 15 % anual; los titulares usan su línea de crédito con 1,8 % mensual.',
      rd('credito_body.html')+final)
 page('safe.html','Multisig Safe — SE pay','Cómo funcionan las wallets multisig Safe de SE pay en Avalanche: 2 de 3 firmas, permisos limitados para el bot y qué pasa si algo sale mal.',
      rd('safe_body.html')+final)

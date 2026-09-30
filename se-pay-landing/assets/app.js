@@ -98,7 +98,7 @@ function quantSplit(r,D){
       ['2 · Fee del fondo ('+pc(s.fee)+')',-s.fee*cap,''],
       ['3 · Excedente ('+pc(s.exec)+')',-s.exec*cap,''],
       ['   ↳ 50 % para SE pay',s.co*cap,'mute'],
-      ['   ↳ 50 % bonus para la Red ⇄',s.net*cap,'mute'],
+      ['   ↳ 50 % bonus para la red Vox Populi',s.net*cap,'mute'],
     ];
     if(s.res>0)rows.push(['   ↳ de la parte de SE pay, a la reserva',s.res*cap,'mute']);
     $('qs-rows').innerHTML=rows.map(([k,v,c])=>`<div class="res-row"><span>${k}</span><b class="${c}">${usd(v)}</b></div>`).join('');
@@ -112,7 +112,7 @@ function quantSplit(r,D){
 
 /* Prueba social: SOLO con datos reales.
    Conectar FEED.endpoint a los eventos on-chain de depósitos (nombre abreviado + país del KYC)
-   y LEADERBOARD.endpoint a los pagos reales de Red ⇄. En modo demo se marca "DEMO". */
+   y LEADERBOARD.endpoint a los pagos reales de Vox Populi. En modo demo se marca "DEMO". */
 const FEED={endpoint:null, interval:9000};
 const LEADERBOARD={endpoint:null};
 const DEMO_FEED=[
@@ -198,16 +198,16 @@ const DEMO_LB=[
     [/riesgo|perder|seguro|garant/i,'Son participaciones de <b>alto riesgo</b>: un proyecto puede rendir menos de lo esperado o fracasar, y podrías perder parte o todo tu capital. Por eso cada ficha muestra el nivel de riesgo, los supuestos y la contabilidad completa. La regla de oro: diversifica y aporta solo lo que puedas permitirte perder.'],
     [/retir|salir|liquidez|vender|antes/i,'Tu capital queda comprometido durante el plazo del proyecto. Si necesitas salir antes, puedes vender tus tokens en el <b>mercado secundario</b> (0,75 % por operación), siempre que haya un comprador interesado.'],
     [/vox|populi|campa|promo|marketing/i,'<b>Vox Populi</b> es nuestro programa de marketing de comunidad. Los proyectos depositan su presupuesto en garantía on-chain y la red cobra por cada acción verificada: contenido, personas registradas y eventos. Además ganas hasta 5 niveles sobre la actividad de tu equipo (10 %, 6 %, 4 %, 3 % y 2 %). En proyectos tokenizados nunca se paga por el monto aportado.'],
-    [/red|refer|nivel|ganar|invit|rango/i,'Red ⇄ te paga por tres caminos y <b>no necesitas aportar</b>: 1) hasta el 18 % del ingreso neto de cada suscripción a nuestras apps (5 niveles: 18, 7, 5, 3 y 2 %), y 2) hasta el 15 % del success fee que SE pay cobra cuando los aportes de tu red generan ganancias (15, 6, 4, 3 y 2 %), y 3) un bonus del 50 % del excedente de SE Quant sobre 39 % (20, 12, 8, 6 y 4 %). Todo se paga al instante en USDC, y SE pay se reserva su parte antes de repartir. Nunca pagamos sobre el dinero depositado. Rangos: Conector, Red, Esmeralda, Rubí, Diamante y Embajador Corona.'],
+    [/red|refer|nivel|ganar|invit|rango/i,'Vox Populi te paga por tres caminos y <b>no necesitas aportar</b>: 1) hasta el 18 % del ingreso neto de cada suscripción a nuestras apps (5 niveles: 18, 7, 5, 3 y 2 %), y 2) hasta el 15 % del success fee que SE pay cobra cuando los aportes de tu red generan ganancias (15, 6, 4, 3 y 2 %), y 3) un bonus del 50 % del excedente de SE Quant sobre 39 % (20, 12, 8, 6 y 4 %). Todo se paga al instante en USDC, y SE pay se reserva su parte antes de repartir. Nunca pagamos sobre el dinero depositado. Rangos: Conector, Red, Esmeralda, Rubí, Diamante y Embajador Corona.'],
     [/token/i,'Un token representa una fracción de los derechos económicos del proyecto. Queda en tu wallet y el contrato te envía automáticamente tu parte de cada distribución en USDC.'],
     [/m[ií]nimo|cu[aá]nto necesito|empezar/i,'Puedes empezar desde <b>US$100</b> según el proyecto. La cuenta Explorador es gratis.'],
     [/contab|transparen|audit|hash/i,'Cada ingreso, gasto y distribución se registra en blockchain con un hash verificable, y auditores externos revisan cada proyecto cada trimestre. Puedes verlo en la sección Transparencia de cada ficha.'],
-    [/trading|ea|bot|algoritm|forex|quant|multisig|safe/i,'SE Quant es opcional y opera desde tu propia <b>Safe multisig</b> en Avalanche. El reparto anual va en este orden: <b>tú cobras primero</b> hasta 30 % anual; después SE pay cobra 30 % sobre ese 30 % (9 puntos); lo que supere 39 % se divide 50 % para SE pay y 50 % como bonus para la Red ⇄. Sin cuota de administración. Límites: 1 % de riesgo por operación, −3 % diario, freno a −15 %. El 30 % es un objetivo, no una garantía: es operación cripto de alto riesgo.'],
-    [/cr[eé]dito|prest|lending|borrow|pr[eé]stamo/i,'En SE pay puedes <b>prestar</b> depositando USDC en 3 pools (con garantía 6–9 %, pymes 11–15 %, tarjeta y app 9–13 % objetivo anual) y cobrar intereses cada día, o <b>pedir prestado</b> con garantía en BTC, ETH o AVAX (hasta 50 % de su valor), con crédito en la tarjeta o con un adelanto de comisiones de Red ⇄. Prestar tiene riesgo de impago y de liquidez; los rendimientos no están garantizados.'],
+    [/trading|ea|bot|algoritm|forex|quant|multisig|safe/i,'SE Quant es opcional y opera desde tu propia <b>Safe multisig</b> en Avalanche. El reparto anual va en este orden: <b>tú cobras primero</b> hasta 30 % anual; después SE pay cobra 30 % sobre ese 30 % (9 puntos); lo que supere 39 % se divide 50 % para SE pay y 50 % como bonus para la red Vox Populi. Sin cuota de administración. Límites: 1 % de riesgo por operación, −3 % diario, freno a −15 %. El 30 % es un objetivo, no una garantía: es operación cripto de alto riesgo.'],
+    [/cr[eé]dito|prest|lending|borrow|pr[eé]stamo|tarjeta/i,'En SE pay solo prestamos a través de la <b>tarjeta SE pay</b>. Si prestas, tu dinero va al pool de la tarjeta y recibes <b>15 % anual</b>, pagado cada día y respaldado primero por un fondo de protección y por el capital de SE pay. Si eres titular, usas tu línea de crédito con <b>1,8 % mensual</b> sobre lo usado, con evaluación en buró de crédito y garantía. No es un depósito bancario: si las pérdidas superan esas protecciones, podrías recibir menos.'],
   ];
   function answer(q){
     const hit=kb.find(([r])=>r.test(q));
-    setTimeout(()=>say(hit?hit[1]:'Buena pregunta. Puedo explicarte comisiones, riesgos, liquidez, tokens, contabilidad o el programa Red ⇄. ¿Sobre cuál quieres saber más?','a'),500);
+    setTimeout(()=>say(hit?hit[1]:'Buena pregunta. Puedo explicarte comisiones, riesgos, liquidez, tokens, contabilidad o el programa Vox Populi. ¿Sobre cuál quieres saber más?','a'),500);
   }
   say('Hola, soy el <b>Agente SE</b>. Te explico cualquier proyecto, sus números y sus riesgos antes de que decidas. ¿Qué quieres saber?','a');
   document.getElementById('sugg').addEventListener('click',e=>{if(e.target.tagName==='BUTTON'){say(e.target.textContent,'u');answer(e.target.textContent)}});
@@ -359,7 +359,7 @@ const SE = {
           <div class="r"><span>Suscripción mensual</span><span>US$${a.price.toFixed(2).replace('.', ',')}</span></div>
           <div class="r"><span>Comisión de la tienda (≈22 %)</span><span>− US$${(a.price * .22).toFixed(2).replace('.', ',')}</span></div>
           <div class="r t"><span>Ingreso neto por suscriptor</span><span>US$${net.toFixed(2).replace('.', ',')}</span></div>
-          <div class="r"><span>Red ⇄, máximo 35 % del neto</span><span>hasta US$${(net * .35).toFixed(2).replace('.', ',')}</span></div>
+          <div class="r"><span>Vox Populi, máximo 35 % del neto</span><span>hasta US$${(net * .35).toFixed(2).replace('.', ',')}</span></div>
           <div class="r"><span>Cancelación mensual estimada</span><span>${(a.churn * 100).toFixed(0)} %</span></div>
         </div>
         <a href="economia-apps.html" class="go" style="display:inline-block;margin-top:14px">Ver el flujo económico completo y el runway de la red →</a>
@@ -468,7 +468,7 @@ const FORM = { endpoint: /^(localhost|127\.0\.0\.1)$/.test(location.hostname) ? 
   document.querySelectorAll('.lead-form').forEach(f => {
     if (ref) f.elements['ref'].value = ref;
     const proj = params.get('p');
-    const byPage = { 'credito.html': 'Prestar o pedir crédito', 'credito': 'Prestar o pedir crédito', 'trading.html': 'SE Quant (trading)', 'red.html': 'Red ⇄ (referidos)', 'vox-populi.html': 'Vox Populi (promover proyectos)', 'negocio.html': 'Remesas y tarjeta' };
+    const byPage = { 'credito.html': 'Prestar o pedir crédito', 'credito': 'Prestar o pedir crédito', 'trading.html': 'SE Quant (trading)', 'red.html': 'Vox Populi (referidos)', 'vox-populi.html': 'Vox Populi (promover proyectos)', 'negocio.html': 'Remesas y tarjeta' };
     const pg = location.pathname.split('/').pop();
     if (byPage[pg]) f.elements['interest'].value = byPage[pg];
     if (proj) f.elements['interest'].value = 'Participar en proyectos';
@@ -526,14 +526,14 @@ const FORM = { endpoint: /^(localhost|127\.0\.0\.1)$/.test(location.hostname) ? 
     $('ap-churn-v').textContent=pc(m.churn*100); $('ap-cac-v').textContent=usd(m.cac);
     $('ap-rows').innerHTML=[
       ['Ingreso bruto',m.gross,'up'],['Comisión de la tienda',-m.st,''],['Ingreso neto',m.net,'',1],
-      ['Comisiones Red ⇄ ('+pc(m.red/m.net*100)+' del neto)',-m.red,''],['Costos de operación',-m.op,''],
+      ['Comisiones Vox Populi ('+pc(m.red/m.net*100)+' del neto)',-m.red,''],['Costos de operación',-m.op,''],
       ['Marketing: '+Math.round(m.newSubs*(1-m.ref)).toLocaleString('de-DE')+' altas fuera de la red',-m.mkt,'']
     ].map(([k,v,c,t])=>`<div class="res-row"${t?' style="font-weight:600"':''}><span>${k}</span><b class="${c}">${usd(v)}</b></div>`).join('');
     $('ap-profit').textContent=usd(m.profit); $('ap-profit').style.color=m.profit<0?'var(--red)':'var(--lime)';
     $('ap-profit-sub').textContent=pc(m.profit/m.gross*100)+' del bruto · '+usd(m.profit*12)+' al año · se reparte en el proyecto con los participantes primero';
     // una suscripción
     const per=x=>x/m.subs, segs=[
-      ['Tienda de apps',per(m.st),'#4a5056'],['Red ⇄',per(m.red),'var(--c-rd)'],['Operación',per(m.op),'var(--c-fee)'],
+      ['Tienda de apps',per(m.st),'#4a5056'],['Vox Populi',per(m.red),'var(--c-rd)'],['Operación',per(m.op),'var(--c-fee)'],
       ['Marketing',per(m.mkt),'var(--c-co)'],['Utilidad del proyecto',Math.max(0,per(m.profit)),'var(--lime)']];
     $('dollar').innerHTML=segs.map(([k,v,c])=>`<i style="flex:${Math.max(v,0.0001)};background:${c}" title="${k}"></i>`).join('');
     $('dollar-leg').innerHTML=`<div class="dl-total"><small>Suscripción</small><b>${usd2(m.price)}</b></div>`+segs.map(([k,v,c])=>`<div><span class="xs-sw" style="background:${c}"></span><small>${k}</small><b>${usd2(v)}</b><em>${pc(v/m.price*100)}</em></div>`).join('');
@@ -560,29 +560,26 @@ const FORM = { endpoint: /^(localhost|127\.0\.0\.1)$/.test(location.hostname) ? 
   document.querySelectorAll('#app-sim input,#runway-sim input').forEach(x=>x.addEventListener('input',render)); render();
 })();
 
-/* ===== Crédito y lending ===== */
+/* ===== Crédito con la tarjeta SE pay ===== */
 (function(){
   if(!document.getElementById('lend-sim'))return;
   const $=id=>document.getElementById(id);
   const usd=n=>(n<0?'− ':'')+'US$'+Math.abs(Math.round(n)).toLocaleString('de-DE');
-  const pc=n=>(Math.round(n*10)/10).toString().replace('.',',')+' %';
-  let rate=.075;
-  $('ld-pool').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;$('ld-pool').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));rate=+b.dataset.r;lend()});
+  const LEND=.15, MONTHLY=.018;
   function lend(){
-    const a=+$('ld-amt').value, m=+$('ld-m').value, fee=a*.015, lent=a-fee, int=lent*rate*m/12;
+    const a=+$('ld-amt').value, m=+$('ld-m').value, fee=a*.015, lent=a-fee, int=lent*LEND*m/12;
     $('ld-amt-v').textContent=usd(a); $('ld-m-v').textContent=m+(m===1?' mes':' meses');
-    $('ld-rows').innerHTML=[['Depósito',usd(a)],['Fee de depósito 1,5 %','− '+usd(fee)],['Prestado en el pool',usd(lent)],['Rendimiento objetivo anual',pc(rate*100)]]
+    $('ld-rows').innerHTML=[['Depósito',usd(a)],['Fee de depósito 1,5 %','− '+usd(fee)],['Prestado en el pool',usd(lent)],['Retorno anual','15 %']]
       .map(([k,v])=>`<div class="res-row"><span>${k}</span><b>${v}</b></div>`).join('');
-    $('ld-tot').textContent=usd(int); $('ld-sub').textContent='≈ '+usd(int/m)+' al mes · objetivo, no garantizado';
+    $('ld-tot').textContent=usd(int); $('ld-sub').textContent='≈ '+usd(int/m)+' al mes · respaldado por el fondo de protección y el capital de SE pay';
   }
   function borrow(){
-    const col=+$('bw-col').value, ltv=+$('bw-ltv').value/100, m=+$('bw-m').value, loan=col*ltv, orig=loan*.015, int=loan*.10*m/12, drop=1-ltv/.75;
-    $('bw-col-v').textContent=usd(col); $('bw-ltv-v').textContent=pc(ltv*100)+' de la garantía'; $('bw-m-v').textContent=m+(m===1?' mes':' meses');
-    $('bw-rows').innerHTML=[['Préstamo',usd(loan)],['Comisión de originación 1,5 %','− '+usd(orig)],['Interés estimado (10 % anual)',usd(int)],
-      ['Total a devolver',usd(loan+int)],['Se liquida si tu garantía cae',`<span class="${drop<.4?'down':'up'}">${pc(drop*100)}</span>`]]
+    // Cuotas iguales con 1,8 % mensual sobre el saldo pendiente.
+    const a=+$('bw-amt').value, m=+$('bw-m').value, q=a*MONTHLY/(1-Math.pow(1+MONTHLY,-m)), total=q*m, int=total-a;
+    $('bw-amt-v').textContent=usd(a); $('bw-m-v').textContent=m+(m===1?' mes':' meses');
+    $('bw-rows').innerHTML=[['Monto usado',usd(a)],['Interés','1,8 % mensual (21,6 % anual)'],['Cuota mensual',usd(q)],['Total a pagar',usd(total)]]
       .map(([k,v])=>`<div class="res-row"><span>${k}</span><b>${v}</b></div>`).join('');
-    $('bw-tot').textContent=usd(loan-orig);
-    $('bw-sub').textContent=drop<.4?'Préstamo alto: con una caída moderada del precio se liquida tu garantía.':'Margen amplio frente a caídas de precio.';
+    $('bw-tot').textContent=usd(int); $('bw-sub').textContent='Pagando en '+m+(m===1?' cuota':' cuotas')+' iguales. Si pagas antes, pagas menos interés.';
   }
   document.querySelectorAll('#lend-sim input').forEach(x=>x.addEventListener('input',lend));
   document.querySelectorAll('#borrow-sim input').forEach(x=>x.addEventListener('input',borrow));

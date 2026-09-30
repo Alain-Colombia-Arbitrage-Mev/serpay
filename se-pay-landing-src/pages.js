@@ -112,7 +112,7 @@ const SE = {
           <div class="r"><span>Suscripción mensual</span><span>US$${a.price.toFixed(2).replace('.', ',')}</span></div>
           <div class="r"><span>Comisión de la tienda (≈22 %)</span><span>− US$${(a.price * .22).toFixed(2).replace('.', ',')}</span></div>
           <div class="r t"><span>Ingreso neto por suscriptor</span><span>US$${net.toFixed(2).replace('.', ',')}</span></div>
-          <div class="r"><span>Red ⇄, máximo 35 % del neto</span><span>hasta US$${(net * .35).toFixed(2).replace('.', ',')}</span></div>
+          <div class="r"><span>Vox Populi, máximo 35 % del neto</span><span>hasta US$${(net * .35).toFixed(2).replace('.', ',')}</span></div>
           <div class="r"><span>Cancelación mensual estimada</span><span>${(a.churn * 100).toFixed(0)} %</span></div>
         </div>
         <a href="economia-apps.html" class="go" style="display:inline-block;margin-top:14px">Ver el flujo económico completo y el runway de la red →</a>
@@ -221,7 +221,7 @@ const FORM = { endpoint: /^(localhost|127\.0\.0\.1)$/.test(location.hostname) ? 
   document.querySelectorAll('.lead-form').forEach(f => {
     if (ref) f.elements['ref'].value = ref;
     const proj = params.get('p');
-    const byPage = { 'credito.html': 'Prestar o pedir crédito', 'credito': 'Prestar o pedir crédito', 'trading.html': 'SE Quant (trading)', 'red.html': 'Red ⇄ (referidos)', 'vox-populi.html': 'Vox Populi (promover proyectos)', 'negocio.html': 'Remesas y tarjeta' };
+    const byPage = { 'credito.html': 'Prestar o pedir crédito', 'credito': 'Prestar o pedir crédito', 'trading.html': 'SE Quant (trading)', 'red.html': 'Vox Populi (referidos)', 'vox-populi.html': 'Vox Populi (promover proyectos)', 'negocio.html': 'Remesas y tarjeta' };
     const pg = location.pathname.split('/').pop();
     if (byPage[pg]) f.elements['interest'].value = byPage[pg];
     if (proj) f.elements['interest'].value = 'Participar en proyectos';

@@ -1,12 +1,13 @@
 # SE pay — sitio web
 
-Sitio de SE pay: banca de proyectos tokenizados en Avalanche, SE Quant, Red ⇄, Vox Populi, crédito y lending.
+Sitio de SE pay: banca de proyectos tokenizados en Avalanche, SE Quant, la red Vox Populi y crédito con la tarjeta SE pay.
 
 Publicado en **https://se-pay.pages.dev** (Cloudflare Pages).
 
 ## Estructura
 
 ```
+contracts/                 Contratos de las Safes (SignerGuard, DelayedRecovery) y sus pruebas
 se-pay-landing/            Sitio generado (HTML estático listo para publicar)
   assets/styles.css        Estilos compartidos
   assets/app.js            Scripts compartidos (generado)

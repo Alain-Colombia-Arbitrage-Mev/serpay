@@ -34,7 +34,7 @@
     <div class="tiers">
       <div class="card tier t1 reveal"><span class="tn">1</span><small>Del 0 % al 30 %</small><b>100 % para ti</b><p>Todo el rendimiento hasta tu objetivo anual de 30 % va a tu Safe.</p></div>
       <div class="card tier t2 reveal"><span class="tn">2</span><small>Del 30 % al 39 %</small><b>Fee del fondo: 30 % sobre tu 30 %</b><p>Solo cuando ya recibiste tu 30 %, SE pay cobra 9 puntos: el 30 % de tu 30 %.</p></div>
-      <div class="card tier t3 reveal"><span class="tn">3</span><small>Más de 39 % · el excedente</small><b>50 % SE pay · 50 % bonus red</b><p>Lo que el EA gane por encima de 39 % se divide en dos: la mitad para SE pay (de ella sale la reserva de riesgo) y la otra mitad como bonus para la Red ⇄ de quien aportó.</p></div>
+      <div class="card tier t3 reveal"><span class="tn">3</span><small>Más de 39 % · el excedente</small><b>50 % SE pay · 50 % bonus red</b><p>Lo que el EA gane por encima de 39 % se divide en dos: la mitad para SE pay (de ella sale la reserva de riesgo) y la otra mitad como bonus para la red Vox Populi de quien aportó.</p></div>
     </div>
 
     <!-- EXCEDENTE DIAGRAM -->
@@ -45,7 +45,7 @@
         <p>Cuando el año supera el 39 %, ya se pagó <b>tu 30 %</b> y el <b>fee del fondo</b>. Todo lo que quede por encima es el <b>excedente</b>, y se divide en dos partes iguales:</p>
         <div class="xs-halves">
           <div><span class="xs-sw co"></span><b>50 % para SE pay</b><small>Por la ejecución. De aquí sale la reserva de riesgo (10 % del excedente).</small></div>
-          <div><span class="xs-sw rd"></span><b>50 % bonus para la Red ⇄</b><small>Para quienes te recomendaron, hasta 5 niveles: 20, 12, 8, 6 y 4 %.</small></div>
+          <div><span class="xs-sw rd"></span><b>50 % bonus para la red Vox Populi</b><small>Para quienes te recomendaron, hasta 5 niveles: 20, 12, 8, 6 y 4 %.</small></div>
         </div>
         <div class="xs-cases">
           <small>Con US$10.000 aportados:</small>
@@ -70,7 +70,7 @@
         </div>
         <div class="xs-lab">
           <div style="flex:5" class="xs-note"><small>Ejemplo: el bot rinde 45 % en el año</small></div>
-          <div style="flex:6"><b>3 · Excedente <span class="mono">US$600</span></b><small><span class="xs-sw co"></span>US$300 SE pay · <span class="xs-sw rd"></span>US$300 Red ⇄</small></div>
+          <div style="flex:6"><b>3 · Excedente <span class="mono">US$600</span></b><small><span class="xs-sw co"></span>US$300 SE pay · <span class="xs-sw rd"></span>US$300 Vox Populi</small></div>
           <div style="flex:9"><b>2 · Fee del fondo <span class="mono">US$900</span></b><small>30 % sobre tu 30 % = 9 puntos</small></div>
           <div style="flex:30"><b>1 · Tu 30 % <span class="mono up">US$3.000</span></b><small>Se paga primero. Si el año queda por debajo de 30 %, todo lo que se gane es tuyo y nadie más cobra.</small></div>
         </div>
@@ -83,7 +83,7 @@
         <div class="field"><label>Capital que activas <b id="qs-cap-v">US$10.000</b></label><input type="range" id="qs-cap" min="1000" max="100000" step="1000" value="10000"></div>
         <div class="field"><label>Rendimiento bruto del EA en el año <b id="qs-ret-v">45 %</b></label><input type="range" id="qs-ret" min="-15" max="70" step="1" value="45"></div>
         <div class="split-bar" id="qs-bar"></div>
-        <div class="xs-legend"><span><i class="xs-sw inv"></i>Tu parte</span><span><i class="xs-sw fee"></i>Fee del fondo</span><span><i class="xs-sw co"></i>SE pay</span><span><i class="xs-sw rd"></i>Bonus Red ⇄</span></div>
+        <div class="xs-legend"><span><i class="xs-sw inv"></i>Tu parte</span><span><i class="xs-sw fee"></i>Fee del fondo</span><span><i class="xs-sw co"></i>SE pay</span><span><i class="xs-sw rd"></i>Bonus Vox Populi</span></div>
         <p style="font-size:12px;color:var(--mute)">Mueve el rendimiento por debajo de 30 % o a negativo: SE pay no cobra y la caída máxima está limitada por el freno automático de −15 %.</p>
       </div>
       <div class="out">

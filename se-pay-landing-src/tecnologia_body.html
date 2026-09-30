@@ -55,7 +55,7 @@
               <tr><td class="mono up">Disbursed</td><td>Se libera un tramo al proyecto</td></tr>
               <tr><td class="mono up">WentLive</td><td>El proyecto sale al aire, con su fecha comprometida</td></tr>
               <tr><td class="mono up">Distribution</td><td>Se reparten ganancias a los tenedores</td></tr>
-              <tr><td class="mono up">Commission</td><td>Se paga una comisión de Red ⇄ o Vox Populi</td></tr>
+              <tr><td class="mono up">Commission</td><td>Se paga una comisión de Vox Populi</td></tr>
               <tr><td class="mono up">FeeCollected</td><td>SE pay cobra una comisión</td></tr>
               <tr><td class="mono up">AdminTransfer</td><td>Sale dinero de una wallet administrativa</td></tr>
             </tbody>
@@ -89,7 +89,7 @@ splitter.on(<span class="s">"Commission"</span>, (to, subscriber, level, amount)
           <thead><tr><th>Wallet</th><th>Para qué sirve</th><th>Firmas</th><th>Dirección</th></tr></thead>
           <tbody id="wallet-rows">
             <tr><td><b>Tesorería SE pay</b></td><td>Comisiones cobradas por SE pay</td><td>3 de 5</td><td class="mono mute">Se publica al desplegar</td></tr>
-            <tr><td><b>Reserva de comisiones</b></td><td>Pago inmediato de Red ⇄ y Vox Populi</td><td>Contrato</td><td class="mono mute">Se publica al desplegar</td></tr>
+            <tr><td><b>Reserva de comisiones</b></td><td>Pago inmediato de Vox Populi</td><td>Contrato</td><td class="mono mute">Se publica al desplegar</td></tr>
             <tr><td><b>Reserva de riesgo SE Quant</b></td><td>Amortigua meses negativos de los participantes</td><td>3 de 5</td><td class="mono mute">Se publica al desplegar</td></tr>
             <tr><td><b>Saldo operativo de remesas</b></td><td>Pagos instantáneos en cada país</td><td>2 de 3</td><td class="mono mute">Se publica al desplegar</td></tr>
           </tbody>
@@ -133,7 +133,7 @@ splitter.on(<span class="s">"Commission"</span>, (to, subscriber, level, amount)
       <div class="card reveal"><b class="mono" style="font-size:13px">SEProjectToken.sol</b>Token ERC-6960. Un solo contrato para todos los proyectos: mainId = proyecto, subId = serie.</div>
       <div class="card reveal"><b class="mono" style="font-size:13px">FeeRouter.sol</b>Calcula y cobra cada comisión pactada. Los porcentajes tienen un máximo fijado en el código.</div>
       <div class="card reveal"><b class="mono" style="font-size:13px">Waterfall.sol</b>Reparte las ganancias en orden: capital, retorno preferente, excedente.</div>
-      <div class="card reveal"><b class="mono" style="font-size:13px">CommissionSplitter.sol · VoxEscrow.sol</b>Pagan al instante las comisiones de Red ⇄ y Vox Populi, hasta 5 niveles, en la misma transacción.</div>
+      <div class="card reveal"><b class="mono" style="font-size:13px">CommissionSplitter.sol · VoxEscrow.sol</b>Pagan al instante las comisiones de Vox Populi, hasta 5 niveles, en la misma transacción.</div>
       <div class="card reveal"><b class="mono" style="font-size:13px">QuantRoles</b>Módulo de permisos de las Safes de SE Quant: el EA puede operar, nunca retirar. <a href="safe.html" class="go" style="font-size:13px">Cómo funciona la multisig →</a></div>
     </div>
   </div>
@@ -222,7 +222,7 @@ splitter.on(<span class="s">"Commission"</span>, (to, subscriber, level, amount)
     <div class="sec-head reveal">
       <span class="eyebrow">Comisiones al instante</span>
       <h2>Se confirma un pago.<br>Cinco wallets cobran en el mismo segundo.</h2>
-      <p class="lead">Las comisiones de Red ⇄ y Vox Populi no esperan a fin de mes. Un contrato las reparte en la misma transacción en que se confirma cada suscripción o acción verificada, y SE pay cobra su parte primero.</p>
+      <p class="lead">Las comisiones de Vox Populi no esperan a fin de mes. Un contrato las reparte en la misma transacción en que se confirma cada suscripción o acción verificada, y SE pay cobra su parte primero.</p>
     </div>
     <div class="card arch reveal">
       <div class="arch-row">
@@ -328,8 +328,11 @@ splitter.on(<span class="s">"Commission"</span>, (to, subscriber, level, amount)
 │   │   ├── <span class="t">CommissionSplitter.sol</span> <span class="c">// pago inmediato</span>
 │   │   ├── CommissionReserve.sol
 │   │   └── VoxEscrow.sol
-│   └── quant/
-│       └── QuantRoles.sol
+│   ├── quant/
+│   │   └── QuantRoles.sol
+│   └── safe/                <span class="c">// ya publicados en GitHub</span>
+│       ├── <span class="t">SignerGuard.sol</span>
+│       └── <span class="t">DelayedRecovery.sol</span>
 ├── test/                    <span class="c">// pruebas unitarias y de invariantes</span>
 ├── audits/                  <span class="c">// informes publicados</span>
 ├── deployments/avalanche/   <span class="c">// direcciones en C-Chain</span>

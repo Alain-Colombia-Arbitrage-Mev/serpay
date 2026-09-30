@@ -19,14 +19,14 @@
     $('ap-churn-v').textContent=pc(m.churn*100); $('ap-cac-v').textContent=usd(m.cac);
     $('ap-rows').innerHTML=[
       ['Ingreso bruto',m.gross,'up'],['Comisión de la tienda',-m.st,''],['Ingreso neto',m.net,'',1],
-      ['Comisiones Red ⇄ ('+pc(m.red/m.net*100)+' del neto)',-m.red,''],['Costos de operación',-m.op,''],
+      ['Comisiones Vox Populi ('+pc(m.red/m.net*100)+' del neto)',-m.red,''],['Costos de operación',-m.op,''],
       ['Marketing: '+Math.round(m.newSubs*(1-m.ref)).toLocaleString('de-DE')+' altas fuera de la red',-m.mkt,'']
     ].map(([k,v,c,t])=>`<div class="res-row"${t?' style="font-weight:600"':''}><span>${k}</span><b class="${c}">${usd(v)}</b></div>`).join('');
     $('ap-profit').textContent=usd(m.profit); $('ap-profit').style.color=m.profit<0?'var(--red)':'var(--lime)';
     $('ap-profit-sub').textContent=pc(m.profit/m.gross*100)+' del bruto · '+usd(m.profit*12)+' al año · se reparte en el proyecto con los participantes primero';
     // una suscripción
     const per=x=>x/m.subs, segs=[
-      ['Tienda de apps',per(m.st),'#4a5056'],['Red ⇄',per(m.red),'var(--c-rd)'],['Operación',per(m.op),'var(--c-fee)'],
+      ['Tienda de apps',per(m.st),'#4a5056'],['Vox Populi',per(m.red),'var(--c-rd)'],['Operación',per(m.op),'var(--c-fee)'],
       ['Marketing',per(m.mkt),'var(--c-co)'],['Utilidad del proyecto',Math.max(0,per(m.profit)),'var(--lime)']];
     $('dollar').innerHTML=segs.map(([k,v,c])=>`<i style="flex:${Math.max(v,0.0001)};background:${c}" title="${k}"></i>`).join('');
     $('dollar-leg').innerHTML=`<div class="dl-total"><small>Suscripción</small><b>${usd2(m.price)}</b></div>`+segs.map(([k,v,c])=>`<div><span class="xs-sw" style="background:${c}"></span><small>${k}</small><b>${usd2(v)}</b><em>${pc(v/m.price*100)}</em></div>`).join('');
