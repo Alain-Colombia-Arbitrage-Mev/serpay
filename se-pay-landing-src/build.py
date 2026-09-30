@@ -104,7 +104,7 @@ def nav(active):
     groups=[
       ('Participar',[('proyectos.html','▦','Proyectos','Rondas tokenizadas con soft cap y hard cap'),
                    ('trading.html','⌁','SE Quant','Trading algorítmico cripto, objetivo 30 % anual'),
-                   ('credito.html#prestar','%','Lending','Presta a la tarjeta SE pay: 15 % anual')]),
+                   ('credito.html#prestar','%','Lending','Tarjeta 15 % anual · remesas 1,3 % mensual')]),
       ('Ganar',[('red.html','⇄','Vox Populi · Red','Comisiones por recomendar, hasta 5 niveles'),
                 ('vox-populi.html','◉','Vox Populi · Campañas','Cobra por promover proyectos')]),
       ('SE pay',[('negocio.html#tarjeta','▭','Cuenta y tarjeta','Remesas, on/off ramp y tarjeta de débito'),
@@ -164,7 +164,7 @@ CTAS={
   'trading.html':('quant', 'Para quienes miden el riesgo', 'Tú cobras primero.<br><em>Nosotros, solo si llegas al 30 %.</em>', 'Si prefieres un socio que gane contigo y no a costa tuya, empieza por conocer tu Safe y los límites del bot. Te escribimos cuando haya cupo.', 'Quiero activar SE Quant', ('safe.html','Cómo se protege mi dinero')),
   'red.html':('vox', 'Gente que recomienda lo que usa', 'Si ya lo recomiendas,<br><em>que tu red también te pague.</em>', 'Vox Populi es para quienes comparten lo que les funciona. Tu código llega con tu acceso, sin aportar un dólar.', 'Obtener mi código Vox Populi', ('red.html#simulador','Calcular mis ingresos')),
   'vox-populi.html':('vox', 'La voz de la gente', 'Cuenta proyectos en los que crees.<br><em>Cobra por cada acción real.</em>', 'Para quienes ya hablan de lo que les gusta. Te enviamos las campañas que encajan contigo, cuando las haya.', 'Unirme a Vox Populi', ('vox-populi.html#para-proyectos','Tengo un proyecto')),
-  'credito.html':('credito', 'Tu dinero, trabajando en la tarjeta', 'Presta al 15 % anual,<br><em>con dos capas antes que tú.</em>', 'Para quienes quieren un retorno claro y saber exactamente a quién le prestan. Te avisamos cuando haya cupo en el pool.', 'Quiero prestar al 15 %', ('credito.html#pedir','Quiero mi línea de crédito')),
+  'credito.html':('credito', 'Tu dinero, trabajando', 'Presta a quien mueve dinero real,<br><em>con dos capas antes que tú.</em>', 'Para quienes quieren un retorno claro y saber exactamente a quién le prestan: titulares de la tarjeta o empresas de remesas. Te avisamos cuando haya cupo.', 'Quiero prestar y ganar intereses', ('credito.html#pedir','Quiero mi línea de crédito')),
   'tecnologia.html':('explorar', 'Ya viste cómo funciona', 'Ahora decide con calma.<br><em>Nosotros te acompañamos.</em>', 'Cuéntanos qué te interesa y te escribimos solo para eso, por el canal y con la frecuencia que elijas.', 'Empezar en 2 minutos', ('safe.html','Cómo funciona la multisig')),
   'safe.html':('explorar', 'Ya viste cómo se protege', 'Tu dinero, en tu Safe.<br><em>Tus reglas, en el contrato.</em>', 'Cuéntanos qué te interesa y te escribimos solo para eso, por el canal y con la frecuencia que elijas.', 'Empezar en 2 minutos', ('trading.html','Ver SE Quant')),
   'negocio.html':('explorar', 'Sin letra pequeña', 'Ya sabes cómo ganamos.<br><em>Ahora decide tú.</em>', 'Cuéntanos qué te interesa y te escribimos solo para eso, por el canal y con la frecuencia que elijas.', 'Empezar en 2 minutos', ('negocio.html#comisiones','Ver todas las comisiones')),
@@ -271,7 +271,7 @@ for a,b2 in [("'Embajador',184","'Embajador Corona',184"),("'Embajador',152","'D
 js=re.sub(r"\[/red\|refer\|nivel\|ganar\|invit/i,'.*?'\],","[/red|refer|nivel|ganar|invit|rango/i,'Vox Populi te paga por tres caminos y <b>no necesitas aportar</b>: 1) hasta el 18 % del ingreso neto de cada suscripción a nuestras apps (5 niveles: 18, 7, 5, 3 y 2 %), y 2) hasta el 15 % del success fee que SE pay cobra cuando los aportes de tu red generan ganancias (15, 6, 4, 3 y 2 %), y 3) un bonus del 50 % del excedente de SE Quant sobre 39 % (20, 12, 8, 6 y 4 %). Todo se paga al instante en USDC, y SE pay se reserva su parte antes de repartir. Nunca pagamos sobre el dinero depositado. Rangos: Conector, Red, Esmeralda, Rubí, Diamante y Embajador Corona.'],",js,count=1,flags=re.S)
 js=re.sub(r"/\* SE Quant terminal.*?(?=/\* Prueba social)",lambda m:open(SP+'quant_js.js').read(),js,count=1,flags=re.S)
 js=re.sub(r"\[/trading\|\\bea\\b.*?'\],","[/trading|\\bea\\b|bot|algoritm|forex|quant|multisig|safe/i,'SE Quant es opcional y opera desde tu propia <b>Safe multisig</b> en Avalanche. El reparto anual va en este orden: <b>tú cobras primero</b> hasta 30 % anual; después SE pay cobra 30 % sobre ese 30 % (9 puntos); lo que supere 39 % se divide 50 % para SE pay y 50 % como bonus para la red Vox Populi. Sin cuota de administración. Límites: 1 % de riesgo por operación, −3 % diario, freno a −15 %. El 30 % es un objetivo, no una garantía: es operación cripto de alto riesgo.'],",js,count=1,flags=re.S)
-js=js.replace("  ];\n  function answer(q){","    [/cr[eé]dito|prest|lending|borrow|pr[eé]stamo|tarjeta/i,'En SE pay solo prestamos a través de la <b>tarjeta SE pay</b>. Si prestas, tu dinero va al pool de la tarjeta y recibes <b>15 % anual</b>, pagado cada día y respaldado primero por un fondo de protección y por el capital de SE pay. Si eres titular, usas tu línea de crédito con <b>1,8 % mensual</b> sobre lo usado, con evaluación en buró de crédito y garantía. No es un depósito bancario: si las pérdidas superan esas protecciones, podrías recibir menos.'],\n  ];\n  function answer(q){",1)
+js=js.replace("  ];\n  function answer(q){","    [/cr[eé]dito|prest|lending|borrow|pr[eé]stamo|tarjeta|remesa/i,'Puedes prestar en dos pools. <b>Tarjeta SE pay:</b> recibes 15 % anual; los titulares pagan 1,8 % mensual y están evaluados en buró y con garantía. <b>Empresas de remesas:</b> recibes 1,3 % mensual (≈15,6 % anual); las empresas pagan 2,7 % mensual por liquidez de corto plazo y SE pay toma el resto. Ambos pools tienen fondo de protección y el respaldo del capital de SE pay. No es un depósito bancario: si las pérdidas superan esas protecciones, podrías recibir menos.'],\n  ];\n  function answer(q){",1)
 js+=open(SP+'pages.js').read()
 js+=open(SP+'apps_js.js').read()
 js+=open(SP+'credit_js.js').read()
@@ -363,7 +363,7 @@ page('negocio.html','Cómo ganamos dinero — SE pay','Todas las comisiones de S
      rd('negocio_body.html'))
 page('economia-apps.html','Economía de las apps — SE pay','Flujo económico de las apps de bienestar a US$29,99 al mes y runway de la reserva de comisiones de la red.',
      rd('apps_body.html'))
-page('credito.html','Crédito y lending — SE pay','Presta al pool de la tarjeta SE pay y recibe 15 % anual; los titulares usan su línea de crédito con 1,8 % mensual.',
+page('credito.html','Crédito y lending — SE pay','Presta en dos pools: tarjeta SE pay (15 % anual) y empresas de remesas (1,3 % mensual).',
      rd('credito_body.html'))
 page('safe.html','Multisig Safe — SE pay','Cómo funcionan las wallets multisig Safe de SE pay en Avalanche: 2 de 3 firmas, permisos limitados para el bot y qué pasa si algo sale mal.',
      rd('safe_body.html'))

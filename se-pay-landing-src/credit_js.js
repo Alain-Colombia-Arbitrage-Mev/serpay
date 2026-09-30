@@ -4,11 +4,13 @@
   if(!document.getElementById('lend-sim'))return;
   const $=id=>document.getElementById(id);
   const usd=n=>(n<0?'− ':'')+'US$'+Math.abs(Math.round(n)).toLocaleString('de-DE');
-  const LEND=.15, MONTHLY=.018;
+  const LEND=.15, MONTHLY=.018, REM=.013;
+  let pool='tarjeta';
+  $('ld-pool').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;$('ld-pool').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));pool=b.dataset.p;lend()});
   function lend(){
-    const a=+$('ld-amt').value, m=+$('ld-m').value, fee=a*.015, lent=a-fee, int=lent*LEND*m/12;
+    const a=+$('ld-amt').value, m=+$('ld-m').value, fee=a*.015, lent=a-fee, rem=pool==='remesas', int=rem?lent*REM*m:lent*LEND*m/12;
     $('ld-amt-v').textContent=usd(a); $('ld-m-v').textContent=m+(m===1?' mes':' meses');
-    $('ld-rows').innerHTML=[['Depósito',usd(a)],['Fee de depósito 1,5 %','− '+usd(fee)],['Prestado en el pool',usd(lent)],['Retorno anual','15 %']]
+    $('ld-rows').innerHTML=[['Depósito',usd(a)],['Fee de depósito 1,5 %','− '+usd(fee)],['Prestado en el pool',usd(lent)],['Retorno',rem?'1,3 % mensual (≈15,6 % anual)':'15 % anual'],['Destino',rem?'Empresas de remesas':'Tarjeta SE pay']]
       .map(([k,v])=>`<div class="res-row"><span>${k}</span><b>${v}</b></div>`).join('');
     $('ld-tot').textContent=usd(int); $('ld-sub').textContent='≈ '+usd(int/m)+' al mes · respaldado por el fondo de protección y el capital de SE pay';
   }

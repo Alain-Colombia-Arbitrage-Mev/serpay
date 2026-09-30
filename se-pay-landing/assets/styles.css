@@ -944,3 +944,6 @@
   .ob-done small{display:block;margin-top:14px;font-size:12px;color:var(--mute)}
 
   .ob-ctx{font-size:13px;color:var(--soft);background:rgba(212,255,30,.06);border:1px solid rgba(212,255,30,.25);border-radius:12px;padding:10px 14px;margin-bottom:16px}
+
+  .pools.two{grid-template-columns:1fr 1fr}
+  @media (max-width:960px){.pools.two{grid-template-columns:1fr}}

@@ -14,7 +14,7 @@
   const NEXT={
     proyectos:['Mientras tanto, revisa los proyectos abiertos y usa la calculadora de cada uno.',[['proyectos.html','Ver proyectos abiertos →',1],['tecnologia.html#avalanche','Cómo verificarlo en la blockchain']]],
     quant:['Mientras tanto, mira el reparto y los límites de riesgo de SE Quant.',[['trading.html#reparto','Ver cómo se reparte →',1],['safe.html','Cómo funciona tu Safe']]],
-    credito:['Mientras tanto, calcula lo que generaría tu dinero al 15 %.',[['credito.html#prestar','Abrir el simulador →',1],['credito.html#pedir','Cómo funciona la línea de crédito']]],
+    credito:['Mientras tanto, calcula lo que generaría tu dinero en cada pool.',[['credito.html#prestar','Abrir el simulador →',1],['credito.html#pedir','Cómo funciona la línea de crédito']]],
     vox:['Tu código de Vox Populi llega con tu acceso. Mientras tanto, calcula lo que podría generar tu red.',[['red.html#simulador','Calcular mis ingresos →',1],['vox-populi.html#campanas','Ver campañas activas']]],
     tarjeta:['Mientras tanto, conoce la tarjeta y cuánto cuestan las remesas.',[['negocio.html#tarjeta','Ver la tarjeta →',1],['negocio.html#comisiones','Todas las comisiones']]],
     financiar:['Nuestro equipo te escribe para entender tu proyecto.',[['vox-populi.html#para-proyectos','Lanzar una campaña →',1],['proyectos.html#caps','Cómo funcionan las rondas']]],

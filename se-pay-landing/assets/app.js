@@ -203,7 +203,7 @@ const DEMO_LB=[
     [/m[ií]nimo|cu[aá]nto necesito|empezar/i,'Puedes empezar desde <b>US$100</b> según el proyecto. La cuenta Explorador es gratis.'],
     [/contab|transparen|audit|hash/i,'Cada ingreso, gasto y distribución se registra en blockchain con un hash verificable, y auditores externos revisan cada proyecto cada trimestre. Puedes verlo en la sección Transparencia de cada ficha.'],
     [/trading|ea|bot|algoritm|forex|quant|multisig|safe/i,'SE Quant es opcional y opera desde tu propia <b>Safe multisig</b> en Avalanche. El reparto anual va en este orden: <b>tú cobras primero</b> hasta 30 % anual; después SE pay cobra 30 % sobre ese 30 % (9 puntos); lo que supere 39 % se divide 50 % para SE pay y 50 % como bonus para la red Vox Populi. Sin cuota de administración. Límites: 1 % de riesgo por operación, −3 % diario, freno a −15 %. El 30 % es un objetivo, no una garantía: es operación cripto de alto riesgo.'],
-    [/cr[eé]dito|prest|lending|borrow|pr[eé]stamo|tarjeta/i,'En SE pay solo prestamos a través de la <b>tarjeta SE pay</b>. Si prestas, tu dinero va al pool de la tarjeta y recibes <b>15 % anual</b>, pagado cada día y respaldado primero por un fondo de protección y por el capital de SE pay. Si eres titular, usas tu línea de crédito con <b>1,8 % mensual</b> sobre lo usado, con evaluación en buró de crédito y garantía. No es un depósito bancario: si las pérdidas superan esas protecciones, podrías recibir menos.'],
+    [/cr[eé]dito|prest|lending|borrow|pr[eé]stamo|tarjeta|remesa/i,'Puedes prestar en dos pools. <b>Tarjeta SE pay:</b> recibes 15 % anual; los titulares pagan 1,8 % mensual y están evaluados en buró y con garantía. <b>Empresas de remesas:</b> recibes 1,3 % mensual (≈15,6 % anual); las empresas pagan 2,7 % mensual por liquidez de corto plazo y SE pay toma el resto. Ambos pools tienen fondo de protección y el respaldo del capital de SE pay. No es un depósito bancario: si las pérdidas superan esas protecciones, podrías recibir menos.'],
   ];
   function answer(q){
     const hit=kb.find(([r])=>r.test(q));
@@ -565,11 +565,13 @@ const FORM = { endpoint: /^(localhost|127\.0\.0\.1)$/.test(location.hostname) ? 
   if(!document.getElementById('lend-sim'))return;
   const $=id=>document.getElementById(id);
   const usd=n=>(n<0?'− ':'')+'US$'+Math.abs(Math.round(n)).toLocaleString('de-DE');
-  const LEND=.15, MONTHLY=.018;
+  const LEND=.15, MONTHLY=.018, REM=.013;
+  let pool='tarjeta';
+  $('ld-pool').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;$('ld-pool').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));pool=b.dataset.p;lend()});
   function lend(){
-    const a=+$('ld-amt').value, m=+$('ld-m').value, fee=a*.015, lent=a-fee, int=lent*LEND*m/12;
+    const a=+$('ld-amt').value, m=+$('ld-m').value, fee=a*.015, lent=a-fee, rem=pool==='remesas', int=rem?lent*REM*m:lent*LEND*m/12;
     $('ld-amt-v').textContent=usd(a); $('ld-m-v').textContent=m+(m===1?' mes':' meses');
-    $('ld-rows').innerHTML=[['Depósito',usd(a)],['Fee de depósito 1,5 %','− '+usd(fee)],['Prestado en el pool',usd(lent)],['Retorno anual','15 %']]
+    $('ld-rows').innerHTML=[['Depósito',usd(a)],['Fee de depósito 1,5 %','− '+usd(fee)],['Prestado en el pool',usd(lent)],['Retorno',rem?'1,3 % mensual (≈15,6 % anual)':'15 % anual'],['Destino',rem?'Empresas de remesas':'Tarjeta SE pay']]
       .map(([k,v])=>`<div class="res-row"><span>${k}</span><b>${v}</b></div>`).join('');
     $('ld-tot').textContent=usd(int); $('ld-sub').textContent='≈ '+usd(int/m)+' al mes · respaldado por el fondo de protección y el capital de SE pay';
   }
@@ -601,7 +603,7 @@ const FORM = { endpoint: /^(localhost|127\.0\.0\.1)$/.test(location.hostname) ? 
   const NEXT={
     proyectos:['Mientras tanto, revisa los proyectos abiertos y usa la calculadora de cada uno.',[['proyectos.html','Ver proyectos abiertos →',1],['tecnologia.html#avalanche','Cómo verificarlo en la blockchain']]],
     quant:['Mientras tanto, mira el reparto y los límites de riesgo de SE Quant.',[['trading.html#reparto','Ver cómo se reparte →',1],['safe.html','Cómo funciona tu Safe']]],
-    credito:['Mientras tanto, calcula lo que generaría tu dinero al 15 %.',[['credito.html#prestar','Abrir el simulador →',1],['credito.html#pedir','Cómo funciona la línea de crédito']]],
+    credito:['Mientras tanto, calcula lo que generaría tu dinero en cada pool.',[['credito.html#prestar','Abrir el simulador →',1],['credito.html#pedir','Cómo funciona la línea de crédito']]],
     vox:['Tu código de Vox Populi llega con tu acceso. Mientras tanto, calcula lo que podría generar tu red.',[['red.html#simulador','Calcular mis ingresos →',1],['vox-populi.html#campanas','Ver campañas activas']]],
     tarjeta:['Mientras tanto, conoce la tarjeta y cuánto cuestan las remesas.',[['negocio.html#tarjeta','Ver la tarjeta →',1],['negocio.html#comisiones','Todas las comisiones']]],
     financiar:['Nuestro equipo te escribe para entender tu proyecto.',[['vox-populi.html#para-proyectos','Lanzar una campaña →',1],['proyectos.html#caps','Cómo funcionan las rondas']]],
