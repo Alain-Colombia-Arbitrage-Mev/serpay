@@ -67,7 +67,7 @@ def links(h):
                 ('href="#red"','href="red.html"'),('href="#agente"','href="index.html#agente"')]:
         h=h.replace(a,b)
     return h
-footer=links(footer).replace('<div><b>Legal</b>','<div><b>Código</b><a href="https://github.com/Alain-Colombia-Arbitrage-Mev/serpay" target="_blank" rel="noopener">GitHub ↗</a><a href="safe.html">Multisig Safe</a><a href="tecnologia.html#avalanche">Avalanche</a></div><div><b>Legal</b>').replace('<div><b>Plataforma</b><a href="proyectos.html">Proyectos</a><a href="tecnologia.html">Transparencia</a><a href="negocio.html#comisiones">Comisiones</a></div>','<div><b>Plataforma</b><a href="proyectos.html">Proyectos</a><a href="tecnologia.html">Tecnología</a><a href="negocio.html">Cómo ganamos</a><a href="registro.html">Abrir cuenta</a></div>').replace('<div><b>Programa</b><a href="red.html">Vox Populi</a>','<div><b>Programas</b><a href="red.html">Vox Populi</a><a href="vox-populi.html">Vox Populi</a><a href="trading.html">SE Quant</a>').replace('<a href="#" class="logo">','<a href="index.html" class="logo">')
+footer=links(footer).replace('<div><b>Legal</b>','<div><b>Código</b><a href="https://github.com/Alain-Colombia-Arbitrage-Mev/serpay" target="_blank" rel="noopener">GitHub ↗</a><a href="safe.html">Multisig Safe</a><a href="tecnologia.html#avalanche">Avalanche</a></div><div><b>Legal</b>').replace('<div><b>Plataforma</b><a href="proyectos.html">Proyectos</a><a href="tecnologia.html">Transparencia</a><a href="negocio.html#comisiones">Comisiones</a></div>','<div><b>Plataforma</b><a href="proyectos.html">Proyectos</a><a href="tecnologia.html">Tecnología</a><a href="negocio.html">Cómo ganamos</a><a href="registro.html">Empezar</a></div>').replace('<div><b>Programa</b><a href="red.html">Vox Populi</a>','<div><b>Programas</b><a href="red.html">Vox Populi · Red</a><a href="vox-populi.html">Vox Populi · Campañas</a><a href="trading.html">SE Quant</a>').replace('<a href="#" class="logo">','<a href="index.html" class="logo">')
 footer=footer.replace('y el programa Vox Populi están sujetos','y el programa Vox Populi están sujetos')
 footer=footer.replace('© 2026 SE pay.','SE pay tiene en trámite su registro como Money Services Business (MSB); hasta su aprobación, los servicios de remesas y conversión de dinero se prestan a través de socios regulados. © 2026 SE pay.')
 final=open(SP+'form_final.html').read()
@@ -75,6 +75,9 @@ final=open(SP+'form_final.html').read()
 hero=hero.replace('<p class="lead">SE pay tokeniza proyectos productivos y registra cada entrada, gasto y distribución en blockchain. Sabes dónde está tu capital, qué cobramos y cuándo, en tiempo real.</p>',
  '<p class="lead">SE pay convierte proyectos productivos en tokens y registra cada ingreso, gasto y distribución en blockchain, a la vista de todos.</p>')
 hero=links(hero)
+hero=hero.replace('<a href="proyectos.html" class="btn btn-lime">Explorar proyectos →</a>\n      <a href="index.html#agente" class="btn btn-ghost">Preguntar al Agente SE</a>',
+  '<a href="registro.html" class="btn btn-lime btn-lg">Empezar en 2 minutos →</a>\n      <a href="proyectos.html" class="btn btn-ghost btn-lg">Explorar proyectos</a>')
+hero=hero.replace('<div class="trust">','<p class="hero-micro">Sin compromiso de aportar · Tú eliges cómo y cada cuánto te contactamos</p>\n    <div class="trust">',1)
 plans=links(plans)
 
 paths='''<!-- PATHS -->
@@ -119,7 +122,7 @@ def nav(active):
         for h,ic,t,d in items:
             html+='<a href="'+h+'" class="dd-i'+(' on' if h==active else '')+'"><span class="dd-ic">'+ic+'</span><span><b>'+t+'</b><small>'+d+'</small></span></a>'
         html+='</div></div>'
-    html+=NL+'<a href="registro.html" class="menu-cta">Abrir cuenta gratis →</a>'
+    html+=NL+'<a href="registro.html" class="menu-cta">Empezar en 2 minutos →</a>'
     return f"""<nav>
   <div class="wrap">
     <a href="index.html" class="logo" aria-label="SE pay">
@@ -129,8 +132,7 @@ def nav(active):
     <div class="links" id="links">{html}
     </div>
     <div class="nav-r">
-      <a href="#final" class="nav-login">Entrar</a>
-      <a href="#final" class="btn btn-lime">Abrir cuenta</a>
+      <a href="registro.html" class="btn btn-lime">Empezar</a>
       <button class="menu-btn" id="menu" aria-label="Abrir menú" aria-expanded="false" aria-controls="links">☰</button>
     </div>
   </div>
@@ -155,7 +157,40 @@ COMMUNITY='''<div class="comm" id="comm">
   <button class="comm-btn" id="comm-btn" aria-expanded="false" aria-controls="comm-panel" aria-label="Abrir comunidad"><span class="o">💬</span><span class="c">✕</span><em>Comunidad</em></button>
 </div>
 '''
+CTAS={
+  'index.html':('', 'Esto no es para todos', 'Es para quienes quieren ver<br><em>cada dólar antes de decidir.</em>', 'Si lees la letra pequeña, revisas los números y prefieres verificar antes que creer, aquí vas a estar cómodo. Empieza por lo que te interesa y nosotros hacemos el resto.', 'Empezar en 2 minutos', ('proyectos.html','Ver proyectos primero')),
+  'proyectos.html':('proyectos', 'Las rondas tienen cupo', 'Cuando llega al hard cap,<br><em>la ronda se cierra.</em>', 'No es una táctica: es una regla escrita en el contrato. Déjanos tu contacto y te avisamos antes de que abra o se llene la próxima ronda.', 'Avisarme de las rondas', ('proyectos.html#caps','Cómo funcionan las rondas')),
+  'proyecto.html':('proyectos', 'Las rondas tienen cupo', 'Cuando llega al hard cap,<br><em>la ronda se cierra.</em>', 'No es una táctica: es una regla escrita en el contrato. Déjanos tu contacto y te avisamos de esta ronda y de las próximas.', 'Avisarme de esta ronda', ('proyectos.html','Ver otros proyectos')),
+  'trading.html':('quant', 'Para quienes miden el riesgo', 'Tú cobras primero.<br><em>Nosotros, solo si llegas al 30 %.</em>', 'Si prefieres un socio que gane contigo y no a costa tuya, empieza por conocer tu Safe y los límites del bot. Te escribimos cuando haya cupo.', 'Quiero activar SE Quant', ('safe.html','Cómo se protege mi dinero')),
+  'red.html':('vox', 'Gente que recomienda lo que usa', 'Si ya lo recomiendas,<br><em>que tu red también te pague.</em>', 'Vox Populi es para quienes comparten lo que les funciona. Tu código llega con tu acceso, sin aportar un dólar.', 'Obtener mi código Vox Populi', ('red.html#simulador','Calcular mis ingresos')),
+  'vox-populi.html':('vox', 'La voz de la gente', 'Cuenta proyectos en los que crees.<br><em>Cobra por cada acción real.</em>', 'Para quienes ya hablan de lo que les gusta. Te enviamos las campañas que encajan contigo, cuando las haya.', 'Unirme a Vox Populi', ('vox-populi.html#para-proyectos','Tengo un proyecto')),
+  'credito.html':('credito', 'Tu dinero, trabajando en la tarjeta', 'Presta al 15 % anual,<br><em>con dos capas antes que tú.</em>', 'Para quienes quieren un retorno claro y saber exactamente a quién le prestan. Te avisamos cuando haya cupo en el pool.', 'Quiero prestar al 15 %', ('credito.html#pedir','Quiero mi línea de crédito')),
+  'tecnologia.html':('explorar', 'Ya viste cómo funciona', 'Ahora decide con calma.<br><em>Nosotros te acompañamos.</em>', 'Cuéntanos qué te interesa y te escribimos solo para eso, por el canal y con la frecuencia que elijas.', 'Empezar en 2 minutos', ('safe.html','Cómo funciona la multisig')),
+  'safe.html':('explorar', 'Ya viste cómo se protege', 'Tu dinero, en tu Safe.<br><em>Tus reglas, en el contrato.</em>', 'Cuéntanos qué te interesa y te escribimos solo para eso, por el canal y con la frecuencia que elijas.', 'Empezar en 2 minutos', ('trading.html','Ver SE Quant')),
+  'negocio.html':('explorar', 'Sin letra pequeña', 'Ya sabes cómo ganamos.<br><em>Ahora decide tú.</em>', 'Cuéntanos qué te interesa y te escribimos solo para eso, por el canal y con la frecuencia que elijas.', 'Empezar en 2 minutos', ('negocio.html#comisiones','Ver todas las comisiones')),
+  'economia-apps.html':('vox', 'Números a la vista', 'Cada suscripción, contada.<br><em>Cada comisión, pagada al instante.</em>', 'Si quieres ser parte de la red que recomienda estas apps, tu código Vox Populi llega con tu acceso.', 'Obtener mi código Vox Populi', ('red.html','Cómo funciona Vox Populi')),
+}
+def cta_block(fn):
+    if fn not in CTAS: return ''
+    goal,k,t,s,p,(sh,sl)=CTAS[fn]
+    href='registro.html'+('?goal='+goal if goal else '')
+    return f'''<!-- CTA -->
+<section id="final" class="cta-end">
+  <div class="wrap">
+    <div class="card cta-card reveal">
+      <span class="eyebrow">{k}</span>
+      <h2>{t}</h2>
+      <p class="lead">{s}</p>
+      <div class="cta-row"><a href="{href}" class="btn btn-lime btn-lg">{p} →</a><a href="{sh}" class="btn btn-ghost btn-lg">{sl}</a></div>
+      <ul class="cta-trust"><li>2 minutos</li><li>Sin compromiso de aportar</li><li>Tú eliges canal y frecuencia</li></ul>
+    </div>
+  </div>
+</section>
+'''
 def page(fn,title,desc,body,sub=True):
+    goal=CTAS.get(fn,('',))[0]
+    href='registro.html'+('?goal='+goal if goal else '')
+    body=(body+cta_block(fn)).replace('href="#final"','href="'+href+'"')
     html=f'''<!doctype html>
 <html lang="es">
 <head>
@@ -170,7 +205,7 @@ def page(fn,title,desc,body,sub=True):
 </head>
 <body>
 
-{defs}{nav(fn)}
+{defs}{nav(fn).replace('href="registro.html" class="btn btn-lime"','href="'+href+'" class="btn btn-lime"')}
 <main{' class="sub"' if sub else ''}>
 {body}</main>
 
@@ -240,6 +275,7 @@ js=js.replace("  ];\n  function answer(q){","    [/cr[eé]dito|prest|lending|bor
 js+=open(SP+'pages.js').read()
 js+=open(SP+'apps_js.js').read()
 js+=open(SP+'credit_js.js').read()
+js+=open(SP+'onboarding_js.js').read()
 js+='''
 /* Botón de comunidad. Reemplaza los enlaces por los de tus grupos. */
 const COMMUNITY={whatsapp:'https://wa.me/', discord:'https://discord.gg/', telegram:'https://t.me/'};
@@ -310,27 +346,27 @@ FEATURED='''<!-- FEATURED -->
 
 '''
 page('index.html','SE pay — Banca de proyectos tokenizados','Participa en proyectos reales tokenizados en blockchain, con contabilidad abierta en tiempo real y comisiones transparentes.',
-     hero+pillars+VERIFY+paths+FEATURED+HOMECARD+links(steps)+plans+agent+risk+faq+final, sub=False)
+     hero+pillars+VERIFY+paths+FEATURED+HOMECARD+links(steps)+plans+agent+risk+faq, sub=False)
 page('proyectos.html','Proyectos — SE pay','Catálogo de proyectos tokenizados con soft cap, hard cap y contabilidad on-chain.',
-     rd('proyectos_body.html')+final)
+     rd('proyectos_body.html'))
 page('proyecto.html','Proyecto — SE pay','Ficha del proyecto: ronda, soft cap, hard cap, uso de fondos, hitos, contrato ERC-6960 y contabilidad.',
-     '<section class="pd"><div class="wrap" id="pd"></div></section>\n'+final)
+     '<section class="pd"><div class="wrap" id="pd"></div></section>\n')
 page('trading.html','SE Quant — SE pay','Trading algorítmico cripto opcional desde tu propia wallet multisig, con terminal transparente de ganancias y pérdidas.',
-     trading+final)
+     trading)
 page('red.html','Vox Populi · Red — SE pay','Programa de referidos de SE pay: cobra cada mes por los clientes de tu red, hasta 5 niveles, pagado en USDC on-chain.',
-     links(red)+final)
+     links(red))
 page('vox-populi.html','Vox Populi · Campañas — SE pay','Marketing de comunidad en blockchain: los proyectos pagan por darse a conocer y la red cobra por cada acción verificada.',
-     vox+final)
+     vox)
 page('tecnologia.html','Tecnología — SE pay','Cómo funcionan la blockchain y los smart contracts de SE pay: arquitectura, ERC-6960, ciclo de una ronda y repositorio.',
-     rd('tecnologia_body.html')+final)
+     rd('tecnologia_body.html'))
 page('negocio.html','Cómo ganamos dinero — SE pay','Todas las comisiones de SE pay: depósito, retiro, administración, desembolso, remesas, rampas fiat, banca y tarjetas.',
-     rd('negocio_body.html')+final)
+     rd('negocio_body.html'))
 page('economia-apps.html','Economía de las apps — SE pay','Flujo económico de las apps de bienestar a US$29,99 al mes y runway de la reserva de comisiones de la red.',
-     rd('apps_body.html')+final)
+     rd('apps_body.html'))
 page('credito.html','Crédito y lending — SE pay','Presta al pool de la tarjeta SE pay y recibe 15 % anual; los titulares usan su línea de crédito con 1,8 % mensual.',
-     rd('credito_body.html')+final)
+     rd('credito_body.html'))
 page('safe.html','Multisig Safe — SE pay','Cómo funcionan las wallets multisig Safe de SE pay en Avalanche: 2 de 3 firmas, permisos limitados para el bot y qué pasa si algo sale mal.',
-     rd('safe_body.html')+final)
-page('registro.html','Abrir cuenta — SE pay','Crea tu cuenta gratis en SE pay con tu email y WhatsApp.',
-     final+rd('registro_after.html'))
+     rd('safe_body.html'))
+page('registro.html','Empieza en 2 minutos — SE pay','Cuéntanos qué te interesa y cómo quieres que te contactemos. Sin compromiso.',
+     rd('onboarding_body.html'))
 print('ok')

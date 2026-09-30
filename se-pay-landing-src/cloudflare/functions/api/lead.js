@@ -21,6 +21,10 @@ export async function onRequestPost({ request, env }) {
     ref: clean(d.ref, 40) || null,
     project: clean(d.project, 40) || null,
     page: clean(d.page, 80),
+    goal: clean(d.goal, 20) || null,
+    amount: clean(d.amount, 60) || null,
+    channel: ['whatsapp', 'email', 'ambos'].includes(d.channel) ? d.channel : null,
+    frequency: ['relevante', 'semanal'].includes(d.frequency) ? d.frequency : null,
     country: request.cf?.country || null,
     created_at: new Date().toISOString(),
   };
@@ -30,7 +34,7 @@ export async function onRequestPost({ request, env }) {
   if (!lead.name || !validEmail || !validPhone || !lead.consent_contact) return json({ ok: false, error: 'invalid' }, 422);
 
   const key = `lead:${lead.created_at}:${crypto.randomUUID().slice(0, 8)}`;
-  await env.LEADS.put(key, JSON.stringify(lead), { metadata: { email: lead.email, interest: lead.interest } });
+  await env.LEADS.put(key, JSON.stringify(lead), { metadata: { email: lead.email, interest: lead.interest, goal: lead.goal } });
   return json({ ok: true });
 }
 

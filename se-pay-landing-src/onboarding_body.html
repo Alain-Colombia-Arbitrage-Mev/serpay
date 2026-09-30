@@ -1,0 +1,91 @@
+<!-- ONBOARDING -->
+<section class="ob-sec">
+  <div class="wrap ob-grid">
+    <aside class="ob-side">
+      <span class="pill"><span class="dot"></span> 3 pasos · 2 minutos</span>
+      <h1 class="ob-title">Empieza por lo que<br><em>te importa a ti.</em></h1>
+      <p class="lead">No te vamos a llenar de mensajes. Nos dices qué te interesa, por dónde y cada cuánto quieres saber de nosotros, y solo te escribimos para eso.</p>
+      <ul class="ob-promise">
+        <li><b>Tú eliges el canal</b><span>WhatsApp, email o los dos.</span></li>
+        <li><b>Tú eliges la frecuencia</b><span>Solo cuando haya algo para ti, o un resumen semanal.</span></li>
+        <li><b>Te vas cuando quieras</b><span>Un mensaje y dejamos de escribirte.</span></li>
+        <li><b>Sin compromiso</b><span>Registrarte no te obliga a aportar ni a comprar nada.</span></li>
+      </ul>
+    </aside>
+
+    <div class="card ob-card" id="ob">
+      <div class="ob-progress"><i id="ob-bar"></i></div>
+      <div class="ob-steps-h"><span id="ob-step-label">Paso 1 de 3</span><button type="button" class="ob-back" id="ob-back" hidden>← Atrás</button></div>
+      <p class="ob-ctx" id="ob-context" hidden></p>
+
+      <!-- Paso 1 -->
+      <div class="ob-step" data-step="1">
+        <h2>¿Qué te gustaría hacer primero?</h2>
+        <div class="ob-options" id="ob-goals">
+          <button type="button" data-goal="proyectos"><span>▦</span><b>Participar en proyectos</b><small>Energía, logística, apps y más, con contabilidad abierta.</small></button>
+          <button type="button" data-goal="quant"><span>⌁</span><b>Activar SE Quant</b><small>Trading algorítmico cripto desde tu propia Safe.</small></button>
+          <button type="button" data-goal="credito"><span>%</span><b>Prestar al 15 % anual</b><small>Tu dinero financia la tarjeta SE pay.</small></button>
+          <button type="button" data-goal="vox"><span>⇄</span><b>Ganar con Vox Populi</b><small>Recomienda y cobra por tu red, sin aportar.</small></button>
+          <button type="button" data-goal="tarjeta"><span>▭</span><b>Tarjeta y remesas</b><small>Cuenta en dólares digitales, tarjeta y envíos.</small></button>
+          <button type="button" data-goal="financiar"><span>◆</span><b>Financiar mi proyecto</b><small>Tokeniza tu proyecto o lanza una campaña.</small></button>
+          <button type="button" data-goal="explorar" class="wide"><span>◎</span><b>Primero quiero entender cómo funciona</b><small>Te enviamos lo esencial, sin prisa.</small></button>
+        </div>
+      </div>
+
+      <!-- Paso 2 -->
+      <div class="ob-step" data-step="2" hidden>
+        <h2 id="ob-q2">¿Con cuánto te gustaría empezar?</h2>
+        <p class="ob-hint">Solo para mostrarte lo que tiene sentido para ti. Puedes cambiarlo después.</p>
+        <div class="ob-options single" id="ob-amounts"></div>
+      </div>
+
+      <!-- Paso 3 -->
+      <form class="ob-step" data-step="3" id="ob-form" hidden novalidate>
+        <h2>¿Cómo quieres que te contactemos?</h2>
+        <div class="fields">
+          <div class="field"><label for="ob-name">Nombre</label><input id="ob-name" name="name" autocomplete="given-name" placeholder="Tu nombre" required></div>
+          <div class="field"><label for="ob-email">Email</label><input id="ob-email" name="email" type="email" autocomplete="email" placeholder="tu@email.com" required></div>
+          <div class="field"><label for="ob-wa">WhatsApp</label>
+            <div class="wa">
+              <select name="cc" aria-label="Código de país">
+                <option value="+57">🇨🇴 +57</option><option value="+52">🇲🇽 +52</option><option value="+54">🇦🇷 +54</option><option value="+56">🇨🇱 +56</option><option value="+51">🇵🇪 +51</option><option value="+593">🇪🇨 +593</option><option value="+502">🇬🇹 +502</option><option value="+1">🇺🇸 +1</option><option value="+34">🇪🇸 +34</option><option value="+58">🇻🇪 +58</option><option value="+1809">🇩🇴 +1 809</option>
+              </select>
+              <input id="ob-wa" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="300 123 4567" required>
+            </div>
+          </div>
+          <div class="field"><label>¿Por dónde prefieres?</label>
+            <div class="ob-chips" data-name="channel"><button type="button" data-v="whatsapp" class="on">WhatsApp</button><button type="button" data-v="email">Email</button><button type="button" data-v="ambos">Los dos</button></div>
+          </div>
+          <div class="field"><label>¿Cada cuánto?</label>
+            <div class="ob-chips" data-name="frequency"><button type="button" data-v="relevante" class="on">Solo cuando haya algo para mí</button><button type="button" data-v="semanal">Resumen semanal</button></div>
+          </div>
+          <label class="chk"><input type="checkbox" name="consent_contact" required><span>Acepto la <a href="#">política de privacidad</a> y que SE pay me contacte por el canal y con la frecuencia que elegí.</span></label>
+          <label class="chk"><input type="checkbox" name="consent_marketing"><span>Avísame también cuando abra una ronda nueva (opcional).</span></label>
+          <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <p class="err" hidden></p>
+          <button class="btn btn-lime" type="submit" style="justify-content:center;width:100%">Listo, quiero empezar →</button>
+          <small class="fine">Participar implica riesgo. Registrarte no te obliga a aportar.</small>
+        </div>
+      </form>
+
+      <!-- Final -->
+      <div class="ob-step ob-done" data-step="4" hidden>
+        <div class="ok-ic">⇄</div>
+        <h2>Bienvenido, <span id="ob-done-name"></span>.</h2>
+        <p id="ob-done-text"></p>
+        <div class="ob-next" id="ob-next"></div>
+        <small class="ok-demo" id="ob-demo" hidden>Modo demostración: en esta vista local el formulario no se envía.</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="steps" style="grid-template-columns:repeat(3,1fr)">
+      <div class="card step reveal"><span class="n">01</span><h3>Te escribimos una vez</h3><p>Por el canal que elegiste, con tu acceso y el siguiente paso según lo que te interesa.</p></div>
+      <div class="card step reveal"><span class="n">02</span><h3>Verificas tu identidad</h3><p>Solo cuando decidas aportar o retirar. Documento y selfie desde el celular.</p></div>
+      <div class="card step reveal"><span class="n">03</span><h3>Decides con los números</h3><p>Contabilidad, riesgos y calculadora de cada proyecto antes de mover un dólar.</p></div>
+    </div>
+  </div>
+</section>

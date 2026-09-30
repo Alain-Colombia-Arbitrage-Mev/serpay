@@ -4,7 +4,7 @@ import csv, json, subprocess, sys
 
 NS = "f4475e4e52e24cbba500b1e69c3d24e9"
 FIELDS = ["created_at", "name", "email", "whatsapp", "interest", "consent_contact",
-          "consent_marketing", "ref", "project", "page", "country"]
+          "consent_marketing", "goal", "amount", "channel", "frequency", "ref", "project", "page", "country"]
 
 def wr(*args):
     r = subprocess.run(["npx", "--yes", "wrangler@latest", "kv", *args, "--namespace-id", NS, "--remote"],
