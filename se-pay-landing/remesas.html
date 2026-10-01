@@ -8,7 +8,7 @@
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=1790792751">
+<link rel="stylesheet" href="assets/styles.css?v=1790833573">
 </head>
 <body>
 
@@ -41,37 +41,50 @@
 
 <main class="sub">
 <!-- REMESAS -->
-<section class="vox-hero">
-  <div class="wrap" style="text-align:center">
-    <span class="pill"><span class="dot"></span> Remesas instantáneas</span>
-    <h1 class="page-title">Envía dinero a tu familia<br><em>desde 1,2 %. Todo incluido.</em></h1>
-    <p class="lead" style="margin:0 auto">El promedio mundial para enviar dinero ronda el 6 %. Con SE pay pagas una comisión clara, la cotización es la del mercado sin recargo, y ves lo que recibe tu familia antes de enviar. Sin sorpresas, en minutos.</p>
-    <div style="display:flex;gap:12px;justify-content:center;margin-top:34px;flex-wrap:wrap">
-      <a href="#calculadora" class="btn btn-lime btn-lg">Calcular mi envío →</a>
-      <a href="#tarifas" class="btn btn-ghost btn-lg">Ver tarifas por país</a>
+<section class="rm-hero">
+  <div class="wrap rm-hero-grid">
+    <div class="rm-hero-copy">
+      <span class="pill"><span class="dot"></span> Remesas instantáneas</span>
+      <h1 class="page-title" style="text-align:left;margin:20px 0 18px">Tu familia recibe más.<br><em>Tú pagas menos.</em></h1>
+      <p class="lead">Una sola comisión, desde 1,2 %. La cotización es la del mercado, sin recargo, y ves cuánto llega antes de enviar. En minutos, no en días.</p>
+      <ul class="rm-trust">
+        <li><span>%</span><div><b>Una comisión clara</b><small>Sin cargos escondidos en el tipo de cambio.</small></div></li>
+        <li><span>⚡</span><div><b>Llega en minutos</b><small>A cuentas bancarias y billeteras en el país de destino.</small></div></li>
+        <li><span>⛓</span><div><b>Comprobante on-chain</b><small>Cada envío queda registrado en Avalanche.</small></div></li>
+        <li><span>✓</span><div><b>Bajo la meta de la ONU</b><small>Menos de 3 % en nuestros principales destinos.</small></div></li>
+      </ul>
+    </div>
+
+    <div class="card rm-calc" id="rm-sim">
+      <div class="rm-calc-h"><b>Calcula tu envío</b><span class="pill"><span class="dot"></span> Cotización en vivo</span></div>
+      <label class="rm-label" for="rm-amt">Envías</label>
+      <div class="rm-input"><input type="number" id="rm-amt" min="20" max="10000" step="10" value="300" inputmode="decimal"><span>USD</span></div>
+      <label class="rm-label">A dónde</label>
+      <div class="rm-dest" id="rm-dest">
+        <button data-c="co" class="on">🇨🇴 Colombia</button><button data-c="us">🇺🇸 EE. UU.</button><button data-c="br">🇧🇷 Brasil</button><button data-c="as">🌏 Asia</button><button data-c="rw">🌎 Otros</button>
+      </div>
+      <div class="rm-lines" id="rm-lines"></div>
+      <div class="rm-get">
+        <small>Tu familia recibe</small>
+        <b id="rm-get">—</b>
+        <span id="rm-get-usd"></span>
+      </div>
+      <a href="registro.html?goal=tarjeta" class="btn btn-lime btn-lg" style="justify-content:center;width:100%">Enviar con SE pay →</a>
+      <p class="rm-save" id="rm-save"></p>
     </div>
   </div>
 </section>
 
-<!-- CALCULADORA -->
-<section id="calculadora" style="padding-top:0">
+<!-- COMPARACIÓN -->
+<section style="padding-top:0">
   <div class="wrap">
-    <div class="card calc reveal" id="rm-sim">
-      <div class="in">
-        <div><span class="eyebrow">Calculadora de envío</span><h3 style="font-size:22px;font-weight:600;margin-top:8px;letter-spacing:-.02em">¿Cuánto llega y cuánto cuesta?</h3></div>
-        <div class="field"><label>Envías <b id="rm-amt-v"></b></label><input type="range" id="rm-amt" min="20" max="5000" step="10" value="300"></div>
-        <div class="field"><label>A dónde</label>
-          <div class="rm-dest" id="rm-dest">
-            <button data-c="co" class="on">🇨🇴 Colombia</button><button data-c="us">🇺🇸 EE. UU.</button><button data-c="br">🇧🇷 Brasil</button><button data-c="as">🌏 Asia</button><button data-c="rw">🌎 Resto del mundo</button>
-          </div>
-        </div>
-        <p style="font-size:12px;color:var(--mute)">Precio con pago por transferencia bancaria. Si pagas con tarjeta se suma el fee de depósito de 1,5 %.</p>
+    <div class="card rm-cmp reveal">
+      <div>
+        <span class="eyebrow">Cuánto pagas, de verdad</span>
+        <h2 style="font-size:clamp(28px,4vw,42px)">Enviar US$<span id="rm-cmp-amt">300</span> a <span id="rm-cmp-dest">Colombia</span>.</h2>
+        <p class="lead">Comparado con el costo promedio mundial de enviar dinero, según el Banco Mundial.</p>
       </div>
-      <div class="out">
-        <div id="rm-rows"></div>
-        <div class="total"><small>Costo total</small><b id="rm-tot">US$0</b><small id="rm-sub"></small></div>
-        <div class="rm-compare" id="rm-compare"></div>
-      </div>
+      <div class="rm-bars" id="rm-bars"></div>
     </div>
   </div>
 </section>
@@ -80,19 +93,12 @@
 <section id="tarifas" style="padding-top:0">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">Tarifas por país</span>
+      <span class="eyebrow">Tarifas por destino</span>
       <h2>Una comisión. Cero sorpresas.</h2>
       <p class="lead">Pagas una comisión por envío, con un mínimo para los montos pequeños. La comisión no tiene nada que ver con la cotización: el tipo de cambio es el del mercado, sin recargo.</p>
     </div>
-    <div class="card reveal" style="overflow:hidden">
-      <div class="tscroll">
-        <table class="matrix">
-          <thead><tr><th>Destino</th><th>Comisión</th><th>Mínimo por envío</th><th>Cotización</th><th>Costo total enviando US$300</th><th>Llega en</th></tr></thead>
-          <tbody id="rm-table"></tbody>
-        </table>
-      </div>
-    </div>
-    <p class="note">En Colombia, EE. UU., Brasil y Asia cobramos menos del 3 %, la meta de la ONU para el costo de las remesas. El promedio mundial es una referencia del Banco Mundial para envíos de US$200 y varía por país. Los tiempos dependen del banco o billetera de destino.</p>
+    <div class="rm-cards" id="rm-cards"></div>
+    <p class="note">En Colombia, EE. UU., Brasil y Asia cobramos menos del 3 %, la meta de la ONU para el costo de las remesas. El promedio mundial es una referencia del Banco Mundial para envíos de US$200 y varía por país. La cotización mostrada es referencial y se fija al confirmar el envío.</p>
   </div>
 </section>
 
@@ -100,13 +106,27 @@
 <section style="padding-top:0">
   <div class="wrap">
     <div class="sec-head reveal"><span class="eyebrow">Por qué es tan barato y tan rápido</span><h2>Dólares digitales por dentro.<br>Moneda local por fuera.</h2></div>
-    <div class="steps">
-      <div class="card step reveal"><span class="n">01</span><h3>Pagas en tu moneda</h3><p>Transferencia bancaria o saldo de SE pay. Ves el costo total antes de confirmar.</p></div>
-      <div class="card step reveal"><span class="n">02</span><h3>Viaja en USDC</h3><p>El envío cruza la frontera como dólares digitales en Avalanche: segundos y centavos de costo de red.</p></div>
-      <div class="card step reveal"><span class="n">03</span><h3>Se paga al instante</h3><p>Una empresa de remesas aliada paga en moneda local con liquidez que ya tiene en el país.</p></div>
-      <div class="card step reveal"><span class="n">04</span><h3>Todo queda registrado</h3><p>Tu envío tiene su transacción on-chain y un comprobante que puedes compartir.</p></div>
+    <div class="rm-flow reveal">
+      <div><span>1</span><b>Pagas en tu moneda</b><p>Transferencia bancaria o saldo de SE pay. Ves el costo total antes de confirmar.</p></div>
+      <i>→</i>
+      <div><span>2</span><b>Viaja en USDC</b><p>Cruza la frontera como dólares digitales en Avalanche: segundos y centavos de costo de red.</p></div>
+      <i>→</i>
+      <div><span>3</span><b>Se paga al instante</b><p>Una empresa de remesas aliada paga en moneda local con liquidez que ya tiene en el país.</p></div>
+      <i>→</i>
+      <div><span>4</span><b>Queda registrado</b><p>Tu envío tiene su transacción on-chain y un comprobante que puedes compartir.</p></div>
     </div>
-    <div class="card compliance reveal" style="margin-top:22px"><span class="pill"><span class="dot" style="background:var(--amber)"></span> Licencia MSB en trámite</span><p>Las remesas se prestan a través de socios regulados en cada país mientras se aprueba el registro de SE pay como Money Services Business. Disponibilidad sujeta a la regulación local.</p></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="padding-top:0">
+  <div class="wrap" style="max-width:920px">
+    <div class="sec-head reveal" style="text-align:center"><span class="eyebrow">Preguntas frecuentes</span><h2>Lo que todos preguntan antes de enviar.</h2></div>
+    <details><summary>¿La comisión cambia según el tipo de cambio?</summary><p>No. La comisión es un porcentaje fijo según el destino, con un mínimo por envío. La cotización es la del mercado en el momento de confirmar, sin recargo.</p></details>
+    <details><summary>¿Cuánto tarda en llegar?</summary><p>A Colombia, EE. UU. y Brasil (por PIX), en minutos. A Asia y otros destinos, entre 1 y 48 horas según el banco o la billetera de destino.</p></details>
+    <details><summary>¿Cómo puedo pagar el envío?</summary><p>Con transferencia bancaria o con tu saldo de SE pay, al precio publicado. Si pagas con tarjeta, se suma el fee de depósito de 1,5 %.</p></details>
+    <details><summary>¿Por qué hay un mínimo por envío?</summary><p>Mover dinero tiene costos fijos aunque el envío sea pequeño. El mínimo nos permite mantener comisiones bajas en todos los montos.</p></details>
+    <details><summary>¿Está regulado?</summary><p>SE pay tiene en trámite su registro como Money Services Business (MSB). Mientras se aprueba, las remesas se prestan a través de socios regulados en cada país.</p></details>
   </div>
 </section>
 <!-- CTA -->
@@ -116,7 +136,7 @@
       <span class="eyebrow">Para quienes cuidan cada dólar</span>
       <h2>Tu familia recibe más.<br><em>Tú ves cada centavo.</em></h2>
       <p class="lead">Déjanos tu contacto y te avisamos cuando las remesas estén disponibles en tu país, por el canal que elijas.</p>
-      <div class="cta-row"><a href="registro.html?goal=tarjeta" class="btn btn-lime btn-lg">Quiero enviar con SE pay →</a><a href="#calculadora" class="btn btn-ghost btn-lg">Calcular otro envío</a></div>
+      <div class="cta-row"><a href="registro.html?goal=tarjeta" class="btn btn-lime btn-lg">Quiero enviar con SE pay →</a><a href="#rm-sim" class="btn btn-ghost btn-lg">Calcular otro envío</a></div>
       <ul class="cta-trust"><li>2 minutos</li><li>Sin compromiso de aportar</li><li>Tú eliges canal y frecuencia</li></ul>
     </div>
   </div>
@@ -152,7 +172,7 @@
   <div><b id="tname"></b><p id="ttext"></p><small><span id="ttime"></span> · <span class="mono" id="thash"></span><span class="demo" id="tdemo" hidden>DEMO</span></small></div>
   <button class="x" id="tclose" aria-label="Cerrar">×</button>
 </div>
-<script src="assets/projects.js?v=1790792751"></script>
-<script src="assets/app.js?v=1790792751"></script>
+<script src="assets/projects.js?v=1790833573"></script>
+<script src="assets/app.js?v=1790833573"></script>
 </body>
 </html>

@@ -197,7 +197,7 @@ const DEMO_LB=[
     [/cobra|comisi|fee|cuota|costo|precio/i,'Al depositar cobramos <b>1,5 %</b> y al retirar <b>1,5 %</b>. En proyectos: <b>2 % anual</b> de administración y <b>20 % del excedente</b> solo si superas el 8 % anual. El proyecto paga una comisión de desembolso de 3 %. Si una ronda no alcanza su soft cap, te devolvemos el 100 %, fee incluido. Todo está en la página Cómo ganamos.'],
     [/riesgo|perder|seguro|garant/i,'Son participaciones de <b>alto riesgo</b>: un proyecto puede rendir menos de lo esperado o fracasar, y podrías perder parte o todo tu capital. Por eso cada ficha muestra el nivel de riesgo, los supuestos y la contabilidad completa. La regla de oro: diversifica y aporta solo lo que puedas permitirte perder.'],
     [/retir|salir|liquidez|vender|antes/i,'Tu capital queda comprometido durante el plazo del proyecto. Si necesitas salir antes, puedes vender tus tokens en el <b>mercado secundario</b> (0,75 % por operación), siempre que haya un comprador interesado.'],
-    [/vox|populi|campa|promo|marketing/i,'<b>Vox Populi</b> es nuestro programa de marketing de comunidad. Los proyectos depositan su presupuesto en garantía on-chain y la red cobra por cada acción verificada: contenido, personas registradas y eventos. Además ganas hasta 5 niveles sobre la actividad de tu equipo (10 %, 6 %, 4 %, 3 % y 2 %). En proyectos tokenizados nunca se paga por el monto aportado.'],
+    [/vox|populi|campa|promo|marketing/i,'<b>Vox Populi</b> es nuestro programa de marketing de comunidad. Cada proyecto aprobado paga US$15.000 y el 40 % (US$6.000) se reparte en la red, en garantía on-chain: cobras por cada acción verificada: contenido, personas registradas y eventos. Además ganas hasta 5 niveles sobre la actividad de tu equipo (10 %, 6 %, 4 %, 3 % y 2 %). En proyectos tokenizados nunca se paga por el monto aportado.'],
     [/red|refer|nivel|ganar|invit|rango/i,'Vox Populi te paga por tres caminos y <b>no necesitas aportar</b>: 1) hasta el 18 % del ingreso neto de cada suscripción a nuestras apps (5 niveles: 18, 7, 5, 3 y 2 %), y 2) hasta el 15 % del success fee que SE pay cobra cuando los aportes de tu red generan ganancias (15, 6, 4, 3 y 2 %), y 3) un bonus del 50 % del excedente de SE Quant sobre 39 % (20, 12, 8, 6 y 4 %). Todo se paga al instante en USDC, y SE pay se reserva su parte antes de repartir. Nunca pagamos sobre el dinero depositado. Rangos: Conector, Red, Esmeralda, Rubí, Diamante y Embajador Corona.'],
     [/token/i,'Un token representa una fracción de los derechos económicos del proyecto. Queda en tu wallet y el contrato te envía automáticamente tu parte de cada distribución en USDC.'],
     [/m[ií]nimo|cu[aá]nto necesito|empezar/i,'Puedes empezar desde <b>US$100</b> según el proyecto. La cuenta Explorador es gratis.'],
@@ -664,13 +664,14 @@ const FORM = { endpoint: /^(localhost|127\.0\.0\.1)$/.test(location.hostname) ? 
   });
 })();
 
-/* ===== Remesas: tarifas por destino y calculadora ===== */
+/* ===== Remesas: tarifas por destino, calculadora y comparación ===== */
+// La comisión no depende del tipo de cambio: la cotización es la del mercado, sin recargo.
 const REMESAS={
-  co:{name:'Colombia',flag:'🇨🇴',fee:.019,min:2.49,eta:'minutos'},
-  us:{name:'EE. UU.',flag:'🇺🇸',fee:.012,min:1.99,eta:'minutos'},
-  br:{name:'Brasil',flag:'🇧🇷',fee:.022,min:2.49,eta:'minutos (PIX)'},
-  as:{name:'Asia',flag:'🌏',fee:.025,min:3.49,eta:'1–24 horas'},
-  rw:{name:'Resto del mundo',flag:'🌎',fee:.035,min:4.99,eta:'1–48 horas'},
+  co:{name:'Colombia',flag:'🇨🇴',fee:.019,min:2.49,eta:'minutos',ccy:'COP'},
+  us:{name:'EE. UU.',flag:'🇺🇸',fee:.012,min:1.99,eta:'minutos',ccy:'USD'},
+  br:{name:'Brasil',flag:'🇧🇷',fee:.022,min:2.49,eta:'minutos (PIX)',ccy:'BRL'},
+  as:{name:'Asia',flag:'🌏',fee:.025,min:3.49,eta:'1–24 horas',ccy:'USD'},
+  rw:{name:'Otros destinos',flag:'🌎',fee:.035,min:4.99,eta:'1–48 horas',ccy:'USD'},
 };
 const MARKET_AVG=.062;
 (function(){
@@ -678,24 +679,37 @@ const MARKET_AVG=.062;
   const $=id=>document.getElementById(id);
   const usd=n=>'US$'+n.toLocaleString('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2});
   const pc=n=>(Math.round(n*1000)/10).toString().replace('.',',')+' %';
-  // La comisión no depende del tipo de cambio: la cotización es la del mercado, sin recargo.
-  const quote=(c,a)=>{const r=REMESAS[c],fee=Math.max(a*r.fee,r.min);return {fee,total:fee,gets:a-fee}};
-  $('rm-table').innerHTML=Object.entries(REMESAS).map(([k,r])=>{const q=quote(k,300);return `<tr><td>${r.flag} ${r.name}</td><td class="hl">${pc(r.fee)}</td><td>${usd(r.min)}</td><td>Del mercado, sin recargo</td><td><b>${usd(q.total)}</b> <small class="mute">(${pc(q.total/300)})</small></td><td>${r.eta}</td></tr>`}).join('');
+  const quote=(c,a)=>{const r=REMESAS[c],fee=Math.max(a*r.fee,r.min);return {fee,gets:Math.max(0,a-fee)}};
+  const rates={USD:1};
   let c='co';
-  $('rm-dest').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;$('rm-dest').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));c=b.dataset.c;calc()});
+
+  // Cotización referencial del mercado (se fija al confirmar el envío).
+  fetch('https://open.er-api.com/v6/latest/USD').then(r=>r.json()).then(d=>{if(d&&d.rates){Object.assign(rates,d.rates);calc()}}).catch(()=>{});
+
+  $('rm-cards').innerHTML=Object.entries(REMESAS).map(([k,r])=>{const q=quote(k,300);return `<button class="card rm-card" data-c="${k}">
+    <span class="rm-flag">${r.flag}</span><b>${r.name}</b><span class="rm-pct">${pc(r.fee)}</span>
+    <small>Mínimo ${usd(r.min)} · llega en ${r.eta}</small><em>Envías US$300 → pagas ${usd(q.fee)}</em></button>`}).join('');
+
+  function select(k){c=k;$('rm-dest').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x.dataset.c===k));calc()}
+  $('rm-dest').addEventListener('click',e=>{const b=e.target.closest('button');if(b)select(b.dataset.c)});
+  $('rm-cards').addEventListener('click',e=>{const b=e.target.closest('.rm-card');if(!b)return;select(b.dataset.c);document.getElementById('rm-sim').scrollIntoView({behavior:'smooth',block:'center'})});
+
   function calc(){
-    const a=+$('rm-amt').value, r=REMESAS[c], q=quote(c,a), mkt=a*MARKET_AVG;
-    $('rm-amt-v').textContent=usd(a).replace(',00','');
-    $('rm-rows').innerHTML=[
-      ['Envías',usd(a)],
+    const a=Math.max(0,+$('rm-amt').value||0), r=REMESAS[c], q=quote(c,a), rate=rates[r.ccy];
+    const local=r.ccy!=='USD'&&rate&&rate!==1;
+    $('rm-lines').innerHTML=[
       ['Comisión '+(a*r.fee<r.min?'(mínimo por envío)':pc(r.fee)),'− '+usd(q.fee)],
-      ['Cotización','del mercado, sin recargo'],
-      ['Tu familia recibe (en dólares)',usd(q.gets)],
+      ['Cotización',local?'1 USD = '+rate.toLocaleString('de-DE',{maximumFractionDigits:2})+' '+r.ccy:'del mercado, sin recargo'],
       ['Llega en',r.eta]
-    ].map(([k,v],i)=>`<div class="res-row"${i===3?' style="font-weight:600"':''}><span>${k}</span><b${i===3?' class="up"':''}>${v}</b></div>`).join('');
-    $('rm-tot').textContent=usd(q.total);
-    $('rm-sub').textContent=pc(q.total/a)+' del envío, todo incluido';
-    $('rm-compare').innerHTML=`Con el promedio mundial (≈6 %) pagarías cerca de <b>${usd(mkt)}</b>. Con SE pay ahorras <b class="up">${usd(Math.max(0,mkt-q.total))}</b>.`;
+    ].map(([k,v])=>`<div><span>${k}</span><b>${v}</b></div>`).join('');
+    $('rm-get').textContent=local?(q.gets*rate).toLocaleString('de-DE',{maximumFractionDigits:0})+' '+r.ccy:usd(q.gets);
+    $('rm-get-usd').textContent=local?'≈ '+usd(q.gets):'';
+    const mkt=a*MARKET_AVG;
+    $('rm-save').innerHTML=a?`Ahorras <b class="up">${usd(Math.max(0,mkt-q.fee))}</b> frente al promedio mundial`:'';
+    $('rm-cmp-amt').textContent=a.toLocaleString('de-DE'); $('rm-cmp-dest').textContent=r.name;
+    const max=Math.max(mkt,q.fee)||1;
+    $('rm-bars').innerHTML=[['SE pay',q.fee,'lime'],['Promedio mundial (≈6 %)',mkt,'gray']]
+      .map(([k,v,cl])=>`<div class="rm-bar"><div><span>${k}</span><b>${usd(v)}</b></div><i class="${cl}" style="width:${Math.max(2,v/max*100)}%"></i></div>`).join('');
   }
   $('rm-amt').addEventListener('input',calc); calc();
 })();
