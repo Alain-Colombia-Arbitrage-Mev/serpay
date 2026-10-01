@@ -8,7 +8,7 @@
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=1790833573">
+<link rel="stylesheet" href="assets/styles.css?v=1790859257">
 </head>
 <body>
 
@@ -41,30 +41,31 @@
 
 <main class="sub">
 <!-- CREDIT HERO -->
-<section class="vox-hero">
-  <div class="wrap" style="text-align:center">
-    <span class="pill"><span class="dot"></span> Crédito y lending · 2 pools</span>
-    <h1 class="page-title">Presta a quien mueve dinero real.<br><em>Cobra intereses cada día.</em></h1>
-    <p class="lead" style="margin:0 auto">Dos destinos, ninguno más: los titulares de la tarjeta SE pay, evaluados en buró y con garantías, y empresas de remesas que necesitan liquidez para pagar al instante. Los intereses se reparten cada día en Avalanche.</p>
-    <div style="display:flex;gap:12px;justify-content:center;margin-top:34px;flex-wrap:wrap">
-      <a href="#prestar" class="btn btn-lime">Prestar y ganar →</a>
-      <a href="#pedir" class="btn btn-ghost">Mi línea de crédito</a>
+<section class="cr-hero">
+  <div class="wrap cr-hero-grid">
+    <div>
+      <span class="pill"><span class="dot"></span> Crédito y lending · 2 pools</span>
+      <h1 class="page-title" style="text-align:left;margin:20px 0 18px">Presta a quien mueve<br>dinero real.<br><em>Cobra cada día.</em></h1>
+      <p class="lead">Tu dinero financia solo dos cosas: las líneas de crédito de la tarjeta SE pay y la liquidez de empresas de remesas. Los intereses se reparten cada día y cada préstamo queda registrado en Avalanche.</p>
+      <div class="cr-hero-ctas">
+        <a href="#prestar" class="btn btn-lime btn-lg">Prestar y ganar →</a>
+        <a href="#pedir" class="btn btn-ghost btn-lg">Mi línea de crédito</a>
+      </div>
+      <div class="cr-hero-stats">
+        <div><b>15 %</b><small>anual · pool tarjeta</small></div>
+        <div><b>1,3 %</b><small>mensual · pool remesas</small></div>
+        <div><b>2</b><small>capas de protección antes que tú</small></div>
+      </div>
+    </div>
+    <div class="cr-hero-media">
+      <div class="cr-hero-img" style="background-image:url(assets/img/credito-hero.jpg)" role="img" aria-label="Pago con la tarjeta SE pay"></div>
+      <div class="cr-chip c1"><span>▭</span><div><b>Pool tarjeta</b><small>15 % anual para quien presta</small></div></div>
+      <div class="cr-chip c2"><span>⇄</span><div><b>Pool remesas</b><small>1,3 % mensual para quien presta</small></div></div>
     </div>
   </div>
 </section>
 
-<section style="padding-top:0">
-  <div class="wrap">
-    <div class="pillars reveal">
-      <div><b>15<i>%</i></b><span>anual para quien presta en el pool de la tarjeta</span></div>
-      <div><b>1,3<i>%</i></b><span>mensual para quien presta en el pool de remesas</span></div>
-      <div><b>2</b><span>pools de crédito: tarjeta SE pay y empresas de remesas</span></div>
-      <div><b>2</b><span>capas que absorben pérdidas antes que tú</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- LEND -->
+<!-- POOLS -->
 <section id="prestar" style="padding-top:0">
   <div class="wrap">
     <div class="sec-head reveal">
@@ -72,34 +73,27 @@
       <h2>Dos pools.<br>Tú eliges a quién le prestas.</h2>
       <p class="lead">Cada pool presta a un solo tipo de cliente, con sus propias reglas. Cobras intereses cada día y retiras lo que no esté prestado en ese momento.</p>
     </div>
-    <div class="pools two">
-      <div class="card pool reveal" style="padding:28px">
-        <div class="pool-h"><span class="cx-ic hard">▭</span><span class="pill"><span class="dot"></span> Abierto</span></div>
-        <h3 style="font-size:22px">Pool tarjeta SE pay</h3>
-        <p>Financia las compras y avances de los titulares de la tarjeta, evaluados en buró de crédito y con garantía.</p>
-        <div class="kv"><div><small>Para ti</small><b>15 % anual</b></div><div><small>Paga el titular</small><b>1,8 % mes</b></div><div><small>Plazo típico</small><b>1–6 m</b></div></div>
-        <div class="bar"><i style="width:82%"></i></div>
-      </div>
-      <div class="card pool reveal" style="padding:28px">
-        <div class="pool-h"><span class="cx-ic out">⇄</span><span class="pill"><span class="dot"></span> Abierto</span></div>
-        <h3 style="font-size:22px">Pool empresas de remesas</h3>
-        <p>Liquidez para que empresas de remesas paguen al instante en cada país mientras reciben el dinero del envío. Préstamos cortos y con flujos verificables.</p>
-        <div class="kv"><div><small>Para ti</small><b>1,3 % mes</b></div><div><small>Paga la empresa</small><b>2,7 % mes</b></div><div><small>Plazo típico</small><b>7–90 d</b></div></div>
-        <div class="bar"><i style="width:76%"></i></div>
-      </div>
-    </div>
-    <div style="margin-top:16px">
-      <div class="card reveal" style="padding:30px">
-        <span class="eyebrow">Cómo se protege tu dinero</span>
-        <h3 style="font-size:22px;font-weight:600;letter-spacing:-.02em;margin:12px 0 14px">Dos capas absorben las pérdidas antes que tú.</h3>
-        <div class="layers">
-          <div><span>1</span><b>Fondo de protección</b><small>10 % de cada interés cobrado se guarda para cubrir impagos.</small></div>
-          <div><span>2</span><b>Capital de SE pay</b><small>SE pay respalda ambos pools con su propio capital, que asume las pérdidas antes que los prestamistas.</small></div>
-          <div class="you"><span>3</span><b>Tu capital</b><small>Solo se vería afectado si las pérdidas superan las dos capas anteriores.</small></div>
+    <div class="cr-pools">
+      <article class="card cr-pool reveal">
+        <div class="cr-pool-img" style="background-image:linear-gradient(180deg,rgba(10,11,12,0) 40%,rgba(10,11,12,.85)),url(assets/img/credito-tarjeta.jpg)"><span class="pill"><span class="dot"></span> Abierto</span><h3>Pool tarjeta SE pay</h3></div>
+        <div class="cr-pool-body">
+          <p>Financia las compras y avances de los titulares de la tarjeta, evaluados en buró de crédito y con garantía.</p>
+          <div class="cr-rate"><b>15 %</b><span>anual para ti</span></div>
+          <div class="kv"><div><small>Paga el titular</small><b>1,8 % mes</b></div><div><small>Plazo típico</small><b>1–6 m</b></div><div><small>Uso del pool</small><b>82 %</b></div></div>
+          <div class="bar"><i style="width:82%"></i></div>
+          <button type="button" class="btn btn-ghost cr-pick" data-p="tarjeta">Calcular con este pool ↓</button>
         </div>
-      </div>
-    </div>
-
+      </article>
+      <article class="card cr-pool reveal">
+        <div class="cr-pool-img" style="background-image:linear-gradient(180deg,rgba(10,11,12,0) 40%,rgba(10,11,12,.85)),url(assets/img/credito-remesas.jpg)"><span class="pill"><span class="dot"></span> Abierto</span><h3>Pool empresas de remesas</h3></div>
+        <div class="cr-pool-body">
+          <p>Liquidez para que empresas de remesas con licencia paguen al instante en cada país mientras reciben el dinero del envío.</p>
+          <div class="cr-rate"><b>1,3 %</b><span>mensual para ti · ≈15,6 % anual</span></div>
+          <div class="kv"><div><small>Paga la empresa</small><b>2,7 % mes</b></div><div><small>Plazo típico</small><b>7–90 d</b></div><div><small>Uso del pool</small><b>76 %</b></div></div>
+          <div class="bar"><i style="width:76%"></i></div>
+          <button type="button" class="btn btn-ghost cr-pick" data-p="remesas">Calcular con este pool ↓</button>
+        </div>
+      </article>
     </div>
 
     <div class="card calc reveal" id="lend-sim" style="margin-top:22px">
@@ -112,6 +106,46 @@
       <div class="out">
         <div id="ld-rows"></div>
         <div class="total"><small>Intereses para ti</small><b id="ld-tot">US$0</b><small id="ld-sub"></small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROTECCIÓN -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="card cr-protect reveal">
+      <div class="cr-protect-img" style="background-image:url(assets/img/credito-proteccion.jpg)" role="img" aria-label="Bóveda"></div>
+      <div class="cr-protect-body">
+        <span class="eyebrow">Cómo se protege tu dinero</span>
+        <h2 style="font-size:clamp(28px,3.6vw,40px)">Dos capas absorben las pérdidas antes que tú.</h2>
+        <div class="layers" style="margin-top:18px">
+          <div><span>1</span><b>Fondo de protección</b><small>10 % de cada interés cobrado se guarda para cubrir impagos.</small></div>
+          <div><span>2</span><b>Capital de SE pay</b><small>SE pay respalda ambos pools con su propio capital, que asume las pérdidas antes que los prestamistas.</small></div>
+          <div class="you"><span>3</span><b>Tu capital</b><small>Solo se vería afectado si las pérdidas superan las dos capas anteriores.</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REPARTO -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="eyebrow">Cómo se reparte el interés</span><h2>Lo que paga cada cliente,<br>y lo que recibes tú.</h2></div>
+    <div class="cr-split">
+      <div class="card fall reveal">
+        <div class="cr-split-h"><span>▭</span><b>Pool tarjeta</b></div>
+        <div class="row"><span class="k">%</span><div><b>El titular paga</b><small>1,8 % mensual sobre lo usado</small></div><span class="v">21,6 % anual</span></div>
+        <div class="row hl"><span class="k">1</span><div><b>Prestamistas</b><small>Tu retorno en el pool</small></div><span class="v" style="color:var(--lime)">15 %</span></div>
+        <div class="row"><span class="k">2</span><div><b>Fondo de protección</b><small>10 % del interés cobrado</small></div><span class="v">2,16 %</span></div>
+        <div class="row"><span class="k">3</span><div><b>SE pay</b><small>Evaluación, cobranza y operación</small></div><span class="v">4,44 %</span></div>
+      </div>
+      <div class="card fall reveal">
+        <div class="cr-split-h"><span>⇄</span><b>Pool remesas</b></div>
+        <div class="row"><span class="k">%</span><div><b>La empresa de remesas paga</b><small>Mensual sobre el saldo prestado</small></div><span class="v">2,7 % mes</span></div>
+        <div class="row hl"><span class="k">1</span><div><b>Prestamistas</b><small>≈ 15,6 % al año</small></div><span class="v" style="color:var(--lime)">1,3 % mes</span></div>
+        <div class="row"><span class="k">2</span><div><b>SE pay</b><small>Originación, evaluación, cobranza y respaldo</small></div><span class="v">1,4 % mes</span></div>
       </div>
     </div>
   </div>
@@ -144,50 +178,18 @@
   </div>
 </section>
 
-<!-- HOW WE EARN -->
-<section style="padding-top:0">
-  <div class="wrap split" style="align-items:stretch">
-    <div class="card reveal" style="padding:30px">
-      <span class="eyebrow">Cómo se reparte el interés</span>
-      <h3 style="font-size:26px;font-weight:600;letter-spacing:-.02em;margin:12px 0 10px">El titular paga 1,8 % al mes. Tú recibes 15 % al año.</h3>
-      <p style="color:var(--mute);font-size:15px">El 1,8 % mensual equivale a 21,6 % al año. La mayor parte va a quienes prestan, una parte alimenta el fondo de protección y el resto cubre la evaluación, la cobranza y la operación de SE pay.</p>
-    </div>
-    <div class="card fall reveal">
-      <div class="row"><span class="k">%</span><div><b>El titular paga</b><small>1,8 % mensual sobre lo usado</small></div><span class="v">21,6 % anual</span></div>
-      <div class="row hl"><span class="k">1</span><div><b>Prestamistas</b><small>Tu retorno en el pool</small></div><span class="v" style="color:var(--lime)">15 %</span></div>
-      <div class="row"><span class="k">2</span><div><b>Fondo de protección</b><small>10 % del interés cobrado</small></div><span class="v">2,16 %</span></div>
-      <div class="row"><span class="k">3</span><div><b>SE pay</b><small>Evaluación, cobranza y operación</small></div><span class="v">4,44 %</span></div>
-    </div>
-  </div>
-  <div class="wrap split" style="align-items:stretch;margin-top:16px">
-    <div class="card reveal" style="padding:30px">
-      <span class="eyebrow">Pool de remesas</span>
-      <h3 style="font-size:26px;font-weight:600;letter-spacing:-.02em;margin:12px 0 10px">La empresa paga 2,7 % al mes. Tú recibes 1,3 %.</h3>
-      <p style="color:var(--mute);font-size:15px">Las empresas de remesas necesitan dinero disponible en cada país para pagar al instante, antes de recibir el envío. Pagan 2,7 % mensual por esa liquidez: 1,3 % es para quien presta y el resto lo toma SE pay por originar, evaluar, cobrar y respaldar el crédito.</p>
-    </div>
-    <div class="card fall reveal">
-      <div class="row"><span class="k">%</span><div><b>La empresa de remesas paga</b><small>Mensual sobre el saldo prestado</small></div><span class="v">2,7 % mes</span></div>
-      <div class="row hl"><span class="k">1</span><div><b>Prestamistas</b><small>≈ 15,6 % al año</small></div><span class="v" style="color:var(--lime)">1,3 % mes</span></div>
-      <div class="row"><span class="k">2</span><div><b>SE pay</b><small>Originación, evaluación, cobranza y respaldo</small></div><span class="v">1,4 % mes</span></div>
-    </div>
-  </div>
-</section>
-
 <!-- RISK -->
 <section style="padding-top:0">
   <div class="wrap">
     <div class="sec-head reveal"><span class="eyebrow">Control de riesgo del crédito</span><h2>Reglas para prestar bien.</h2></div>
     <div class="riskgrid2">
       <div class="card reveal"><span class="rn">Buró</span><b>Evaluación previa</b><p>Ningún titular recibe crédito sin revisión de buró, ingresos y actividad.</p></div>
-      <div class="card reveal"><span class="rn">Garantía</span><b>Toda línea respaldada</b><p>Cada línea de crédito tiene una garantía del titular.</p></div>
-      <div class="card reveal"><span class="rn">1,8 %</span><b>Tasa clara</b><p>Un solo interés mensual sobre lo usado, sin cargos escondidos.</p></div>
+      <div class="card reveal"><span class="rn">Garantía</span><b>Toda línea respaldada</b><p>Cada línea de crédito de la tarjeta tiene una garantía del titular.</p></div>
+      <div class="card reveal"><span class="rn">Licencia</span><b>Remesas autorizadas</b><p>Solo prestamos a empresas de remesas con licencia, estados financieros revisados y garantía de sus cuentas por cobrar.</p></div>
+      <div class="card reveal"><span class="rn">90 d</span><b>Plazos cortos</b><p>Los préstamos a remesas duran de 7 a 90 días y se pagan con los flujos de los envíos.</p></div>
       <div class="card reveal"><span class="rn">10 %</span><b>Fondo de protección</b><p>Cubre impagos antes de que afecten a quienes prestan.</p></div>
       <div class="card reveal"><span class="rn">1.ª</span><b>Pérdida de SE pay</b><p>El capital de SE pay absorbe pérdidas antes que los prestamistas.</p></div>
-      <div class="card reveal"><span class="rn">0,5 %</span><b>Diversificación</b><p>Ningún titular puede concentrar más del 0,5 % del pool de la tarjeta.</p></div>
-      <div class="card reveal"><span class="rn">15 %</span><b>Límite por empresa</b><p>Ninguna empresa de remesas puede tomar más del 15 % del pool de remesas.</p></div>
-      <div class="card reveal"><span class="rn">90 d</span><b>Plazos cortos</b><p>Los préstamos a remesas duran de 7 a 90 días y se pagan con los flujos de los envíos.</p></div>
-      <div class="card reveal"><span class="rn">Licencia</span><b>Solo empresas autorizadas</b><p>Solo prestamos a empresas de remesas con licencia vigente, estados financieros revisados y garantía de sus cuentas por cobrar.</p></div>
-      <div class="card reveal"><span class="rn">Pool</span><b>Liquidez</b><p>Retiras lo que no esté prestado. Si el pool está muy usado, el retiro espera los pagos de los titulares.</p></div>
+      <div class="card reveal"><span class="rn">0,5 % · 15 %</span><b>Diversificación</b><p>Máximo 0,5 % del pool de la tarjeta por titular y 15 % del pool de remesas por empresa.</p></div>
       <div class="card reveal"><span class="rn">On-chain</span><b>Todo visible</b><p>Créditos, pagos, intereses y uso del fondo de protección se registran en Avalanche.</p></div>
     </div>
     <p class="note">El 15 % anual y el 1,3 % mensual son los retornos que SE pay busca pagar y respalda con el fondo de protección y su propio capital. No es un depósito bancario ni está asegurado por ningún gobierno: si las pérdidas superan esas dos capas, podrías recibir menos de lo prestado. El crédito se ofrece a través de socios regulados en cada país, sujeto a la regulación local.</p>
@@ -236,7 +238,7 @@
   <div><b id="tname"></b><p id="ttext"></p><small><span id="ttime"></span> · <span class="mono" id="thash"></span><span class="demo" id="tdemo" hidden>DEMO</span></small></div>
   <button class="x" id="tclose" aria-label="Cerrar">×</button>
 </div>
-<script src="assets/projects.js?v=1790833573"></script>
-<script src="assets/app.js?v=1790833573"></script>
+<script src="assets/projects.js?v=1790859257"></script>
+<script src="assets/app.js?v=1790859257"></script>
 </body>
 </html>

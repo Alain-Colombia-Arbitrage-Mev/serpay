@@ -24,5 +24,9 @@
   }
   document.querySelectorAll('#lend-sim input').forEach(x=>x.addEventListener('input',lend));
   document.querySelectorAll('#borrow-sim input').forEach(x=>x.addEventListener('input',borrow));
+  document.querySelectorAll('.cr-pick').forEach(b=>b.addEventListener('click',()=>{
+    const t=$('ld-pool').querySelector('[data-p="'+b.dataset.p+'"]'); if(t)t.click();
+    $('lend-sim').scrollIntoView({behavior:'smooth',block:'center'});
+  }));
   lend(); borrow();
 })();
